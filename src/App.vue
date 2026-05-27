@@ -5,6 +5,7 @@ import SpaceBackground from './components/layout/SpaceBackground.vue'
 import AboutSection from './components/sections/AboutSection.vue'
 import ExperienceSection from './components/sections/ExperienceSection.vue'
 import HeroSection from './components/sections/HeroSection.vue'
+import SkillsSection from './components/sections/SkillsSection.vue'
 </script>
 
 <template>
@@ -17,6 +18,7 @@ import HeroSection from './components/sections/HeroSection.vue'
       <HeroSection />
       <AboutSection />
       <ExperienceSection />
+      <SkillsSection />
     </main>
 
     <Footer />
