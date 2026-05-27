@@ -3,7 +3,7 @@ const currentYear = new Date().getFullYear()
 </script>
 
 <template>
-  <footer id="contacto" class="relative z-10 scroll-mt-20 px-6 py-6 sm:px-8">
+  <footer class="relative z-10 px-6 py-6 sm:px-8">
     <div
       class="mx-auto flex w-full max-w-7xl flex-col gap-2 border-t border-white/10 pt-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between"
     >

@@ -4,6 +4,7 @@ import Navbar from './components/layout/Navbar.vue'
 import SpaceBackground from './components/layout/SpaceBackground.vue'
 import AboutSection from './components/sections/AboutSection.vue'
 import CertificationsSection from './components/sections/CertificationsSection.vue'
+import ContactSection from './components/sections/ContactSection.vue'
 import ExperienceSection from './components/sections/ExperienceSection.vue'
 import HeroSection from './components/sections/HeroSection.vue'
 import ProjectsSection from './components/sections/ProjectsSection.vue'
@@ -23,6 +24,7 @@ import SkillsSection from './components/sections/SkillsSection.vue'
       <SkillsSection />
       <ProjectsSection />
       <CertificationsSection />
+      <ContactSection />
     </main>
 
     <Footer />
