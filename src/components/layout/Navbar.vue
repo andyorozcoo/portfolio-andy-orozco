@@ -1,75 +1,69 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { RouterLink, useRoute } from 'vue-router'
 
 const navLinks = [
-  { id: 'inicio', label: 'Inicio' },
-  { id: 'sobre-mi', label: 'Sobre mí' },
-  { id: 'experiencia', label: 'Experiencia' },
-  { id: 'proyectos', label: 'Proyectos' },
-  { id: 'habilidades', label: 'Habilidades' },
-  { id: 'certificaciones', label: 'Certificaciones' },
-  { id: 'contacto', label: 'Contacto' },
+  { to: '/', label: 'Inicio' },
+  { to: '/sobre-mi', label: 'Sobre mí' },
+  { to: '/experiencia', label: 'Experiencia' },
+  { to: '/proyectos', label: 'Proyectos' },
+  { to: '/habilidades', label: 'Habilidades' },
+  { to: '/certificaciones', label: 'Certificaciones' },
+  { to: '/contacto', label: 'Contacto' },
 ]
 
-const activeSection = ref('inicio')
+const route = useRoute()
 const isMenuOpen = ref(false)
-let sectionObserver
 
-const setActiveLink = (id) => {
-  activeSection.value = id
+const closeMenu = () => {
   isMenuOpen.value = false
 }
 
 const closeWithEscape = (event) => {
   if (event.key === 'Escape') {
-    isMenuOpen.value = false
+    closeMenu()
   }
 }
 
 const closeMenuOnDesktop = () => {
   if (window.innerWidth >= 1280) {
-    isMenuOpen.value = false
+    closeMenu()
   }
+}
+
+const linkIsActive = (to) => {
+  return to === '/' ? route.path === '/' || route.path === '/inicio' : route.path === to
 }
 
 watch(isMenuOpen, (isOpen) => {
   document.body.classList.toggle('menu-open', isOpen)
 })
 
+watch(
+  () => route.path,
+  () => closeMenu(),
+)
+
 onMounted(() => {
   document.addEventListener('keydown', closeWithEscape)
   window.addEventListener('resize', closeMenuOnDesktop)
-
-  sectionObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          activeSection.value = entry.target.id
-        }
-      })
-    },
-    { rootMargin: '-30% 0px -60%', threshold: 0.05 },
-  )
-
-  document.querySelectorAll('section[id]').forEach((section) => sectionObserver.observe(section))
 })
 
 onBeforeUnmount(() => {
   document.removeEventListener('keydown', closeWithEscape)
   window.removeEventListener('resize', closeMenuOnDesktop)
   document.body.classList.remove('menu-open')
-  sectionObserver?.disconnect()
 })
 </script>
 
 <template>
   <header class="fixed inset-x-0 top-0 z-50 border-b border-brand-magenta/10 bg-space/75 backdrop-blur-xl">
     <nav aria-label="Navegación principal" class="mx-auto flex h-20 w-full max-w-7xl items-center px-6 lg:px-8">
-      <a
-        href="#inicio"
+      <RouterLink
+        to="/"
         aria-label="Andy Orozco Castro, página principal"
         class="group flex shrink-0 items-center gap-3 focus-visible:rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-violet"
-        @click="setActiveLink('inicio')"
+        @click="closeMenu"
       >
         <span
           class="grid size-11 place-items-center rounded-full bg-linear-to-br from-brand-violet to-brand-magenta text-sm font-semibold tracking-wide text-foreground shadow-lg shadow-brand-violet/20 transition-transform duration-300 group-hover:scale-105"
@@ -79,32 +73,30 @@ onBeforeUnmount(() => {
         <span class="hidden text-sm font-medium tracking-wide text-foreground sm:block">
           Andy Orozco Castro
         </span>
-      </a>
+      </RouterLink>
 
       <div class="ml-auto hidden items-center gap-5 xl:flex">
-        <a
+        <RouterLink
           v-for="link in navLinks"
-          :key="link.id"
-          :href="`#${link.id}`"
+          :key="link.to"
+          :to="link.to"
           class="group relative px-1 py-3 text-sm font-medium transition-colors duration-300"
-          :class="activeSection === link.id ? 'text-foreground' : 'text-muted hover:text-foreground'"
-          @click="setActiveLink(link.id)"
+          :class="linkIsActive(link.to) ? 'text-foreground' : 'text-muted hover:text-foreground'"
         >
           {{ link.label }}
           <span
             class="absolute inset-x-0 bottom-1 h-px origin-center bg-linear-to-r from-brand-violet to-brand-magenta transition-transform duration-300"
-            :class="activeSection === link.id ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'"
+            :class="linkIsActive(link.to) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'"
           ></span>
-        </a>
+        </RouterLink>
       </div>
 
-      <a
-        href="#contacto"
+      <RouterLink
+        to="/contacto"
         class="ml-7 hidden rounded-xl bg-linear-to-r from-brand-violet to-brand-magenta px-5 py-2.5 text-sm font-medium text-foreground shadow-lg shadow-brand-magenta/15 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-brand-magenta/35 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta xl:inline-flex"
-        @click="setActiveLink('contacto')"
       >
         Contáctame
-      </a>
+      </RouterLink>
 
       <button
         type="button"
@@ -137,24 +129,24 @@ onBeforeUnmount(() => {
         class="max-h-[calc(100dvh-5rem)] overflow-y-auto border-t border-white/5 bg-space/95 px-6 pb-6 pt-3 backdrop-blur-xl xl:hidden"
       >
         <div class="mx-auto flex max-w-7xl flex-col">
-          <a
+          <RouterLink
             v-for="link in navLinks"
-            :key="link.id"
-            :href="`#${link.id}`"
+            :key="link.to"
+            :to="link.to"
             class="flex items-center justify-between rounded-lg px-3 py-3 text-sm font-medium transition-colors"
-            :class="activeSection === link.id ? 'bg-brand-violet/10 text-brand-magenta' : 'text-muted hover:bg-white/5 hover:text-foreground'"
-            @click="setActiveLink(link.id)"
+            :class="linkIsActive(link.to) ? 'bg-brand-violet/10 text-brand-magenta' : 'text-muted hover:bg-white/5 hover:text-foreground'"
+            @click="closeMenu"
           >
             {{ link.label }}
-            <span v-if="activeSection === link.id" class="size-1.5 rounded-full bg-brand-magenta"></span>
-          </a>
-          <a
-            href="#contacto"
+            <span v-if="linkIsActive(link.to)" class="size-1.5 rounded-full bg-brand-magenta"></span>
+          </RouterLink>
+          <RouterLink
+            to="/contacto"
             class="mt-3 rounded-xl bg-linear-to-r from-brand-violet to-brand-magenta px-6 py-3 text-center text-sm font-medium text-foreground"
-            @click="setActiveLink('contacto')"
+            @click="closeMenu"
           >
             Contáctame
-          </a>
+          </RouterLink>
         </div>
       </div>
     </Transition>

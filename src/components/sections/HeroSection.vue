@@ -1,4 +1,6 @@
 <script setup>
+import { RouterLink } from 'vue-router'
+
 const stackItems = [
   { name: 'Laravel', area: 'Backend', className: 'border-red-400/20 bg-red-400/6 text-red-300' },
   { name: 'Vue.js', area: 'Frontend', className: 'border-emerald-400/20 bg-emerald-400/6 text-emerald-300' },
@@ -17,7 +19,7 @@ const profileDetails = [
 const socialLinks = [
   { label: 'GitHub', href: 'https://github.com' },
   { label: 'LinkedIn', href: 'https://linkedin.com' },
-  { label: 'Gmail', href: '#contacto' },
+  { label: 'Gmail', to: '/contacto' },
 ]
 </script>
 
@@ -52,15 +54,15 @@ const socialLinks = [
         </p>
 
         <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
-          <a
-            href="#proyectos"
+          <RouterLink
+            to="/proyectos"
             class="group inline-flex items-center justify-center gap-2 rounded-xl bg-linear-to-r from-brand-violet to-brand-magenta px-7 py-3.5 text-sm font-semibold text-foreground shadow-lg shadow-brand-magenta/15 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-brand-magenta/30 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta"
           >
             Ver proyectos
             <svg viewBox="0 0 24 24" class="size-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="1.8">
               <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" />
             </svg>
-          </a>
+          </RouterLink>
           <a
             href="/andy-orozco-castro-cv.pdf"
             download
@@ -74,12 +76,14 @@ const socialLinks = [
         </div>
 
         <div class="mt-10 flex items-center gap-3">
-          <a
+          <component
             v-for="social in socialLinks"
             :key="social.label"
+            :is="social.to ? RouterLink : 'a'"
+            :to="social.to"
             :href="social.href"
-            :target="social.href.startsWith('http') ? '_blank' : undefined"
-            :rel="social.href.startsWith('http') ? 'noopener noreferrer' : undefined"
+            :target="social.href ? '_blank' : undefined"
+            :rel="social.href ? 'noopener noreferrer' : undefined"
             :aria-label="social.label"
             class="group grid size-11 place-items-center rounded-xl border border-white/10 bg-white/2.5 text-muted transition-all duration-300 hover:-translate-y-1 hover:border-brand-magenta/35 hover:text-brand-magenta hover:shadow-lg hover:shadow-brand-magenta/10"
           >
@@ -92,7 +96,7 @@ const socialLinks = [
             <svg v-else viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="1.8">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3.8 6.6 12 12.5l8.2-5.9M5.5 19h13a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-13a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2Z" />
             </svg>
-          </a>
+          </component>
         </div>
       </div>
 
