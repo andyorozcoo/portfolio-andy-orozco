@@ -1,5 +1,6 @@
 <script setup>
 import { computed, ref } from 'vue'
+import MotionReveal from '../ui/MotionReveal.vue'
 import SkillCard from '../ui/SkillCard.vue'
 import { skillCategories } from '../../data/skills'
 
@@ -16,7 +17,7 @@ const activeCategory = computed(() => {
     <div class="absolute -bottom-20 left-0 -z-10 size-80 rounded-full bg-brand-violet/7 blur-[130px]"></div>
 
     <div class="mx-auto w-full max-w-7xl px-6 lg:px-8">
-      <header class="mx-auto mb-9 max-w-3xl text-center sm:mb-11">
+      <MotionReveal as="header" class="mx-auto mb-9 max-w-3xl text-center sm:mb-11">
         <p class="mb-4 text-sm font-medium uppercase tracking-[0.26em] text-brand-magenta">Lo que manejo</p>
         <h2 class="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
           Habilidades
@@ -29,10 +30,10 @@ const activeCategory = computed(() => {
           escalables y bien estructuradas.
         </p>
         <span class="mx-auto mt-7 block h-1 w-20 rounded-full bg-linear-to-r from-brand-violet to-brand-magenta"></span>
-      </header>
+      </MotionReveal>
 
       <div class="mx-auto max-w-7xl">
-        <div class="-mx-6 overflow-x-auto overscroll-x-contain px-6 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <MotionReveal class="-mx-6 overflow-x-auto overscroll-x-contain px-6 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" :delay="0.08">
           <div
             class="flex min-w-max gap-3 sm:mx-auto sm:w-fit"
             role="tablist"
@@ -57,7 +58,7 @@ const activeCategory = computed(() => {
               {{ category.label }}
             </button>
           </div>
-        </div>
+        </MotionReveal>
 
         <div class="mt-8 sm:mt-10">
           <Transition
@@ -75,11 +76,18 @@ const activeCategory = computed(() => {
               role="tabpanel"
               :aria-labelledby="`skills-tab-${activeCategory.id}`"
             >
-              <div class="mx-auto mb-6 max-w-3xl rounded-2xl border border-brand-violet/18 bg-white/2.5 px-5 py-4 text-center text-sm leading-relaxed text-muted sm:mb-8 sm:text-base">
+              <MotionReveal class="mx-auto mb-6 max-w-3xl rounded-2xl border border-brand-violet/18 bg-white/2.5 px-5 py-4 text-center text-sm leading-relaxed text-muted sm:mb-8 sm:text-base" :delay="0.08">
                 {{ activeCategory.description }}
-              </div>
+              </MotionReveal>
               <div class="grid grid-cols-2 gap-x-2 gap-y-1 sm:grid-cols-3 sm:gap-x-4 sm:gap-y-3 md:grid-cols-4 xl:grid-cols-5">
-                <SkillCard v-for="skill in activeCategory.skills" :key="skill.name" :skill="skill" />
+                <MotionReveal
+                  v-for="(skill, index) in activeCategory.skills"
+                  :key="skill.name"
+                  :delay="index * 0.05"
+                  y="16"
+                >
+                  <SkillCard :skill="skill" />
+                </MotionReveal>
               </div>
             </div>
           </Transition>

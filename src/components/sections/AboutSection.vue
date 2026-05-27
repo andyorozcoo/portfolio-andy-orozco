@@ -1,4 +1,6 @@
 <script setup>
+import MotionReveal from '../ui/MotionReveal.vue'
+
 const quickFacts = [
   { label: 'Ubicación', value: 'Costa Rica' },
   { label: 'Carrera', value: 'Ingeniería en Sistemas de Información' },
@@ -23,7 +25,7 @@ const strengths = [
     <div class="absolute -bottom-28 left-1/3 -z-10 size-72 rounded-full bg-brand-magenta/6 blur-[120px]"></div>
 
     <div class="mx-auto w-full max-w-7xl px-6 lg:px-8">
-      <header class="mb-10 max-w-3xl sm:mb-14">
+      <MotionReveal as="header" class="mb-10 max-w-3xl sm:mb-14">
         <p class="mb-4 text-sm font-medium uppercase tracking-[0.26em] text-brand-magenta">Sobre mí</p>
         <h2 class="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
           Desarrollador en formación,
@@ -31,11 +33,13 @@ const strengths = [
             creando soluciones con propósito
           </span>
         </h2>
-      </header>
+      </MotionReveal>
 
       <div class="grid items-start gap-6 lg:grid-cols-[1.08fr_0.92fr]">
-        <article
+        <MotionReveal
+          as="article"
           class="group rounded-2xl border border-brand-violet/20 bg-linear-to-br from-[#18181b]/65 to-space/60 p-5 shadow-xl shadow-brand-violet/4 backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/30 hover:shadow-brand-magenta/7 sm:p-8"
+          :delay="0.08"
         >
           <div class="mb-7 flex items-start gap-4 sm:items-center">
             <div
@@ -64,9 +68,11 @@ const strengths = [
           </p>
 
           <div class="mt-8 grid gap-3 sm:grid-cols-2">
-            <div
-              v-for="strength in strengths"
+            <MotionReveal
+              v-for="(strength, index) in strengths"
               :key="strength.title"
+              :delay="0.12 + index * 0.05"
+              y="14"
               class="rounded-xl border border-white/6 bg-white/2.5 p-4 transition-colors duration-300 hover:border-brand-violet/30 hover:bg-brand-violet/6"
             >
               <div class="mb-2 flex items-center gap-2">
@@ -74,12 +80,14 @@ const strengths = [
                 <h4 class="text-sm font-medium text-foreground">{{ strength.title }}</h4>
               </div>
               <p class="text-sm leading-relaxed text-muted">{{ strength.description }}</p>
-            </div>
+            </MotionReveal>
           </div>
-        </article>
+        </MotionReveal>
 
-        <aside
+        <MotionReveal
+          as="aside"
           class="rounded-2xl border border-brand-violet/20 bg-[#18181b]/45 p-5 shadow-xl shadow-black/20 backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/30 sm:p-8"
+          :delay="0.16"
         >
           <div class="flex items-center justify-between border-b border-white/7 pb-5">
             <div>
@@ -117,7 +125,7 @@ const strengths = [
               </span>
             </div>
           </div>
-        </aside>
+        </MotionReveal>
       </div>
     </div>
   </section>

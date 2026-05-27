@@ -1,4 +1,5 @@
 <script setup>
+import MotionReveal from '../ui/MotionReveal.vue'
 import ExperienceCard from '../ui/ExperienceCard.vue'
 import { experiences } from '../../data/experience'
 </script>
@@ -9,7 +10,7 @@ import { experiences } from '../../data/experience'
     <div class="absolute -right-24 bottom-20 -z-10 size-80 rounded-full bg-brand-violet/7 blur-[130px]"></div>
 
     <div class="mx-auto w-full max-w-7xl px-6 lg:px-8">
-      <header class="mx-auto mb-10 max-w-3xl text-center sm:mb-14">
+      <MotionReveal as="header" class="mx-auto mb-10 max-w-3xl text-center sm:mb-14">
         <p class="mb-4 text-sm font-medium uppercase tracking-[0.26em] text-brand-magenta">Experiencia</p>
         <h2 class="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
           Experiencia, liderazgo y
@@ -21,7 +22,7 @@ import { experiences } from '../../data/experience'
           Mi experiencia combina desarrollo de software, trabajo colaborativo, metodologías ágiles y participación
           activa en espacios universitarios.
         </p>
-      </header>
+      </MotionReveal>
 
       <div class="relative mx-auto max-w-6xl">
         <div
@@ -29,7 +30,12 @@ import { experiences } from '../../data/experience'
         ></div>
 
         <div class="space-y-5 sm:space-y-7 sm:pl-14">
-          <div v-for="experience in experiences" :key="experience.id" class="relative">
+          <MotionReveal
+            v-for="(experience, index) in experiences"
+            :key="experience.id"
+            class="relative"
+            :delay="index * 0.1"
+          >
             <div
               class="absolute -left-11 top-8 z-10 hidden size-5 items-center justify-center rounded-full border border-brand-magenta/40 bg-space sm:flex"
             >
@@ -37,7 +43,7 @@ import { experiences } from '../../data/experience'
             </div>
 
             <ExperienceCard :experience="experience" />
-          </div>
+          </MotionReveal>
         </div>
       </div>
     </div>

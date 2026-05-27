@@ -1,4 +1,5 @@
 <script setup>
+import MotionReveal from '../ui/MotionReveal.vue'
 import { certifications } from '../../data/certifications'
 </script>
 
@@ -8,7 +9,7 @@ import { certifications } from '../../data/certifications'
     <div class="absolute -right-24 bottom-8 -z-10 size-72 rounded-full bg-brand-magenta/5 blur-[120px]"></div>
 
     <div class="mx-auto w-full max-w-7xl px-6 lg:px-8">
-      <header class="mx-auto mb-10 max-w-3xl text-center sm:mb-14">
+      <MotionReveal as="header" class="mx-auto mb-10 max-w-3xl text-center sm:mb-14">
         <p class="mb-4 text-sm font-medium uppercase tracking-[0.26em] text-brand-magenta">
           Certificaciones y reconocimientos
         </p>
@@ -23,13 +24,15 @@ import { certifications } from '../../data/certifications'
           aprendizaje, la disciplina y el desarrollo profesional.
         </p>
         <span class="mx-auto mt-7 block h-1 w-20 rounded-full bg-linear-to-r from-brand-violet to-brand-magenta"></span>
-      </header>
+      </MotionReveal>
 
       <div class="mx-auto grid max-w-5xl gap-5">
-        <article
-          v-for="certification in certifications"
+        <MotionReveal
+          v-for="(certification, index) in certifications"
           :key="certification.id"
+          as="article"
           class="group rounded-2xl border border-brand-violet/20 bg-linear-to-br from-[#18181b]/62 to-space/62 p-5 shadow-xl shadow-brand-violet/4 backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/38 hover:shadow-brand-magenta/9 sm:p-7"
+          :delay="index * 0.08"
         >
           <div class="flex flex-col gap-5 sm:flex-row sm:items-start">
             <div
@@ -99,7 +102,7 @@ import { certifications } from '../../data/certifications'
               </div>
             </div>
           </div>
-        </article>
+        </MotionReveal>
       </div>
     </div>
   </section>

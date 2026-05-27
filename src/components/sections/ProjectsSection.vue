@@ -1,5 +1,6 @@
 <script setup>
 import { computed, ref } from 'vue'
+import MotionReveal from '../ui/MotionReveal.vue'
 import ProjectCard from '../ui/ProjectCard.vue'
 import { projects } from '../../data/projects'
 
@@ -21,7 +22,7 @@ const filteredProjects = computed(() => {
     <div class="absolute -left-24 bottom-12 -z-10 size-72 rounded-full bg-brand-magenta/5 blur-[120px]"></div>
 
     <div class="mx-auto w-full max-w-7xl px-6 lg:px-8">
-      <header class="mx-auto mb-10 max-w-3xl text-center sm:mb-14">
+      <MotionReveal as="header" class="mx-auto mb-10 max-w-3xl text-center sm:mb-14">
         <p class="mb-4 text-sm font-medium uppercase tracking-[0.26em] text-brand-magenta">Proyectos</p>
         <h2 class="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
           Proyectos
@@ -34,9 +35,9 @@ const filteredProjects = computed(() => {
           desarrollo móvil y buenas prácticas de ingeniería.
         </p>
         <span class="mx-auto mt-7 block h-1 w-20 rounded-full bg-linear-to-r from-brand-violet to-brand-magenta"></span>
-      </header>
+      </MotionReveal>
 
-      <div class="-mx-6 mb-9 overflow-x-auto px-6 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <MotionReveal class="-mx-6 mb-9 overflow-x-auto px-6 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" :delay="0.08">
         <div class="mx-auto flex min-w-max justify-start gap-3 md:w-fit">
           <button
             v-for="technology in technologyFilters"
@@ -53,10 +54,16 @@ const filteredProjects = computed(() => {
             {{ technology }}
           </button>
         </div>
-      </div>
+      </MotionReveal>
 
       <div class="grid gap-5 sm:gap-7 md:grid-cols-2 xl:grid-cols-3">
-        <ProjectCard v-for="project in filteredProjects" :key="project.id" :project="project" />
+        <MotionReveal
+          v-for="(project, index) in filteredProjects"
+          :key="project.id"
+          :delay="0.08 + index * 0.08"
+        >
+          <ProjectCard :project="project" />
+        </MotionReveal>
       </div>
     </div>
   </section>

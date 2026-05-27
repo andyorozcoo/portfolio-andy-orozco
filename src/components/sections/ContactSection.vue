@@ -1,4 +1,6 @@
 <script setup>
+import MotionReveal from '../ui/MotionReveal.vue'
+
 const contactLinks = [
   {
     label: 'LinkedIn',
@@ -27,7 +29,7 @@ const contactLinks = [
     <div class="absolute bottom-4 right-1/4 -z-10 size-60 rounded-full bg-brand-magenta/8 blur-[110px]"></div>
 
     <div class="mx-auto w-full max-w-6xl px-6 lg:px-8">
-      <div
+      <MotionReveal
         class="relative overflow-hidden rounded-3xl border border-brand-violet/20 bg-linear-to-br from-[#18181b]/58 via-space/60 to-[#18181b]/48 px-5 py-10 shadow-2xl shadow-brand-violet/5 backdrop-blur-xl sm:px-10 sm:py-16"
       >
         <div class="absolute inset-x-16 top-0 h-px bg-linear-to-r from-transparent via-brand-magenta/55 to-transparent"></div>
@@ -45,14 +47,16 @@ const contactLinks = [
         </header>
 
         <div class="mx-auto mt-10 grid max-w-4xl gap-4 sm:mt-12 md:grid-cols-3">
-          <a
-            v-for="contact in contactLinks"
+          <MotionReveal
+            v-for="(contact, index) in contactLinks"
             :key="contact.label"
+            as="a"
             :href="contact.href"
             target="_blank"
             rel="noopener noreferrer"
             class="group flex flex-col items-center rounded-2xl border border-white/8 bg-white/2 px-5 py-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-brand-magenta/38 hover:bg-brand-violet/7 hover:shadow-xl hover:shadow-brand-magenta/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-violet sm:py-8"
             :aria-label="`Contactar por ${contact.label}`"
+            :delay="0.12 + index * 0.08"
           >
             <span
               class="grid size-16 place-items-center rounded-2xl border border-brand-violet/25 bg-linear-to-br from-brand-violet/14 to-brand-magenta/10 text-brand-magenta transition-all duration-300 group-hover:border-brand-magenta/45 group-hover:bg-linear-to-br group-hover:from-brand-violet group-hover:to-brand-magenta group-hover:text-foreground"
@@ -78,9 +82,9 @@ const contactLinks = [
                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" />
               </svg>
             </span>
-          </a>
+          </MotionReveal>
         </div>
-      </div>
+      </MotionReveal>
     </div>
   </section>
 </template>

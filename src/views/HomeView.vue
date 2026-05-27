@@ -1,6 +1,7 @@
 <script setup>
 import { RouterLink } from 'vue-router'
 import HeroSection from '../components/sections/HeroSection.vue'
+import MotionReveal from '../components/ui/MotionReveal.vue'
 import { projects } from '../data/projects'
 
 const summaryItems = [
@@ -28,22 +29,24 @@ const featuredProjects = projects.slice(0, 3)
     <section class="relative pb-16 sm:pb-24">
       <div class="mx-auto w-full max-w-7xl px-6 lg:px-8">
         <div class="grid gap-4 md:grid-cols-3">
-          <article
-            v-for="item in summaryItems"
+          <MotionReveal
+            v-for="(item, index) in summaryItems"
             :key="item.title"
+            as="article"
             class="rounded-2xl border border-brand-violet/20 bg-linear-to-br from-[#18181b]/58 to-space/55 p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-brand-magenta/35"
+            :delay="index * 0.08"
           >
             <span class="mb-5 block h-1 w-12 rounded-full bg-linear-to-r from-brand-violet to-brand-magenta"></span>
             <h2 class="text-lg font-medium text-foreground">{{ item.title }}</h2>
             <p class="mt-3 text-sm leading-relaxed text-muted">{{ item.description }}</p>
-          </article>
+          </MotionReveal>
         </div>
       </div>
     </section>
 
     <section class="relative pb-16 sm:pb-24">
       <div class="mx-auto w-full max-w-7xl px-6 lg:px-8">
-        <div class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+        <MotionReveal class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
           <div>
             <p class="text-sm font-medium uppercase tracking-[0.26em] text-brand-magenta">Selección</p>
             <h2 class="mt-3 text-2xl font-semibold text-foreground sm:text-3xl">Proyectos destacados</h2>
@@ -51,13 +54,15 @@ const featuredProjects = projects.slice(0, 3)
           <RouterLink to="/proyectos" class="text-sm font-medium text-brand-magenta transition-colors hover:text-foreground">
             Ver todos los proyectos
           </RouterLink>
-        </div>
+        </MotionReveal>
 
         <div class="grid gap-4 md:grid-cols-3">
-          <article
-            v-for="project in featuredProjects"
+          <MotionReveal
+            v-for="(project, index) in featuredProjects"
             :key="project.id"
+            as="article"
             class="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-all duration-300 hover:border-brand-violet/35"
+            :delay="index * 0.08"
           >
             <p class="text-xs font-medium uppercase tracking-[0.2em] text-brand-magenta">{{ project.role }}</p>
             <h3 class="mt-3 text-lg font-medium text-foreground">{{ project.title }}</h3>
@@ -71,13 +76,13 @@ const featuredProjects = projects.slice(0, 3)
                 {{ technology }}
               </span>
             </div>
-          </article>
+          </MotionReveal>
         </div>
       </div>
     </section>
 
     <section class="px-6 pb-20 lg:px-8">
-      <div class="mx-auto flex max-w-5xl flex-col items-center rounded-3xl border border-brand-violet/20 bg-linear-to-r from-brand-violet/10 to-brand-magenta/8 px-6 py-10 text-center sm:px-10">
+      <MotionReveal class="mx-auto flex max-w-5xl flex-col items-center rounded-3xl border border-brand-violet/20 bg-linear-to-r from-brand-violet/10 to-brand-magenta/8 px-6 py-10 text-center sm:px-10">
         <h2 class="text-2xl font-semibold text-foreground sm:text-3xl">¿Construimos algo juntos?</h2>
         <p class="mt-4 max-w-xl text-muted">Explora mi trabajo o conversemos sobre oportunidades y proyectos.</p>
         <div class="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -94,7 +99,7 @@ const featuredProjects = projects.slice(0, 3)
             Contactarme
           </RouterLink>
         </div>
-      </div>
+      </MotionReveal>
     </section>
   </div>
 </template>
