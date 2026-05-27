@@ -6,6 +6,7 @@
  * @property {string} type
  * @property {string} year
  * @property {string} description
+ * @property {string} learning
  */
 
 /** @type {Certification[]} */
@@ -18,6 +19,7 @@ export const certifications = [
     year: '2026',
     description:
       'Certificación enfocada en los fundamentos de Scrum, roles, eventos, artefactos y principios ágiles aplicados al desarrollo de software.',
+    learning: 'Organización del trabajo ágil, eventos Scrum y colaboración orientada a entregables.',
   },
   {
     id: 'merito-deportivo',
@@ -27,6 +29,7 @@ export const certifications = [
     year: '2025',
     description:
       'Reconocimiento otorgado por el desempeño, compromiso y participación destacada en el área deportiva durante el año 2024 en la Universidad Nacional.',
+    learning: 'Liderazgo, constancia y coordinación de actividades con la comunidad estudiantil.',
   },
   {
     id: 'merito-academico',
@@ -36,5 +39,6 @@ export const certifications = [
     year: '2025',
     description:
       'Reconocimiento otorgado por el buen desempeño académico y compromiso demostrado durante el proceso universitario.',
+    learning: 'Disciplina de estudio, responsabilidad y mejora continua en la formación profesional.',
   },
 ]

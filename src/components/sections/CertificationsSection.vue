@@ -92,6 +92,11 @@ import { certifications } from '../../data/certifications'
               </div>
 
               <p class="mt-4 text-sm leading-relaxed text-muted sm:text-base">{{ certification.description }}</p>
+
+              <div class="mt-5 rounded-xl border border-white/7 bg-white/2.5 p-4">
+                <p class="text-xs font-medium uppercase tracking-[0.2em] text-brand-magenta">Aprendizaje principal</p>
+                <p class="mt-2 text-sm leading-relaxed text-muted">{{ certification.learning }}</p>
+              </div>
             </div>
           </div>
         </article>

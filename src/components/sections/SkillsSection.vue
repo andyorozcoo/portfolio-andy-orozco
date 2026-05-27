@@ -75,6 +75,9 @@ const activeCategory = computed(() => {
               role="tabpanel"
               :aria-labelledby="`skills-tab-${activeCategory.id}`"
             >
+              <div class="mx-auto mb-6 max-w-3xl rounded-2xl border border-brand-violet/18 bg-white/2.5 px-5 py-4 text-center text-sm leading-relaxed text-muted sm:mb-8 sm:text-base">
+                {{ activeCategory.description }}
+              </div>
               <div class="grid grid-cols-2 gap-x-2 gap-y-1 sm:grid-cols-3 sm:gap-x-4 sm:gap-y-3 md:grid-cols-4 xl:grid-cols-5">
                 <SkillCard v-for="skill in activeCategory.skills" :key="skill.name" :skill="skill" />
               </div>

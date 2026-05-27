@@ -42,6 +42,7 @@ const swaggerIcon = {
  * @typedef {Object} SkillCategory
  * @property {string} id
  * @property {string} label
+ * @property {string} description
  * @property {Skill[]} skills
  */
 
@@ -50,6 +51,7 @@ export const skillCategories = [
   {
     id: 'frontend',
     label: 'Front-End',
+    description: 'Construyo interfaces responsivas, claras y mantenibles para experiencias web modernas.',
     skills: [
       { name: 'Vue.js', mark: 'Vue', icon: siVuedotjs, colorClass: 'text-[#4FC08D]' },
       { name: 'React', mark: 'Re', icon: siReact, colorClass: 'text-[#61DAFB]' },
@@ -64,6 +66,7 @@ export const skillCategories = [
   {
     id: 'backend',
     label: 'Back-End',
+    description: 'Desarrollo lógica de negocio y servicios para conectar aplicaciones con datos y procesos.',
     skills: [
       { name: 'PHP', mark: 'PHP', icon: siPhp, colorClass: 'text-[#777BB4]' },
       { name: 'Laravel', mark: 'Lv', icon: siLaravel, colorClass: 'text-[#FF2D20]' },
@@ -77,6 +80,7 @@ export const skillCategories = [
   {
     id: 'databases',
     label: 'Bases de Datos',
+    description: 'Modelo y consulto información relacional para aplicaciones consistentes y funcionales.',
     skills: [
       { name: 'MySQL', mark: 'My', icon: siMysql, colorClass: 'text-[#4479A1]' },
       { name: 'SQL Server', mark: 'SQL', colorClass: 'text-[#CC2927]' },
@@ -85,6 +89,7 @@ export const skillCategories = [
   {
     id: 'tools',
     label: 'Herramientas',
+    description: 'Herramientas que utilizo para versionado, pruebas, contenedores y despliegue de proyectos.',
     skills: [
       { name: 'Git', mark: 'Git', icon: siGit, colorClass: 'text-[#F05032]' },
       { name: 'GitHub', mark: 'GH', icon: siGithub, colorClass: 'text-foreground' },
@@ -98,6 +103,7 @@ export const skillCategories = [
   {
     id: 'mobile',
     label: 'Móvil',
+    description: 'Tecnologías aplicadas en el desarrollo de aplicaciones Android y consumo de APIs.',
     skills: [
       { name: 'Android Studio', mark: 'An', icon: siAndroidstudio, colorClass: 'text-[#3DDC84]' },
       { name: 'Kotlin', mark: 'Kt', icon: siKotlin, colorClass: 'text-[#7F52FF]' },
@@ -108,6 +114,7 @@ export const skillCategories = [
   {
     id: 'methods',
     label: 'Metodologías',
+    description: 'Formas de organizar el trabajo colaborativo y dar seguimiento al avance del equipo.',
     skills: [
       { name: 'Scrum', mark: 'Sc', icon: siScrumalliance, colorClass: 'text-[#009FDA]' },
       { name: 'Kanban', mark: 'Kb', icon: siTrello, colorClass: 'text-[#0052CC]' },

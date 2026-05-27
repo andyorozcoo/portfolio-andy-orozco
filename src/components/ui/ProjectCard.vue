@@ -51,7 +51,22 @@ const imageUnavailable = ref(false)
       <h3 class="text-xl font-medium text-foreground transition-colors duration-300 group-hover:text-brand-magenta">
         {{ project.title }}
       </h3>
+      <p class="mt-2 text-xs font-medium uppercase tracking-[0.2em] text-brand-magenta">{{ project.role }}</p>
       <p class="mt-3 flex-1 text-sm leading-relaxed text-muted">{{ project.description }}</p>
+
+      <div class="mt-5 rounded-xl border border-white/6 bg-white/2 p-4">
+        <p class="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-muted">Responsabilidades</p>
+        <ul class="space-y-2">
+          <li
+            v-for="responsibility in project.responsibilities"
+            :key="responsibility"
+            class="flex items-start gap-2 text-sm leading-relaxed text-muted"
+          >
+            <span class="mt-2 size-1.5 shrink-0 rounded-full bg-brand-magenta"></span>
+            {{ responsibility }}
+          </li>
+        </ul>
+      </div>
 
       <div class="mt-6 flex flex-wrap gap-2">
         <span

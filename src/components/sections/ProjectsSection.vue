@@ -1,6 +1,18 @@
 <script setup>
+import { computed, ref } from 'vue'
 import ProjectCard from '../ui/ProjectCard.vue'
 import { projects } from '../../data/projects'
+
+const selectedTechnology = ref('Todos')
+const technologyFilters = ['Todos', ...new Set(projects.flatMap((project) => project.technologies))]
+
+const filteredProjects = computed(() => {
+  if (selectedTechnology.value === 'Todos') {
+    return projects
+  }
+
+  return projects.filter((project) => project.technologies.includes(selectedTechnology.value))
+})
 </script>
 
 <template>
@@ -24,8 +36,27 @@ import { projects } from '../../data/projects'
         <span class="mx-auto mt-7 block h-1 w-20 rounded-full bg-linear-to-r from-brand-violet to-brand-magenta"></span>
       </header>
 
+      <div class="-mx-6 mb-9 overflow-x-auto px-6 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div class="mx-auto flex min-w-max justify-start gap-3 md:w-fit">
+          <button
+            v-for="technology in technologyFilters"
+            :key="technology"
+            type="button"
+            class="rounded-full border px-4 py-2 text-sm font-medium whitespace-nowrap transition-all duration-300"
+            :class="
+              selectedTechnology === technology
+                ? 'border-transparent bg-linear-to-r from-brand-violet to-brand-magenta text-foreground shadow-lg shadow-brand-magenta/18'
+                : 'border-white/10 bg-white/2 text-muted hover:border-brand-violet/35 hover:text-foreground'
+            "
+            @click="selectedTechnology = technology"
+          >
+            {{ technology }}
+          </button>
+        </div>
+      </div>
+
       <div class="grid gap-5 sm:gap-7 md:grid-cols-2 xl:grid-cols-3">
-        <ProjectCard v-for="project in projects" :key="project.id" :project="project" />
+        <ProjectCard v-for="project in filteredProjects" :key="project.id" :project="project" />
       </div>
     </div>
   </section>
