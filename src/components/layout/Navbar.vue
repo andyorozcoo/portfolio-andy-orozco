@@ -6,9 +6,7 @@ const navLinks = [
   { to: '/', label: 'Inicio' },
   { to: '/sobre-mi', label: 'Sobre mí' },
   { to: '/experiencia', label: 'Experiencia' },
-  { to: '/proyectos', label: 'Proyectos' },
   { to: '/habilidades', label: 'Habilidades' },
-  { to: '/certificaciones', label: 'Certificaciones' },
   { to: '/contacto', label: 'Contacto' },
 ]
 
@@ -32,6 +30,10 @@ const closeMenuOnDesktop = () => {
 }
 
 const linkIsActive = (to) => {
+  if (to === '/habilidades') {
+    return route.path === '/habilidades' || route.path === '/stack'
+  }
+
   return to === '/' ? route.path === '/' || route.path === '/inicio' : route.path === to
 }
 

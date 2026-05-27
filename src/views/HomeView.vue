@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import HeroSection from '../components/sections/HeroSection.vue'
 import MotionReveal from '../components/ui/MotionReveal.vue'
@@ -35,6 +36,7 @@ const contributionItems = [
 ]
 
 const featuredProject = projects.find((project) => project.id === 'beto-y-mas')
+const showProjectDetails = ref(false)
 </script>
 
 <template>
@@ -113,16 +115,20 @@ const featuredProject = projects.find((project) => project.id === 'beto-y-mas')
       </div>
     </section>
 
-    <section class="relative pb-16 sm:pb-24">
+    <section id="proyecto-destacado" class="relative scroll-mt-24 pb-16 sm:pb-24">
       <div class="mx-auto w-full max-w-7xl px-6 lg:px-8">
         <MotionReveal class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
           <div>
             <p class="text-sm font-medium uppercase tracking-[0.26em] text-brand-magenta">Proyecto destacado</p>
             <h2 class="mt-3 text-2xl font-semibold text-foreground sm:text-3xl">Preview rápida</h2>
           </div>
-          <RouterLink to="/proyectos" class="text-sm font-medium text-brand-magenta transition-colors hover:text-foreground">
-            Ver más
-          </RouterLink>
+          <button
+            type="button"
+            class="text-left text-sm font-medium text-brand-magenta transition-colors hover:text-foreground"
+            @click="showProjectDetails = !showProjectDetails"
+          >
+            {{ showProjectDetails ? 'Ver menos' : 'Ver más' }}
+          </button>
         </MotionReveal>
 
         <MotionReveal
@@ -150,12 +156,23 @@ const featuredProject = projects.find((project) => project.id === 'beto-y-mas')
                 </span>
               </div>
 
-              <RouterLink
-                to="/proyectos"
+              <button
+                type="button"
                 class="inline-flex w-fit rounded-xl border border-brand-violet/35 bg-white/2 px-5 py-3 text-sm font-medium text-foreground transition-all duration-300 hover:border-brand-magenta/40 hover:text-brand-magenta"
+                @click="showProjectDetails = !showProjectDetails"
               >
-                Ver más
-              </RouterLink>
+                {{ showProjectDetails ? 'Ver menos' : 'Ver más' }}
+              </button>
+            </div>
+          </div>
+
+          <div v-if="showProjectDetails" class="mt-6 grid gap-3 border-t border-white/7 pt-5 sm:grid-cols-2">
+            <div
+              v-for="responsibility in featuredProject.responsibilities"
+              :key="responsibility"
+              class="rounded-xl border border-white/7 bg-space/40 p-4 text-sm leading-relaxed text-muted"
+            >
+              {{ responsibility }}
             </div>
           </div>
         </MotionReveal>
@@ -168,7 +185,7 @@ const featuredProject = projects.find((project) => project.id === 'beto-y-mas')
         <p class="mt-4 max-w-xl text-muted">Explora mi trabajo o conversemos sobre oportunidades y proyectos.</p>
         <div class="mt-8 flex flex-col gap-3 sm:flex-row">
           <RouterLink
-            to="/proyectos"
+            :to="{ path: '/', hash: '#proyecto-destacado' }"
             class="rounded-xl bg-linear-to-r from-brand-violet to-brand-magenta px-6 py-3 text-sm font-medium text-foreground transition-transform duration-300 hover:-translate-y-0.5"
           >
             Explorar proyectos
