@@ -16,19 +16,19 @@ const socialLinks = [
     <div class="mx-auto grid w-full max-w-7xl items-center gap-14 px-6 lg:grid-cols-[1.02fr_0.98fr] lg:px-8">
       <div class="motion-safe:animate-[hero-rise_700ms_ease-out_both]">
         <p
-          class="mb-6 inline-flex rounded-full border border-brand-violet/20 bg-gradient-to-r from-brand-violet/10 to-brand-magenta/10 px-4 py-2 text-sm font-medium text-brand-magenta backdrop-blur-sm"
+          class="mb-6 inline-flex rounded-full border border-brand-violet/20 bg-linear-to-r from-brand-violet/10 to-brand-magenta/10 px-4 py-2 text-sm font-medium text-brand-magenta backdrop-blur-sm"
         >
           Hola, soy
         </p>
 
         <h1 class="max-w-3xl text-4xl font-semibold leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-6xl xl:text-7xl">
           Andy Orozco
-          <span class="block bg-gradient-to-r from-foreground via-foreground to-muted bg-clip-text text-transparent">
+          <span class="block bg-linear-to-r from-foreground via-foreground to-muted bg-clip-text text-transparent">
             Castro
           </span>
         </h1>
 
-        <p class="mt-6 max-w-xl bg-gradient-to-r from-brand-violet to-brand-magenta bg-clip-text text-xl font-medium leading-snug text-transparent sm:text-2xl">
+        <p class="mt-6 max-w-xl bg-linear-to-r from-brand-violet to-brand-magenta bg-clip-text text-xl font-medium leading-snug text-transparent sm:text-2xl">
           Estudiante de Ingeniería en Sistemas &amp; Full Stack Developer
         </p>
 
@@ -41,7 +41,7 @@ const socialLinks = [
         <div class="mt-10 flex flex-wrap gap-4">
           <a
             href="#proyectos"
-            class="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-violet to-brand-magenta px-7 py-3.5 text-sm font-semibold text-foreground shadow-lg shadow-brand-magenta/15 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-brand-magenta/30 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta"
+            class="group inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-brand-violet to-brand-magenta px-7 py-3.5 text-sm font-semibold text-foreground shadow-lg shadow-brand-magenta/15 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-brand-magenta/30 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta"
           >
             Ver proyectos
             <svg viewBox="0 0 24 24" class="size-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -51,7 +51,7 @@ const socialLinks = [
           <a
             href="/andy-orozco-castro-cv.pdf"
             download
-            class="inline-flex items-center gap-2 rounded-xl border border-brand-violet/45 bg-white/[0.02] px-7 py-3.5 text-sm font-semibold text-brand-magenta backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/55 hover:bg-brand-violet/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-violet"
+            class="inline-flex items-center gap-2 rounded-xl border border-brand-violet/45 bg-white/2 px-7 py-3.5 text-sm font-semibold text-brand-magenta backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/55 hover:bg-brand-violet/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-violet"
           >
             <svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="1.8">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0 4-4m-4 4-4-4M4 19.5h16" />
@@ -68,7 +68,7 @@ const socialLinks = [
             :target="social.href.startsWith('http') ? '_blank' : undefined"
             :rel="social.href.startsWith('http') ? 'noopener noreferrer' : undefined"
             :aria-label="social.label"
-            class="group grid size-11 place-items-center rounded-xl border border-white/10 bg-white/[0.025] text-muted transition-all duration-300 hover:-translate-y-1 hover:border-brand-magenta/35 hover:text-brand-magenta hover:shadow-lg hover:shadow-brand-magenta/10"
+            class="group grid size-11 place-items-center rounded-xl border border-white/10 bg-white/2.5 text-muted transition-all duration-300 hover:-translate-y-1 hover:border-brand-magenta/35 hover:text-brand-magenta hover:shadow-lg hover:shadow-brand-magenta/10"
           >
             <svg v-if="social.label === 'GitHub'" viewBox="0 0 24 24" class="size-5" fill="currentColor">
               <path d="M12 .8a11.4 11.4 0 0 0-3.6 22.2c.6.1.8-.2.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.6-1.3-1.4-1.7-1.4-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.4 3.6 1 .1-.8.4-1.4.8-1.7-2.6-.3-5.4-1.3-5.4-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.4 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A11.4 11.4 0 0 0 12 .8Z" />
@@ -87,7 +87,7 @@ const socialLinks = [
         <div class="absolute -right-8 top-16 -z-10 size-56 rounded-full bg-brand-violet/25 blur-[100px]"></div>
         <div class="absolute -bottom-8 -left-8 -z-10 size-52 rounded-full bg-brand-magenta/20 blur-[100px]"></div>
 
-        <div class="overflow-hidden rounded-2xl border border-brand-violet/20 bg-gradient-to-br from-[#18181b]/85 to-space/80 shadow-2xl shadow-black/35 backdrop-blur-xl">
+        <div class="overflow-hidden rounded-2xl border border-brand-violet/20 bg-linear-to-br from-[#18181b]/85 to-space/80 shadow-2xl shadow-black/35 backdrop-blur-xl">
           <div class="flex items-center justify-between border-b border-brand-violet/10 bg-space/45 px-5 py-4">
             <div class="flex items-center gap-3">
               <span class="flex gap-2">
@@ -117,7 +117,7 @@ const socialLinks = [
                 :key="technology"
                 class="tech-stack-item group flex items-center gap-3 motion-safe:animate-[tech-enter_380ms_ease-out_both]"
               >
-                <span class="size-1.5 rounded-full bg-gradient-to-r from-brand-violet to-brand-magenta"></span>
+                <span class="size-1.5 rounded-full bg-linear-to-r from-brand-violet to-brand-magenta"></span>
                 <span class="text-muted transition-colors duration-300 group-hover:text-brand-magenta">
                   {{ technology }}
                 </span>

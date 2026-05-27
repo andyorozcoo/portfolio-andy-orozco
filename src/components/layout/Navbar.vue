@@ -59,7 +59,7 @@ onBeforeUnmount(() => {
         @click="setActiveLink('inicio')"
       >
         <span
-          class="grid size-11 place-items-center rounded-full bg-gradient-to-br from-brand-violet to-brand-magenta text-sm font-semibold tracking-wide text-foreground shadow-lg shadow-brand-violet/20 transition-transform duration-300 group-hover:scale-105"
+          class="grid size-11 place-items-center rounded-full bg-linear-to-br from-brand-violet to-brand-magenta text-sm font-semibold tracking-wide text-foreground shadow-lg shadow-brand-violet/20 transition-transform duration-300 group-hover:scale-105"
         >
           AO
         </span>
@@ -79,7 +79,7 @@ onBeforeUnmount(() => {
         >
           {{ link.label }}
           <span
-            class="absolute inset-x-0 bottom-1 h-px origin-center bg-gradient-to-r from-brand-violet to-brand-magenta transition-transform duration-300"
+            class="absolute inset-x-0 bottom-1 h-px origin-center bg-linear-to-r from-brand-violet to-brand-magenta transition-transform duration-300"
             :class="activeSection === link.id ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'"
           ></span>
         </a>
@@ -87,7 +87,7 @@ onBeforeUnmount(() => {
 
       <a
         href="#contacto"
-        class="ml-7 hidden rounded-xl bg-gradient-to-r from-brand-violet to-brand-magenta px-5 py-2.5 text-sm font-medium text-foreground shadow-lg shadow-brand-magenta/15 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-brand-magenta/35 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta lg:inline-flex"
+        class="ml-7 hidden rounded-xl bg-linear-to-r from-brand-violet to-brand-magenta px-5 py-2.5 text-sm font-medium text-foreground shadow-lg shadow-brand-magenta/15 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-brand-magenta/35 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta lg:inline-flex"
         @click="setActiveLink('contacto')"
       >
         Contáctame
@@ -95,7 +95,7 @@ onBeforeUnmount(() => {
 
       <button
         type="button"
-        class="ml-auto grid size-11 place-items-center rounded-xl border border-white/10 bg-white/[0.035] text-foreground transition-colors duration-300 hover:border-brand-magenta/35 hover:text-brand-magenta focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-violet lg:hidden"
+        class="ml-auto grid size-11 place-items-center rounded-xl border border-white/10 bg-white/3.5 text-foreground transition-colors duration-300 hover:border-brand-magenta/35 hover:text-brand-magenta focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-violet lg:hidden"
         :aria-expanded="isMenuOpen"
         aria-controls="mobile-navigation"
         aria-label="Abrir menú de navegación"
@@ -137,7 +137,7 @@ onBeforeUnmount(() => {
           </a>
           <a
             href="#contacto"
-            class="mt-3 rounded-xl bg-gradient-to-r from-brand-violet to-brand-magenta px-6 py-3 text-center text-sm font-medium text-foreground"
+            class="mt-3 rounded-xl bg-linear-to-r from-brand-violet to-brand-magenta px-6 py-3 text-center text-sm font-medium text-foreground"
             @click="setActiveLink('contacto')"
           >
             Contáctame

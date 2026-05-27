@@ -19,15 +19,15 @@ const strengths = [
 
 <template>
   <section id="sobre-mi" class="relative scroll-mt-20 overflow-hidden py-20 sm:py-24">
-    <div class="absolute -right-24 top-12 -z-10 size-80 rounded-full bg-brand-violet/[0.08] blur-[120px]"></div>
-    <div class="absolute -bottom-28 left-1/3 -z-10 size-72 rounded-full bg-brand-magenta/[0.06] blur-[120px]"></div>
+    <div class="absolute -right-24 top-12 -z-10 size-80 rounded-full bg-brand-violet/8 blur-[120px]"></div>
+    <div class="absolute -bottom-28 left-1/3 -z-10 size-72 rounded-full bg-brand-magenta/6 blur-[120px]"></div>
 
     <div class="mx-auto w-full max-w-7xl px-6 lg:px-8">
       <header class="mb-12 max-w-3xl sm:mb-14">
         <p class="mb-4 text-sm font-medium uppercase tracking-[0.26em] text-brand-magenta">Sobre mí</p>
         <h2 class="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
           Desarrollador en formación,
-          <span class="bg-gradient-to-r from-brand-violet to-brand-magenta bg-clip-text text-transparent">
+          <span class="bg-linear-to-r from-brand-violet to-brand-magenta bg-clip-text text-transparent">
             creando soluciones con propósito
           </span>
         </h2>
@@ -35,11 +35,11 @@ const strengths = [
 
       <div class="grid items-start gap-6 lg:grid-cols-[1.08fr_0.92fr]">
         <article
-          class="group rounded-2xl border border-brand-violet/20 bg-gradient-to-br from-[#18181b]/65 to-space/60 p-6 shadow-xl shadow-brand-violet/[0.04] backdrop-blur-xl transition-all duration-300 hover:border-brand-magenta/30 hover:shadow-brand-magenta/[0.07] sm:p-8"
+          class="group rounded-2xl border border-brand-violet/20 bg-linear-to-br from-[#18181b]/65 to-space/60 p-6 shadow-xl shadow-brand-violet/4 backdrop-blur-xl transition-all duration-300 hover:border-brand-magenta/30 hover:shadow-brand-magenta/7 sm:p-8"
         >
           <div class="mb-7 flex items-center gap-4">
             <div
-              class="grid size-14 shrink-0 place-items-center rounded-2xl border border-brand-violet/25 bg-gradient-to-br from-brand-violet/15 to-brand-magenta/10 text-brand-magenta transition-transform duration-300 group-hover:scale-105"
+              class="grid size-14 shrink-0 place-items-center rounded-2xl border border-brand-violet/25 bg-linear-to-br from-brand-violet/15 to-brand-magenta/10 text-brand-magenta transition-transform duration-300 group-hover:scale-105"
             >
               <svg viewBox="0 0 24 24" class="size-7" fill="none" stroke="currentColor" stroke-width="1.7">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" />
@@ -67,10 +67,10 @@ const strengths = [
             <div
               v-for="strength in strengths"
               :key="strength.title"
-              class="rounded-xl border border-white/[0.06] bg-white/[0.025] p-4 transition-colors duration-300 hover:border-brand-violet/30 hover:bg-brand-violet/[0.06]"
+              class="rounded-xl border border-white/6 bg-white/2.5 p-4 transition-colors duration-300 hover:border-brand-violet/30 hover:bg-brand-violet/6"
             >
               <div class="mb-2 flex items-center gap-2">
-                <span class="size-1.5 rounded-full bg-gradient-to-r from-brand-violet to-brand-magenta"></span>
+                <span class="size-1.5 rounded-full bg-linear-to-r from-brand-violet to-brand-magenta"></span>
                 <h4 class="text-sm font-medium text-foreground">{{ strength.title }}</h4>
               </div>
               <p class="text-sm leading-relaxed text-muted">{{ strength.description }}</p>
@@ -81,7 +81,7 @@ const strengths = [
         <aside
           class="rounded-2xl border border-brand-violet/20 bg-[#18181b]/45 p-6 shadow-xl shadow-black/20 backdrop-blur-xl transition-all duration-300 hover:border-brand-magenta/30 sm:p-8"
         >
-          <div class="flex items-center justify-between border-b border-white/[0.07] pb-5">
+          <div class="flex items-center justify-between border-b border-white/7 pb-5">
             <div>
               <p class="text-xs uppercase tracking-[0.24em] text-muted">Perfil</p>
               <h3 class="mt-2 text-xl font-medium text-foreground">Datos rápidos</h3>
@@ -96,22 +96,22 @@ const strengths = [
             <div
               v-for="fact in quickFacts"
               :key="fact.label"
-              class="rounded-xl px-3 py-3 transition-colors duration-300 hover:bg-white/[0.035] sm:flex sm:items-start sm:justify-between sm:gap-5"
+              class="rounded-xl px-3 py-3 transition-colors duration-300 hover:bg-white/3.5 sm:flex sm:items-start sm:justify-between sm:gap-5"
             >
               <dt class="text-sm text-muted">{{ fact.label }}</dt>
-              <dd class="mt-1 text-sm font-medium text-foreground sm:mt-0 sm:max-w-[15rem] sm:text-right">
+              <dd class="mt-1 text-sm font-medium text-foreground sm:mt-0 sm:max-w-60 sm:text-right">
                 {{ fact.value }}
               </dd>
             </div>
           </dl>
 
-          <div class="mt-7 border-t border-white/[0.07] pt-6">
+          <div class="mt-7 border-t border-white/7 pt-6">
             <p class="mb-4 text-xs uppercase tracking-[0.24em] text-muted">Tecnologías</p>
             <div class="flex flex-wrap gap-2.5">
               <span
                 v-for="technology in technologies"
                 :key="technology"
-                class="rounded-full border border-brand-violet/25 bg-gradient-to-r from-brand-violet/[0.09] to-brand-magenta/[0.08] px-3.5 py-2 text-sm text-foreground transition-all duration-300 hover:border-brand-magenta/40 hover:text-brand-magenta"
+                class="rounded-full border border-brand-violet/25 bg-linear-to-r from-brand-violet/9 to-brand-magenta/8 px-3.5 py-2 text-sm text-foreground transition-all duration-300 hover:border-brand-magenta/40 hover:text-brand-magenta"
               >
                 {{ technology }}
               </span>
