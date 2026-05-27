@@ -1,71 +1,49 @@
 <template>
   <div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-space">
-    <div class="stars stars-small star-drift absolute inset-0"></div>
-    <div class="stars stars-wide star-drift-reverse absolute inset-0"></div>
-    <div class="stars stars-dust absolute inset-0"></div>
-    <div class="nebula nebula-blue"></div>
-    <div class="nebula nebula-cyan"></div>
+    <div class="starfield stars-soft absolute inset-0"></div>
+    <div class="starfield stars-warm absolute inset-0"></div>
     <div class="nebula nebula-violet"></div>
-    <div class="orbit"></div>
-    <svg class="constellation" viewBox="0 0 320 240" fill="none">
-      <path d="M32 166 98 112l66 24 50-78 66 34" />
-      <circle cx="32" cy="166" r="2.5" />
-      <circle cx="98" cy="112" r="3" />
-      <circle cx="164" cy="136" r="2.5" />
-      <circle cx="214" cy="58" r="3.5" />
-      <circle cx="280" cy="92" r="2.5" />
-    </svg>
+    <div class="nebula nebula-coral"></div>
+    <div class="nebula nebula-amber"></div>
+    <div class="mist mist-top"></div>
+    <div class="mist mist-bottom"></div>
     <div class="vignette absolute inset-0"></div>
   </div>
 </template>
 
 <style scoped>
-.stars {
+.starfield {
   background-repeat: repeat;
 }
 
-.stars-small {
+.stars-soft {
   background-image:
-    radial-gradient(circle, rgba(248, 250, 252, 0.78) 1px, transparent 1.25px),
-    radial-gradient(circle, rgba(34, 211, 238, 0.58) 1px, transparent 1.4px);
+    radial-gradient(circle, rgba(248, 250, 252, 0.7) 0.8px, transparent 1.15px),
+    radial-gradient(circle, rgba(139, 92, 246, 0.58) 1px, transparent 1.35px);
   background-position:
-    12px 24px,
-    64px 78px;
+    18px 34px,
+    82px 112px;
   background-size:
-    132px 132px,
-    186px 186px;
-  opacity: 0.58;
-  mask-image: radial-gradient(ellipse at top, black 8%, transparent 80%);
+    172px 172px,
+    254px 254px;
+  opacity: 0.48;
+  mask-image: radial-gradient(ellipse at 50% 18%, black 6%, transparent 76%);
+  animation: drift-stars 38s ease-in-out infinite alternate;
 }
 
-.stars-wide {
+.stars-warm {
   background-image:
-    radial-gradient(circle, rgba(248, 250, 252, 0.95) 1px, transparent 1.6px),
-    radial-gradient(circle, rgba(139, 92, 246, 0.62) 1px, transparent 1.6px);
+    radial-gradient(circle, rgba(251, 113, 133, 0.48) 0.9px, transparent 1.25px),
+    radial-gradient(circle, rgba(245, 158, 11, 0.5) 0.8px, transparent 1.2px);
   background-position:
-    36px 42px,
-    132px 96px;
+    64px 92px,
+    148px 42px;
   background-size:
-    298px 298px,
-    344px 344px;
-  opacity: 0.45;
-  mask-image: radial-gradient(ellipse at 50% 10%, black, transparent 68%);
-}
-
-.stars-dust {
-  background-image: radial-gradient(circle, rgba(34, 211, 238, 0.46) 0.75px, transparent 1px);
-  background-position: 24px 18px;
-  background-size: 76px 76px;
-  opacity: 0.2;
-  mask-image: radial-gradient(ellipse at 82% 18%, black, transparent 55%);
-}
-
-.star-drift {
-  animation: drift-stars 28s ease-in-out infinite alternate;
-}
-
-.star-drift-reverse {
-  animation: drift-stars-reverse 34s ease-in-out infinite alternate;
+    292px 292px,
+    348px 348px;
+  opacity: 0.32;
+  mask-image: radial-gradient(ellipse at 58% 22%, black, transparent 72%);
+  animation: drift-warm-stars 45s ease-in-out infinite alternate;
 }
 
 .nebula {
@@ -74,96 +52,97 @@
   filter: blur(112px);
 }
 
-.nebula-blue {
-  left: -10rem;
-  top: 4rem;
-  width: min(38rem, 62vw);
-  height: 30rem;
-  background: rgba(37, 99, 235, 0.2);
-  animation: breathe-blue 18s ease-in-out infinite alternate;
-}
-
-.nebula-cyan {
-  right: -8rem;
-  top: -5rem;
-  width: min(38rem, 62vw);
-  height: 29rem;
-  background: rgba(34, 211, 238, 0.16);
-  animation: breathe-cyan 21s ease-in-out infinite alternate;
-}
-
 .nebula-violet {
+  left: -9rem;
+  top: 12%;
+  width: min(45rem, 70vw);
+  height: 35rem;
+  background: rgba(139, 92, 246, 0.2);
+  transform: rotate(-18deg);
+  animation: float-violet 22s ease-in-out infinite alternate;
+}
+
+.nebula-coral {
+  right: -12rem;
+  top: -6rem;
+  width: min(43rem, 68vw);
+  height: 33rem;
+  background: rgba(251, 113, 133, 0.16);
+  transform: rotate(14deg);
+  animation: float-coral 25s ease-in-out infinite alternate;
+}
+
+.nebula-amber {
+  bottom: 4%;
+  left: 42%;
+  width: min(31rem, 48vw);
+  height: 18rem;
+  background: rgba(245, 158, 11, 0.07);
+  animation: float-amber 30s ease-in-out infinite alternate;
+}
+
+.mist {
+  position: absolute;
+  filter: blur(56px);
+  opacity: 0.4;
+}
+
+.mist-top {
+  left: 18%;
+  top: -4rem;
+  height: 17rem;
+  width: 52rem;
+  max-width: 70vw;
+  border-radius: 45% 55% 48% 52%;
+  background: linear-gradient(110deg, transparent, rgba(139, 92, 246, 0.12), rgba(251, 113, 133, 0.07), transparent);
+}
+
+.mist-bottom {
   bottom: 8%;
-  left: 36%;
-  width: min(28rem, 48vw);
-  height: 20rem;
-  background: rgba(139, 92, 246, 0.13);
-  animation: breathe-violet 24s ease-in-out infinite alternate;
-}
-
-.orbit {
-  position: absolute;
-  right: -17rem;
-  top: 8rem;
-  width: 44rem;
-  height: 44rem;
-  border: 1px solid rgba(34, 211, 238, 0.12);
-  border-radius: 9999px;
-  box-shadow: inset 0 0 40px rgba(139, 92, 246, 0.05);
-  transform: rotate(-28deg);
-}
-
-.constellation {
-  position: absolute;
-  right: clamp(1rem, 7vw, 7rem);
-  top: clamp(7rem, 18vh, 13rem);
-  width: min(19rem, 34vw);
-  opacity: 0.3;
-  stroke: rgba(34, 211, 238, 0.4);
-  stroke-width: 1;
-}
-
-.constellation circle {
-  fill: rgba(139, 92, 246, 0.9);
-  stroke: none;
+  right: 14%;
+  height: 12rem;
+  width: 42rem;
+  max-width: 70vw;
+  border-radius: 55% 45% 57% 43%;
+  background: linear-gradient(110deg, transparent, rgba(245, 158, 11, 0.06), rgba(251, 113, 133, 0.09), transparent);
 }
 
 .vignette {
   background:
-    radial-gradient(circle at 70% 12%, transparent 0%, rgba(5, 8, 22, 0.16) 38%, #050816 82%),
-    linear-gradient(to bottom, transparent 0%, rgba(5, 8, 22, 0.38) 72%, #050816 100%);
+    radial-gradient(circle at 52% 15%, transparent 0%, rgba(12, 9, 20, 0.18) 44%, #0c0914 86%),
+    linear-gradient(to bottom, transparent, rgba(12, 9, 20, 0.52) 82%, #0c0914 100%);
 }
 
 @keyframes drift-stars {
   to {
-    transform: translate3d(10px, -8px, 0);
+    transform: translate3d(10px, -10px, 0);
   }
 }
 
-@keyframes drift-stars-reverse {
+@keyframes drift-warm-stars {
   to {
-    transform: translate3d(-8px, 10px, 0);
+    transform: translate3d(-9px, 13px, 0);
   }
 }
 
-@keyframes breathe-blue {
-  to {
-    opacity: 0.7;
-    transform: translate3d(18px, -8px, 0) scale(1.06);
-  }
-}
-
-@keyframes breathe-cyan {
+@keyframes float-violet {
   to {
     opacity: 0.72;
-    transform: translate3d(-18px, 10px, 0) scale(1.08);
+    transform: translate3d(22px, -12px, 0) rotate(-14deg) scale(1.08);
   }
 }
 
-@keyframes breathe-violet {
+@keyframes float-coral {
+  to {
+    opacity: 0.72;
+    transform: translate3d(-22px, 12px, 0) rotate(10deg) scale(1.07);
+  }
+}
+
+@keyframes float-amber {
   to {
     opacity: 0.7;
-    transform: translateY(-14px) scale(1.08);
+    transform: translateY(-16px) scale(1.08);
   }
 }
 
@@ -172,21 +151,19 @@
     filter: blur(86px);
   }
 
-  .nebula-blue,
-  .nebula-cyan {
-    width: 23rem;
-    height: 20rem;
+  .nebula-violet,
+  .nebula-coral {
+    width: 24rem;
+    height: 21rem;
   }
 
-  .orbit,
-  .constellation {
+  .mist {
     display: none;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .star-drift,
-  .star-drift-reverse,
+  .starfield,
   .nebula {
     animation: none;
   }
