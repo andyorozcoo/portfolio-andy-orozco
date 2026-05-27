@@ -56,7 +56,7 @@ onBeforeUnmount(() => {
     <div class="absolute left-0 top-32 -z-10 size-72 rounded-full bg-brand-violet/10 blur-[110px]"></div>
     <div class="absolute bottom-24 right-0 -z-10 h-80 w-96 rounded-full bg-brand-magenta/10 blur-[120px]"></div>
 
-    <div class="mx-auto grid w-full max-w-7xl items-center gap-12 px-6 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14 lg:px-8">
+    <div class="mx-auto grid w-full max-w-7xl items-center gap-10 px-6 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12 lg:px-8">
       <div class="motion-safe:animate-[hero-rise_700ms_ease-out_both]">
         <p
           class="mb-6 inline-flex rounded-full border border-brand-violet/20 bg-linear-to-r from-brand-violet/10 to-brand-magenta/10 px-4 py-2 text-sm font-medium text-brand-magenta backdrop-blur-sm"
@@ -143,14 +143,14 @@ onBeforeUnmount(() => {
         </div>
       </div>
 
-      <div class="relative motion-safe:animate-[hero-scale_700ms_180ms_ease-out_both]">
-        <div class="absolute -right-8 top-16 -z-10 size-56 rounded-full bg-brand-violet/25 blur-[100px]"></div>
-        <div class="absolute -bottom-8 -left-8 -z-10 size-52 rounded-full bg-brand-magenta/20 blur-[100px]"></div>
+      <div class="relative mx-auto w-full max-w-[34rem] motion-safe:animate-[hero-scale_700ms_180ms_ease-out_both]">
+        <div class="absolute right-0 top-8 -z-10 size-48 rounded-full bg-brand-violet/22 blur-[90px]"></div>
+        <div class="absolute -bottom-4 left-0 -z-10 size-44 rounded-full bg-brand-magenta/18 blur-[90px]"></div>
 
-        <div class="grid gap-5">
-          <div class="relative overflow-hidden rounded-[2rem] border border-brand-violet/20 bg-linear-to-br from-[#18181b]/74 to-space/80 p-4 shadow-2xl shadow-black/35 backdrop-blur-xl">
-            <div class="absolute inset-x-10 top-0 h-px bg-linear-to-r from-transparent via-brand-magenta/55 to-transparent"></div>
-            <div class="relative aspect-[4/5] overflow-hidden rounded-[1.5rem] border border-white/8 bg-linear-to-br from-brand-violet/16 to-brand-magenta/10">
+        <div class="grid gap-4">
+          <div class="relative mx-auto w-full max-w-[22rem] overflow-hidden rounded-[1.6rem] border border-brand-violet/20 bg-linear-to-br from-[#18181b]/74 to-space/80 p-3 shadow-2xl shadow-black/30 backdrop-blur-xl sm:max-w-[23rem] lg:max-w-[21.5rem] xl:max-w-[22.5rem]">
+            <div class="absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-brand-magenta/55 to-transparent"></div>
+            <div class="relative aspect-[4/4.7] overflow-hidden rounded-[1.2rem] border border-white/8 bg-linear-to-br from-brand-violet/16 to-brand-magenta/10">
               <img
                 v-if="!imageUnavailable"
                 :src="profileImageSrc"
@@ -158,18 +158,18 @@ onBeforeUnmount(() => {
                 class="h-full w-full object-cover"
                 @error="imageUnavailable = true"
               />
-              <div v-else class="flex h-full w-full flex-col items-center justify-center p-8 text-center">
-                <div class="grid size-20 place-items-center rounded-2xl bg-linear-to-br from-brand-violet to-brand-magenta text-xl font-semibold text-foreground shadow-lg shadow-brand-magenta/20">
+              <div v-else class="flex h-full w-full flex-col items-center justify-center p-6 text-center">
+                <div class="grid size-16 place-items-center rounded-2xl bg-linear-to-br from-brand-violet to-brand-magenta text-base font-semibold text-foreground shadow-lg shadow-brand-magenta/20">
                   AO
                 </div>
-                <p class="mt-5 text-sm font-medium text-foreground">Fotografía profesional</p>
-                <p class="mt-2 text-xs leading-relaxed text-muted">Agrega tu imagen en /images/profile/profile-main.jpg</p>
+                <p class="mt-4 text-xs font-medium text-foreground">Fotografía profesional</p>
+                <p class="mt-1.5 max-w-44 text-[0.68rem] leading-relaxed text-muted">Agrega tu imagen en /images/profile/profile-main.jpg</p>
               </div>
             </div>
           </div>
 
-          <div class="overflow-hidden rounded-2xl border border-brand-violet/20 bg-linear-to-br from-[#18181b]/85 to-space/80 shadow-2xl shadow-black/35 backdrop-blur-xl">
-            <div class="flex items-center justify-between border-b border-brand-violet/10 bg-space/45 px-5 py-4">
+          <div class="overflow-hidden rounded-2xl border border-brand-violet/20 bg-linear-to-br from-[#18181b]/85 to-space/80 shadow-2xl shadow-black/30 backdrop-blur-xl">
+            <div class="flex items-center justify-between border-b border-brand-violet/10 bg-space/45 px-4 py-3.5 sm:px-5">
               <div class="flex items-center gap-3">
                 <span class="flex gap-2">
                   <span class="size-3 rounded-full bg-red-500/80"></span>
@@ -181,7 +181,7 @@ onBeforeUnmount(() => {
               <span class="size-2 animate-pulse rounded-full bg-brand-magenta"></span>
             </div>
 
-            <pre class="min-h-52 whitespace-pre-wrap p-5 font-mono text-sm leading-relaxed text-muted sm:p-6"><code>{{ typedCode }}</code><span class="text-brand-magenta">|</span></pre>
+            <pre class="min-h-44 whitespace-pre-wrap p-4 font-mono text-xs leading-relaxed text-muted sm:min-h-48 sm:p-5 sm:text-sm"><code>{{ typedCode }}</code><span class="text-brand-magenta">|</span></pre>
           </div>
         </div>
       </div>
