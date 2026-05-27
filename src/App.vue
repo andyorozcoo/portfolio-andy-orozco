@@ -2,6 +2,7 @@
 import Footer from './components/layout/Footer.vue'
 import Navbar from './components/layout/Navbar.vue'
 import SpaceBackground from './components/layout/SpaceBackground.vue'
+import HeroSection from './components/sections/HeroSection.vue'
 </script>
 
 <template>
@@ -11,9 +12,7 @@ import SpaceBackground from './components/layout/SpaceBackground.vue'
     <Navbar />
 
     <main id="contenido" class="relative z-10 flex-1">
-      <div class="mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-12">
-        <!-- Las secciones del portfolio se integraran aqui progresivamente. -->
-      </div>
+      <HeroSection />
     </main>
 
     <Footer />
