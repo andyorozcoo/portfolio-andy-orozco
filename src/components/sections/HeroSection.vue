@@ -15,6 +15,8 @@ const socialLinks = [
   { label: 'Gmail', to: '/contacto' },
 ]
 
+const profileTags = ['Full Stack Developer', 'APIs REST', 'Arquitectura modular', 'Scrum']
+
 const typedCode = ref('')
 const imageUnavailable = ref(false)
 const profileImageSrc = `${import.meta.env.BASE_URL}images/profile/profile-main.jpg`
@@ -69,15 +71,30 @@ onBeforeUnmount(() => {
           </span>
         </h1>
 
-        <p class="mt-6 max-w-xl text-xl font-medium leading-snug text-muted sm:text-2xl">
-          Estudiante de Ingeniería en Sistemas de Información
-        </p>
+        <div class="mt-7 max-w-2xl space-y-4 text-base leading-relaxed text-muted sm:text-lg">
+          <p>
+            Desarrollador full stack enfocado en construir soluciones web modernas, APIs REST y lógica de negocio
+            orientada a sistemas administrativos y experiencias digitales funcionales.
+          </p>
+          <p>
+            Trabajo con tecnologías como Laravel, Vue.js, React y bases de datos relacionales, aplicando buenas
+            prácticas de arquitectura, modularidad y desarrollo colaborativo bajo metodologías ágiles.
+          </p>
+          <p>
+            Mi enfoque está en transformar necesidades del negocio en plataformas escalables, interfaces claras y
+            flujos eficientes conectados entre frontend y backend.
+          </p>
+        </div>
 
-        <p class="mt-7 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-          Me apasiona crear soluciones digitales modernas combinando frontend, backend y experiencia de usuario.
-          Trabajo con tecnologías como Laravel, Vue, React y bases de datos relacionales para construir aplicaciones
-          web funcionales, escalables y bien estructuradas.
-        </p>
+        <div class="mt-7 flex flex-wrap gap-2.5">
+          <span
+            v-for="tag in profileTags"
+            :key="tag"
+            class="rounded-full border border-brand-violet/25 bg-white/3 px-3.5 py-2 text-xs font-medium text-muted shadow-sm shadow-brand-violet/5 backdrop-blur-sm transition-colors duration-300 hover:border-brand-magenta/35 hover:text-foreground"
+          >
+            {{ tag }}
+          </span>
+        </div>
 
         <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
           <RouterLink
