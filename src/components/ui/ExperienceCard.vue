@@ -21,10 +21,10 @@ const imageIsUnavailable = (src) => unavailableImages.value.has(src)
 
 <template>
   <article
-    class="group rounded-2xl border border-brand-violet/20 bg-linear-to-br from-[#18181b]/65 to-space/65 p-6 shadow-xl shadow-brand-violet/4 backdrop-blur-xl transition-all duration-300 hover:border-brand-magenta/35 hover:shadow-brand-magenta/7 sm:p-8"
+    class="group rounded-2xl border border-brand-violet/20 bg-linear-to-br from-[#18181b]/65 to-space/65 p-5 shadow-xl shadow-brand-violet/4 backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/35 hover:shadow-brand-magenta/7 sm:p-8"
   >
     <div class="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
-      <div class="flex items-start gap-4">
+      <div class="flex min-w-0 items-start gap-4">
         <div
           class="grid size-12 shrink-0 place-items-center rounded-xl bg-linear-to-br from-brand-violet to-brand-magenta text-foreground shadow-lg shadow-brand-magenta/15 transition-transform duration-300 group-hover:scale-105"
         >
@@ -62,7 +62,7 @@ const imageIsUnavailable = (src) => unavailableImages.value.has(src)
           </svg>
         </div>
 
-        <div>
+        <div class="min-w-0">
           <h3 class="text-xl font-medium text-foreground transition-colors duration-300 group-hover:text-brand-magenta sm:text-2xl">
             {{ experience.role }}
           </h3>
@@ -99,11 +99,11 @@ const imageIsUnavailable = (src) => unavailableImages.value.has(src)
         <p class="text-xs text-muted">Galería de participación y trabajo en equipo</p>
       </div>
 
-      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+      <div class="grid grid-cols-2 gap-3 md:grid-cols-3">
         <figure
           v-for="item in experience.gallery"
           :key="item.src"
-          class="group/photo relative h-40 overflow-hidden rounded-xl border border-brand-violet/15 bg-[#12121b] transition-all duration-300 hover:-translate-y-1 hover:border-brand-magenta/40"
+          class="group/photo relative h-32 overflow-hidden rounded-xl border border-brand-violet/15 bg-[#12121b] transition-all duration-300 hover:-translate-y-1 hover:border-brand-magenta/40 sm:h-40"
         >
           <img
             v-if="!imageIsUnavailable(item.src)"

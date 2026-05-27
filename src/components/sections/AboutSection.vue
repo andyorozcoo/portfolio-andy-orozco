@@ -18,12 +18,12 @@ const strengths = [
 </script>
 
 <template>
-  <section id="sobre-mi" class="relative scroll-mt-20 overflow-hidden py-20 sm:py-24">
+  <section id="sobre-mi" class="relative scroll-mt-20 overflow-hidden py-16 sm:py-24">
     <div class="absolute -right-24 top-12 -z-10 size-80 rounded-full bg-brand-violet/8 blur-[120px]"></div>
     <div class="absolute -bottom-28 left-1/3 -z-10 size-72 rounded-full bg-brand-magenta/6 blur-[120px]"></div>
 
     <div class="mx-auto w-full max-w-7xl px-6 lg:px-8">
-      <header class="mb-12 max-w-3xl sm:mb-14">
+      <header class="mb-10 max-w-3xl sm:mb-14">
         <p class="mb-4 text-sm font-medium uppercase tracking-[0.26em] text-brand-magenta">Sobre mí</p>
         <h2 class="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
           Desarrollador en formación,
@@ -35,9 +35,9 @@ const strengths = [
 
       <div class="grid items-start gap-6 lg:grid-cols-[1.08fr_0.92fr]">
         <article
-          class="group rounded-2xl border border-brand-violet/20 bg-linear-to-br from-[#18181b]/65 to-space/60 p-6 shadow-xl shadow-brand-violet/4 backdrop-blur-xl transition-all duration-300 hover:border-brand-magenta/30 hover:shadow-brand-magenta/7 sm:p-8"
+          class="group rounded-2xl border border-brand-violet/20 bg-linear-to-br from-[#18181b]/65 to-space/60 p-5 shadow-xl shadow-brand-violet/4 backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/30 hover:shadow-brand-magenta/7 sm:p-8"
         >
-          <div class="mb-7 flex items-center gap-4">
+          <div class="mb-7 flex items-start gap-4 sm:items-center">
             <div
               class="grid size-14 shrink-0 place-items-center rounded-2xl border border-brand-violet/25 bg-linear-to-br from-brand-violet/15 to-brand-magenta/10 text-brand-magenta transition-transform duration-300 group-hover:scale-105"
             >
@@ -79,7 +79,7 @@ const strengths = [
         </article>
 
         <aside
-          class="rounded-2xl border border-brand-violet/20 bg-[#18181b]/45 p-6 shadow-xl shadow-black/20 backdrop-blur-xl transition-all duration-300 hover:border-brand-magenta/30 sm:p-8"
+          class="rounded-2xl border border-brand-violet/20 bg-[#18181b]/45 p-5 shadow-xl shadow-black/20 backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/30 sm:p-8"
         >
           <div class="flex items-center justify-between border-b border-white/7 pb-5">
             <div>

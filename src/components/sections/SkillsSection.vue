@@ -11,12 +11,12 @@ const activeCategory = computed(() => {
 </script>
 
 <template>
-  <section id="habilidades" class="relative scroll-mt-20 overflow-hidden py-20 sm:py-24">
+  <section id="habilidades" class="relative scroll-mt-20 overflow-hidden py-16 sm:py-24">
     <div class="absolute -right-32 top-1/3 -z-10 size-96 rounded-full bg-brand-magenta/6 blur-[140px]"></div>
     <div class="absolute -bottom-20 left-0 -z-10 size-80 rounded-full bg-brand-violet/7 blur-[130px]"></div>
 
     <div class="mx-auto w-full max-w-7xl px-6 lg:px-8">
-      <header class="mx-auto mb-11 max-w-3xl text-center">
+      <header class="mx-auto mb-9 max-w-3xl text-center sm:mb-11">
         <p class="mb-4 text-sm font-medium uppercase tracking-[0.26em] text-brand-magenta">Lo que manejo</p>
         <h2 class="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
           Habilidades
@@ -32,9 +32,9 @@ const activeCategory = computed(() => {
       </header>
 
       <div class="mx-auto max-w-7xl">
-        <div class="-mx-6 overflow-x-auto px-6 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div class="-mx-6 overflow-x-auto overscroll-x-contain px-6 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <div
-            class="flex min-w-max justify-center gap-3 sm:mx-auto sm:w-fit"
+            class="flex min-w-max gap-3 sm:mx-auto sm:w-fit"
             role="tablist"
             aria-label="Categorías de habilidades"
           >
@@ -46,7 +46,7 @@ const activeCategory = computed(() => {
               role="tab"
               :aria-selected="activeCategoryId === category.id"
               :aria-controls="`skills-panel-${category.id}`"
-              class="rounded-full border px-5 py-3 text-sm font-medium whitespace-nowrap transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-violet sm:px-6"
+              class="rounded-full border px-4 py-2.5 text-sm font-medium whitespace-nowrap transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-violet sm:px-6 sm:py-3"
               :class="
                 activeCategoryId === category.id
                   ? 'border-transparent bg-linear-to-r from-brand-violet to-brand-magenta text-foreground shadow-lg shadow-brand-magenta/22'
@@ -75,7 +75,7 @@ const activeCategory = computed(() => {
               role="tabpanel"
               :aria-labelledby="`skills-tab-${activeCategory.id}`"
             >
-              <div class="grid grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
+              <div class="grid grid-cols-2 gap-x-2 gap-y-1 sm:grid-cols-3 sm:gap-x-4 sm:gap-y-3 md:grid-cols-4 xl:grid-cols-5">
                 <SkillCard v-for="skill in activeCategory.skills" :key="skill.name" :skill="skill" />
               </div>
             </div>

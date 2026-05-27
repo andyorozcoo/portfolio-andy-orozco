@@ -15,7 +15,7 @@ const imageUnavailable = ref(false)
   <article
     class="group flex h-full flex-col overflow-hidden rounded-2xl border border-brand-violet/20 bg-linear-to-br from-[#18181b]/62 to-space/65 shadow-xl shadow-brand-violet/4 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-brand-magenta/38 hover:shadow-brand-magenta/10"
   >
-    <div class="relative h-52 overflow-hidden bg-[#11121b]">
+    <div class="relative h-48 overflow-hidden bg-[#11121b] sm:h-52">
       <img
         v-if="!imageUnavailable"
         :src="project.image"
@@ -47,7 +47,7 @@ const imageUnavailable = ref(false)
       </span>
     </div>
 
-    <div class="flex flex-1 flex-col p-6">
+    <div class="flex flex-1 flex-col p-5 sm:p-6">
       <h3 class="text-xl font-medium text-foreground transition-colors duration-300 group-hover:text-brand-magenta">
         {{ project.title }}
       </h3>
@@ -63,7 +63,7 @@ const imageUnavailable = ref(false)
         </span>
       </div>
 
-      <div class="mt-7 flex items-center gap-3 border-t border-white/7 pt-5">
+      <div class="mt-7 flex flex-wrap items-center gap-3 border-t border-white/7 pt-5">
         <a
           :href="project.repositoryUrl"
           class="group/link inline-flex items-center gap-2 rounded-lg border border-white/8 px-3.5 py-2 text-sm text-muted transition-all duration-300 hover:border-brand-magenta/35 hover:text-brand-magenta"

@@ -1,5 +1,5 @@
 <script setup>
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
 const navLinks = [
   { id: 'inicio', label: 'Inicio' },
@@ -26,8 +26,19 @@ const closeWithEscape = (event) => {
   }
 }
 
+const closeMenuOnDesktop = () => {
+  if (window.innerWidth >= 1280) {
+    isMenuOpen.value = false
+  }
+}
+
+watch(isMenuOpen, (isOpen) => {
+  document.body.classList.toggle('menu-open', isOpen)
+})
+
 onMounted(() => {
   document.addEventListener('keydown', closeWithEscape)
+  window.addEventListener('resize', closeMenuOnDesktop)
 
   sectionObserver = new IntersectionObserver(
     (entries) => {
@@ -45,6 +56,8 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   document.removeEventListener('keydown', closeWithEscape)
+  window.removeEventListener('resize', closeMenuOnDesktop)
+  document.body.classList.remove('menu-open')
   sectionObserver?.disconnect()
 })
 </script>
@@ -68,7 +81,7 @@ onBeforeUnmount(() => {
         </span>
       </a>
 
-      <div class="ml-auto hidden items-center gap-3 lg:flex xl:gap-5">
+      <div class="ml-auto hidden items-center gap-5 xl:flex">
         <a
           v-for="link in navLinks"
           :key="link.id"
@@ -87,7 +100,7 @@ onBeforeUnmount(() => {
 
       <a
         href="#contacto"
-        class="ml-7 hidden rounded-xl bg-linear-to-r from-brand-violet to-brand-magenta px-5 py-2.5 text-sm font-medium text-foreground shadow-lg shadow-brand-magenta/15 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-brand-magenta/35 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta lg:inline-flex"
+        class="ml-7 hidden rounded-xl bg-linear-to-r from-brand-violet to-brand-magenta px-5 py-2.5 text-sm font-medium text-foreground shadow-lg shadow-brand-magenta/15 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-brand-magenta/35 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta xl:inline-flex"
         @click="setActiveLink('contacto')"
       >
         Contáctame
@@ -95,10 +108,10 @@ onBeforeUnmount(() => {
 
       <button
         type="button"
-        class="ml-auto grid size-11 place-items-center rounded-xl border border-white/10 bg-white/3.5 text-foreground transition-colors duration-300 hover:border-brand-magenta/35 hover:text-brand-magenta focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-violet lg:hidden"
+        class="ml-auto grid size-11 place-items-center rounded-xl border border-white/10 bg-white/3.5 text-foreground transition-colors duration-300 hover:border-brand-magenta/35 hover:text-brand-magenta focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-violet xl:hidden"
         :aria-expanded="isMenuOpen"
         aria-controls="mobile-navigation"
-        aria-label="Abrir menú de navegación"
+        :aria-label="isMenuOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'"
         @click="isMenuOpen = !isMenuOpen"
       >
         <svg v-if="!isMenuOpen" viewBox="0 0 24 24" class="size-6" fill="none" stroke="currentColor" stroke-width="1.7">
@@ -121,7 +134,7 @@ onBeforeUnmount(() => {
       <div
         v-if="isMenuOpen"
         id="mobile-navigation"
-        class="border-t border-white/5 bg-space/95 px-6 pb-6 pt-3 backdrop-blur-xl lg:hidden"
+        class="max-h-[calc(100dvh-5rem)] overflow-y-auto border-t border-white/5 bg-space/95 px-6 pb-6 pt-3 backdrop-blur-xl xl:hidden"
       >
         <div class="mx-auto flex max-w-7xl flex-col">
           <a

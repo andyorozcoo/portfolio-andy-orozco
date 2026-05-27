@@ -3,12 +3,12 @@ import { certifications } from '../../data/certifications'
 </script>
 
 <template>
-  <section id="certificaciones" class="relative scroll-mt-20 overflow-hidden py-20 sm:py-24">
+  <section id="certificaciones" class="relative scroll-mt-20 overflow-hidden py-16 sm:py-24">
     <div class="absolute -left-20 top-12 -z-10 size-80 rounded-full bg-brand-violet/7 blur-[130px]"></div>
     <div class="absolute -right-24 bottom-8 -z-10 size-72 rounded-full bg-brand-magenta/5 blur-[120px]"></div>
 
     <div class="mx-auto w-full max-w-7xl px-6 lg:px-8">
-      <header class="mx-auto mb-12 max-w-3xl text-center sm:mb-14">
+      <header class="mx-auto mb-10 max-w-3xl text-center sm:mb-14">
         <p class="mb-4 text-sm font-medium uppercase tracking-[0.26em] text-brand-magenta">
           Certificaciones y reconocimientos
         </p>
@@ -29,7 +29,7 @@ import { certifications } from '../../data/certifications'
         <article
           v-for="certification in certifications"
           :key="certification.id"
-          class="group rounded-2xl border border-brand-violet/20 bg-linear-to-br from-[#18181b]/62 to-space/62 p-6 shadow-xl shadow-brand-violet/4 backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/38 hover:shadow-brand-magenta/9 sm:p-7"
+          class="group rounded-2xl border border-brand-violet/20 bg-linear-to-br from-[#18181b]/62 to-space/62 p-5 shadow-xl shadow-brand-violet/4 backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/38 hover:shadow-brand-magenta/9 sm:p-7"
         >
           <div class="flex flex-col gap-5 sm:flex-row sm:items-start">
             <div

@@ -1,7 +1,7 @@
 <template>
   <div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-space">
-    <div class="stars stars-small absolute inset-0 opacity-55"></div>
-    <div class="stars stars-wide absolute inset-0 opacity-40"></div>
+    <div class="stars stars-small star-drift absolute inset-0 opacity-55"></div>
+    <div class="stars stars-wide star-drift-reverse absolute inset-0 opacity-40"></div>
     <div class="glow glow-violet"></div>
     <div class="glow glow-magenta"></div>
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_12%,transparent_0%,#09090f_72%)]"></div>
@@ -39,6 +39,14 @@
   mask-image: radial-gradient(ellipse at 50% 10%, black, transparent 68%);
 }
 
+.star-drift {
+  animation: drift-stars 28s ease-in-out infinite alternate;
+}
+
+.star-drift-reverse {
+  animation: drift-stars-reverse 34s ease-in-out infinite alternate;
+}
+
 .glow {
   position: absolute;
   border-radius: 9999px;
@@ -52,6 +60,7 @@
   height: 28rem;
   background: rgba(124, 58, 237, 0.3);
   transform: translateX(-62%);
+  animation: breathe-violet 16s ease-in-out infinite alternate;
 }
 
 .glow-magenta {
@@ -60,6 +69,33 @@
   width: min(34rem, 58vw);
   height: 23rem;
   background: rgba(236, 72, 153, 0.16);
+  animation: breathe-magenta 19s ease-in-out infinite alternate;
+}
+
+@keyframes drift-stars {
+  to {
+    transform: translate3d(10px, -8px, 0);
+  }
+}
+
+@keyframes drift-stars-reverse {
+  to {
+    transform: translate3d(-8px, 10px, 0);
+  }
+}
+
+@keyframes breathe-violet {
+  to {
+    opacity: 0.8;
+    transform: translateX(-62%) scale(1.06);
+  }
+}
+
+@keyframes breathe-magenta {
+  to {
+    opacity: 0.76;
+    transform: scale(1.08);
+  }
 }
 
 @media (max-width: 640px) {
@@ -70,6 +106,14 @@
   .glow-violet {
     width: 24rem;
     height: 22rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .star-drift,
+  .star-drift-reverse,
+  .glow {
+    animation: none;
   }
 }
 </style>

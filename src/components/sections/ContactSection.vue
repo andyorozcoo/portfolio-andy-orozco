@@ -22,13 +22,13 @@ const contactLinks = [
 </script>
 
 <template>
-  <section id="contacto" class="relative scroll-mt-20 overflow-hidden py-20 sm:py-28">
+  <section id="contacto" class="relative scroll-mt-20 overflow-hidden py-16 sm:py-28">
     <div class="absolute left-1/2 top-1/2 -z-10 h-80 w-[38rem] max-w-[86vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-violet/9 blur-[140px]"></div>
     <div class="absolute bottom-4 right-1/4 -z-10 size-60 rounded-full bg-brand-magenta/8 blur-[110px]"></div>
 
     <div class="mx-auto w-full max-w-6xl px-6 lg:px-8">
       <div
-        class="relative overflow-hidden rounded-3xl border border-brand-violet/20 bg-linear-to-br from-[#18181b]/58 via-space/60 to-[#18181b]/48 px-6 py-12 shadow-2xl shadow-brand-violet/5 backdrop-blur-xl sm:px-10 sm:py-16"
+        class="relative overflow-hidden rounded-3xl border border-brand-violet/20 bg-linear-to-br from-[#18181b]/58 via-space/60 to-[#18181b]/48 px-5 py-10 shadow-2xl shadow-brand-violet/5 backdrop-blur-xl sm:px-10 sm:py-16"
       >
         <div class="absolute inset-x-16 top-0 h-px bg-linear-to-r from-transparent via-brand-magenta/55 to-transparent"></div>
 
@@ -44,14 +44,14 @@ const contactLinks = [
           <span class="mx-auto mt-8 block h-1 w-20 rounded-full bg-linear-to-r from-brand-violet to-brand-magenta"></span>
         </header>
 
-        <div class="mx-auto mt-12 grid max-w-4xl gap-4 md:grid-cols-3">
+        <div class="mx-auto mt-10 grid max-w-4xl gap-4 sm:mt-12 md:grid-cols-3">
           <a
             v-for="contact in contactLinks"
             :key="contact.label"
             :href="contact.href"
             target="_blank"
             rel="noopener noreferrer"
-            class="group flex flex-col items-center rounded-2xl border border-white/8 bg-white/2 px-5 py-8 text-center transition-all duration-300 hover:-translate-y-1 hover:border-brand-magenta/38 hover:bg-brand-violet/7 hover:shadow-xl hover:shadow-brand-magenta/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-violet"
+            class="group flex flex-col items-center rounded-2xl border border-white/8 bg-white/2 px-5 py-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-brand-magenta/38 hover:bg-brand-violet/7 hover:shadow-xl hover:shadow-brand-magenta/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-violet sm:py-8"
             :aria-label="`Contactar por ${contact.label}`"
           >
             <span

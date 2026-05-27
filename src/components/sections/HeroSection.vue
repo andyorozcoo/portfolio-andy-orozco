@@ -9,11 +9,11 @@ const socialLinks = [
 </script>
 
 <template>
-  <section id="inicio" class="relative flex min-h-screen scroll-mt-20 items-center overflow-hidden pb-16 pt-32 lg:pb-20">
+  <section id="inicio" class="relative flex scroll-mt-20 items-center overflow-hidden pb-14 pt-28 sm:pt-32 lg:min-h-screen lg:pb-20">
     <div class="absolute left-0 top-32 -z-10 size-72 rounded-full bg-brand-violet/10 blur-[110px]"></div>
     <div class="absolute bottom-24 right-0 -z-10 h-80 w-96 rounded-full bg-brand-magenta/10 blur-[120px]"></div>
 
-    <div class="mx-auto grid w-full max-w-7xl items-center gap-14 px-6 lg:grid-cols-[1.02fr_0.98fr] lg:px-8">
+    <div class="mx-auto grid w-full max-w-7xl items-center gap-12 px-6 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14 lg:px-8">
       <div class="motion-safe:animate-[hero-rise_700ms_ease-out_both]">
         <p
           class="mb-6 inline-flex rounded-full border border-brand-violet/20 bg-linear-to-r from-brand-violet/10 to-brand-magenta/10 px-4 py-2 text-sm font-medium text-brand-magenta backdrop-blur-sm"
@@ -21,7 +21,7 @@ const socialLinks = [
           Hola, soy
         </p>
 
-        <h1 class="max-w-3xl text-4xl font-semibold leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-6xl xl:text-7xl">
+        <h1 class="max-w-3xl text-[2.35rem] font-semibold leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-6xl xl:text-7xl">
           Andy Orozco
           <span class="block bg-linear-to-r from-foreground via-foreground to-muted bg-clip-text text-transparent">
             Castro
@@ -38,10 +38,10 @@ const socialLinks = [
           web funcionales, escalables y bien estructuradas.
         </p>
 
-        <div class="mt-10 flex flex-wrap gap-4">
+        <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
           <a
             href="#proyectos"
-            class="group inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-brand-violet to-brand-magenta px-7 py-3.5 text-sm font-semibold text-foreground shadow-lg shadow-brand-magenta/15 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-brand-magenta/30 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta"
+            class="group inline-flex items-center justify-center gap-2 rounded-xl bg-linear-to-r from-brand-violet to-brand-magenta px-7 py-3.5 text-sm font-semibold text-foreground shadow-lg shadow-brand-magenta/15 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-brand-magenta/30 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta"
           >
             Ver proyectos
             <svg viewBox="0 0 24 24" class="size-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -51,7 +51,7 @@ const socialLinks = [
           <a
             href="/andy-orozco-castro-cv.pdf"
             download
-            class="inline-flex items-center gap-2 rounded-xl border border-brand-violet/45 bg-white/2 px-7 py-3.5 text-sm font-semibold text-brand-magenta backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/55 hover:bg-brand-violet/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-violet"
+            class="inline-flex items-center justify-center gap-2 rounded-xl border border-brand-violet/45 bg-white/2 px-7 py-3.5 text-sm font-semibold text-brand-magenta backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/55 hover:bg-brand-violet/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-violet"
           >
             <svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="1.8">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0 4-4m-4 4-4-4M4 19.5h16" />
@@ -103,7 +103,7 @@ const socialLinks = [
             </span>
           </div>
 
-          <div class="p-6 font-mono text-sm sm:p-8">
+          <div class="p-5 font-mono text-sm sm:p-8">
             <div class="mb-5 flex items-center gap-2">
               <span class="text-brand-violet">const</span>
               <span class="text-foreground">techStack</span>
