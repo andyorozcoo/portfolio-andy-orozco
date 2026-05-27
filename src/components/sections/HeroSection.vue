@@ -1,19 +1,11 @@
 <script setup>
 import { RouterLink } from 'vue-router'
 
-const stackItems = [
-  { name: 'Laravel', area: 'Backend', className: 'border-red-400/20 bg-red-400/6 text-red-300' },
-  { name: 'Vue.js', area: 'Frontend', className: 'border-emerald-400/20 bg-emerald-400/6 text-emerald-300' },
-  { name: 'React', area: 'Frontend', className: 'border-sky-400/20 bg-sky-400/6 text-sky-300' },
-  { name: 'MySQL', area: 'Datos', className: 'border-brand-amber/20 bg-brand-amber/6 text-brand-amber' },
-  { name: 'Docker', area: 'Deploy', className: 'border-blue-400/20 bg-blue-400/6 text-blue-300' },
-  { name: 'Scrum', area: 'Agile', className: 'border-brand-magenta/20 bg-brand-magenta/6 text-brand-magenta' },
-]
-
-const profileDetails = [
-  { label: 'Base', value: 'Costa Rica' },
-  { label: 'Carrera', value: 'Ingeniería en Sistemas' },
-  { label: 'Enfoque', value: 'Full Stack Development' },
+const codeLines = [
+  { key: 'nombre', value: 'Andy Orozco Castro' },
+  { key: 'rol', value: 'Full Stack Developer' },
+  { key: 'formación', value: 'Ingeniería en Sistemas' },
+  { key: 'disponible', value: 'true', boolean: true },
 ]
 
 const socialLinks = [
@@ -101,65 +93,52 @@ const socialLinks = [
       </div>
 
       <div class="relative motion-safe:animate-[hero-scale_700ms_180ms_ease-out_both]">
-        <div class="absolute -right-8 top-12 -z-10 size-60 rounded-full bg-brand-violet/22 blur-[105px]"></div>
-        <div class="absolute -bottom-8 left-5 -z-10 size-56 rounded-full bg-brand-magenta/16 blur-[105px]"></div>
+        <div class="absolute -right-8 top-16 -z-10 size-56 rounded-full bg-brand-violet/25 blur-[100px]"></div>
+        <div class="absolute -bottom-8 -left-8 -z-10 size-52 rounded-full bg-brand-magenta/20 blur-[100px]"></div>
 
-        <div class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#15101f]/78 p-5 shadow-2xl shadow-black/35 backdrop-blur-xl sm:p-7">
-          <div class="absolute inset-x-10 top-0 h-px bg-linear-to-r from-transparent via-brand-magenta/65 to-transparent"></div>
-          <div class="absolute -right-16 -top-16 size-44 rounded-full border border-brand-violet/18"></div>
-          <div class="absolute -right-10 -top-10 size-28 rounded-full border border-brand-magenta/12"></div>
-
-          <div class="relative flex flex-wrap items-center justify-between gap-4">
-            <p class="text-xs font-medium uppercase tracking-[0.25em] text-muted">Perfil profesional</p>
-            <span class="inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/7 px-3 py-1.5 text-xs text-emerald-300">
-              <span class="size-1.5 animate-pulse rounded-full bg-emerald-300"></span>
-              Disponible
+        <div class="overflow-hidden rounded-2xl border border-brand-violet/20 bg-linear-to-br from-[#18181b]/85 to-space/80 shadow-2xl shadow-black/35 backdrop-blur-xl">
+          <div class="flex items-center justify-between border-b border-brand-violet/10 bg-space/45 px-5 py-4">
+            <div class="flex items-center gap-3">
+              <span class="flex gap-2">
+                <span class="size-3 rounded-full bg-red-500/80"></span>
+                <span class="size-3 rounded-full bg-amber-500/80"></span>
+                <span class="size-3 rounded-full bg-emerald-500/80"></span>
+              </span>
+              <span class="font-mono text-xs text-muted sm:text-sm">andy@portfolio</span>
+            </div>
+            <span class="rounded-full border border-brand-magenta/20 bg-brand-magenta/8 px-3 py-1 text-xs text-brand-magenta">
+              profile.vue
             </span>
           </div>
 
-          <div class="relative mt-7 flex items-center gap-4">
-            <div class="grid size-16 shrink-0 place-items-center rounded-2xl bg-linear-to-br from-brand-violet to-brand-magenta text-lg font-semibold text-foreground shadow-lg shadow-brand-magenta/20 sm:size-20 sm:text-xl">
-              AO
-            </div>
-            <div>
-              <h2 class="text-xl font-semibold text-foreground sm:text-2xl">Andy Orozco Castro</h2>
-              <p class="mt-1 text-sm font-medium text-brand-magenta">Full Stack Developer en formación</p>
-            </div>
-          </div>
-
-          <dl class="relative mt-7 grid gap-3 sm:grid-cols-3">
-            <div
-              v-for="detail in profileDetails"
-              :key="detail.label"
-              class="rounded-xl border border-white/7 bg-white/2.5 p-3.5"
-            >
-              <dt class="text-[0.68rem] font-medium uppercase tracking-[0.2em] text-muted">{{ detail.label }}</dt>
-              <dd class="mt-2 text-sm leading-snug text-foreground">{{ detail.value }}</dd>
-            </div>
-          </dl>
-
-          <div class="relative mt-7 border-t border-white/7 pt-6">
-            <div class="mb-4 flex items-center justify-between gap-4">
-              <h3 class="text-sm font-medium text-foreground">Tecnologías principales</h3>
-              <span class="text-xs text-muted">Stack</span>
+          <div class="p-5 font-mono text-sm sm:p-8">
+            <div class="mb-5 flex items-center gap-2">
+              <span class="text-brand-violet">const</span>
+              <span class="text-foreground">perfil</span>
+              <span class="text-brand-magenta">=</span>
+              <span class="text-foreground">{</span>
             </div>
 
-            <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
+            <div class="space-y-3 pl-5 sm:pl-8">
               <div
-                v-for="technology in stackItems"
-                :key="technology.name"
-                class="rounded-xl border p-3 transition-all duration-300 hover:-translate-y-0.5"
-                :class="technology.className"
+                v-for="line in codeLines"
+                :key="line.key"
+                class="group flex flex-wrap items-center gap-2"
               >
-                <p class="text-sm font-medium text-foreground">{{ technology.name }}</p>
-                <p class="mt-1 text-xs opacity-80">{{ technology.area }}</p>
+                <span class="text-muted">{{ line.key }}:</span>
+                <span :class="line.boolean ? 'text-emerald-300' : 'text-brand-magenta'">
+                  {{ line.boolean ? line.value : `'${line.value}'` }}
+                </span>
+                <span class="text-muted">,</span>
               </div>
             </div>
-          </div>
 
-          <p class="relative mt-6 rounded-xl border border-brand-violet/14 bg-brand-violet/6 px-4 py-3 text-sm leading-relaxed text-muted">
-            Construyendo soluciones funcionales con frontend, backend y buenas prácticas.
-          </p>
+            <div class="mt-5 text-foreground">}</div>
+            <div class="mt-7 flex items-center gap-2 text-xs text-muted">
+              <span class="size-2 animate-pulse rounded-full bg-brand-magenta"></span>
+              <span>Listo para nuevos retos</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
