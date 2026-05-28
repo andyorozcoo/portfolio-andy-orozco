@@ -46,13 +46,8 @@ export const experiences = [
       },
       {
         src: '/images/experience/activity-4.jpg',
-        alt: 'Actividades deportivas para estudiantes',
+        alt: 'Actividades deportivas y trabajo en equipo',
         title: 'Actividades deportivas',
-      },
-      {
-        src: '/images/experience/activity-5.jpg',
-        alt: 'Equipo de estudiantes colaborando',
-        title: 'Trabajo en equipo',
       },
     ],
   },

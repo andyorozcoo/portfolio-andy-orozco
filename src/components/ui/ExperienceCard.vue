@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import ImageCarousel from './ImageCarousel.vue'
 
 defineProps({
   experience: {
@@ -7,16 +7,6 @@ defineProps({
     required: true,
   },
 })
-
-const unavailableImages = ref(new Set())
-
-const markImageUnavailable = (src) => {
-  const images = new Set(unavailableImages.value)
-  images.add(src)
-  unavailableImages.value = images
-}
-
-const imageIsUnavailable = (src) => unavailableImages.value.has(src)
 </script>
 
 <template>
@@ -99,37 +89,7 @@ const imageIsUnavailable = (src) => unavailableImages.value.has(src)
         <p class="text-xs text-muted">Galería de participación y trabajo en equipo</p>
       </div>
 
-      <div class="grid grid-cols-2 gap-3 md:grid-cols-3">
-        <figure
-          v-for="item in experience.gallery"
-          :key="item.src"
-          class="group/photo relative h-32 overflow-hidden rounded-xl border border-brand-violet/15 bg-[#12121b] transition-all duration-300 hover:-translate-y-1 hover:border-brand-magenta/40 sm:h-40"
-        >
-          <img
-            v-if="!imageIsUnavailable(item.src)"
-            :src="item.src"
-            :alt="item.alt"
-            class="h-full w-full object-cover transition-transform duration-500 group-hover/photo:scale-105"
-            loading="lazy"
-            @error="markImageUnavailable(item.src)"
-          />
-
-          <div
-            v-else
-            class="flex h-full w-full items-center justify-center bg-linear-to-br from-brand-violet/15 via-[#18181b] to-brand-magenta/10"
-          >
-            <svg viewBox="0 0 24 24" class="size-9 text-brand-magenta/60" fill="none" stroke="currentColor" stroke-width="1.4">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4 17 9 12l3.5 3.5 2.5-3 5 4.5M6.5 5h11A1.5 1.5 0 0 1 19 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 17.5v-11A1.5 1.5 0 0 1 6.5 5Z" />
-              <path stroke-linecap="round" d="M9 9h.01" />
-            </svg>
-          </div>
-
-          <div class="absolute inset-0 bg-linear-to-t from-space via-space/40 to-transparent"></div>
-          <figcaption class="absolute inset-x-0 bottom-0 p-3 text-xs font-medium text-foreground">
-            {{ item.title }}
-          </figcaption>
-        </figure>
-      </div>
+      <ImageCarousel :items="experience.gallery" />
     </div>
   </article>
 </template>
