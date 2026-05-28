@@ -36,7 +36,17 @@ const projectSummary = [
   { label: 'Deploy', value: 'Docker + Railway' },
 ]
 
-const projectStack = ['Laravel', 'Vue 3', 'Inertia.js', 'MySQL', 'TailwindCSS', 'Phaser', 'Docker', 'Railway', 'Git']
+const projectStack = [
+  { name: 'Laravel', mark: 'Lv', className: 'border-red-400/20 bg-red-400/6 text-red-300' },
+  { name: 'Vue 3', mark: 'Vue', className: 'border-emerald-400/20 bg-emerald-400/6 text-emerald-300' },
+  { name: 'Inertia.js', mark: 'In', className: 'border-violet-400/20 bg-violet-400/6 text-violet-300' },
+  { name: 'MySQL', mark: 'My', className: 'border-brand-amber/20 bg-brand-amber/6 text-brand-amber' },
+  { name: 'TailwindCSS', mark: 'Tw', className: 'border-sky-400/20 bg-sky-400/6 text-sky-300' },
+  { name: 'Phaser', mark: 'Ph', className: 'border-brand-magenta/20 bg-brand-magenta/6 text-brand-magenta' },
+  { name: 'Docker', mark: 'Dk', className: 'border-blue-400/20 bg-blue-400/6 text-blue-300' },
+  { name: 'Railway', mark: 'Rw', className: 'border-zinc-300/20 bg-zinc-300/6 text-zinc-200' },
+  { name: 'Git', mark: 'Git', className: 'border-orange-400/20 bg-orange-400/6 text-orange-300' },
+]
 
 const solutionCards = [
   {
@@ -95,8 +105,27 @@ const securityItems = [
 ]
 
 const projectPreviewSrc = `${import.meta.env.BASE_URL}images/projects/beto-preview.png`
+const projectSlides = [
+  {
+    src: `${import.meta.env.BASE_URL}images/projects/beto-preview.png`,
+    alt: 'Vista home del sistema Beto y Más',
+    label: 'Home de fidelización',
+  },
+  {
+    src: `${import.meta.env.BASE_URL}images/projects/beto-login.png`,
+    alt: 'Vista de inicio de sesión del sistema Beto y Más',
+    label: 'Inicio de sesión',
+  },
+]
+const activeProjectSlide = ref(0)
 const projectImageUnavailable = ref(false)
 const isPreviewOpen = ref(false)
+const activePreview = () => projectSlides[activeProjectSlide.value]
+
+const goToProjectSlide = (index) => {
+  activeProjectSlide.value = index
+  projectImageUnavailable.value = false
+}
 
 const openPreview = () => {
   isPreviewOpen.value = true
@@ -183,6 +212,20 @@ onBeforeUnmount(() => {
       <div class="absolute -right-24 bottom-20 -z-10 size-96 rounded-full bg-brand-magenta/8 blur-[140px]"></div>
 
       <div class="mx-auto w-full max-w-7xl px-6 lg:px-8">
+        <MotionReveal as="header" class="mb-8 max-w-4xl">
+          <p class="text-sm font-semibold uppercase tracking-[0.36em] text-brand-magenta">Proyecto principal</p>
+          <h2 class="mt-5 text-3xl font-semibold leading-tight text-foreground sm:text-4xl lg:text-5xl">
+            Beto y Más
+          </h2>
+          <p class="mt-4 text-base font-medium text-brand-magenta">
+            Plataforma de fidelización, promociones y gamificación empresarial
+          </p>
+          <p class="mt-5 max-w-3xl text-base leading-relaxed text-muted">
+            Sistema web desarrollado para centralizar clientes, puntos, recompensas, promociones y dinámicas de
+            fidelización desde una plataforma moderna, escalable y orientada a la experiencia de usuario.
+          </p>
+        </MotionReveal>
+
         <MotionReveal
           as="article"
           class="relative overflow-hidden rounded-[2.25rem] border border-brand-violet/20 bg-linear-to-br from-[#111827]/86 via-space/78 to-[#09090f]/95 p-4 shadow-2xl shadow-black/35 backdrop-blur-xl sm:p-5 lg:p-6"
@@ -193,26 +236,21 @@ onBeforeUnmount(() => {
           <div class="relative space-y-5">
             <div class="grid gap-5 xl:grid-cols-[0.9fr_1.1fr]">
               <div class="rounded-[1.75rem] border border-white/8 bg-white/2.5 p-5 backdrop-blur-xl sm:p-6">
-                <p class="text-xs font-semibold uppercase tracking-[0.36em] text-brand-magenta">Proyecto principal</p>
-                <h2 class="mt-5 text-3xl font-semibold leading-tight text-foreground sm:text-4xl lg:text-5xl">
-                  Beto y Más
-                </h2>
-                <p class="mt-4 text-base font-medium text-brand-magenta">
-                  Plataforma de fidelización, promociones y gamificación empresarial
-                </p>
-                <p class="mt-5 text-sm leading-relaxed text-muted sm:text-base">
-                  Sistema web desarrollado para centralizar clientes, puntos, recompensas, promociones y dinámicas de
-                  fidelización desde una plataforma moderna, escalable y orientada a la experiencia de usuario.
-                </p>
-
-                <div class="mt-6 flex flex-wrap gap-2">
-                  <span
+                <p class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-magenta">Stack utilizado</p>
+                <div class="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                  <div
                     v-for="item in projectStack"
-                    :key="item"
-                    class="rounded-full border border-brand-violet/22 bg-space/55 px-3 py-1.5 text-xs font-medium text-muted"
+                    :key="item.name"
+                    class="group rounded-2xl border p-3 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand-magenta/8"
+                    :class="item.className"
                   >
-                    {{ item }}
-                  </span>
+                    <div class="flex items-center gap-3">
+                      <span class="grid size-10 shrink-0 place-items-center rounded-xl border border-current/20 bg-space/60 text-xs font-semibold">
+                        {{ item.mark }}
+                      </span>
+                      <span class="text-sm font-semibold text-foreground">{{ item.name }}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -226,11 +264,20 @@ onBeforeUnmount(() => {
                   <p class="mt-2 text-sm font-semibold text-foreground">{{ item.value }}</p>
                 </div>
 
-                <div class="rounded-2xl border border-brand-violet/18 bg-linear-to-br from-brand-violet/10 to-brand-magenta/7 p-4 backdrop-blur-xl sm:col-span-2">
-                  <p class="text-sm font-semibold text-foreground">Resultado del proyecto</p>
-                  <p class="mt-2 text-sm leading-relaxed text-muted">
-                    La plataforma consolidó procesos de fidelización y administración en un solo sistema.
-                  </p>
+                <div class="rounded-2xl border border-white/8 bg-white/2.5 p-4 backdrop-blur-xl sm:col-span-2">
+                  <div class="flex gap-3">
+                    <span class="grid size-10 shrink-0 place-items-center rounded-xl border border-brand-magenta/20 bg-brand-magenta/8 text-brand-magenta">
+                      <svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p class="text-xs uppercase tracking-[0.18em] text-muted">Resultado</p>
+                      <p class="mt-2 text-sm leading-relaxed text-foreground">
+                        Plataforma unificada para ordenar fidelización, administración y crecimiento funcional.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -247,8 +294,8 @@ onBeforeUnmount(() => {
 
                 <img
                   v-if="!projectImageUnavailable"
-                  :src="projectPreviewSrc"
-                  alt="Vista previa del proyecto Beto y Más"
+                  :src="activePreview().src"
+                  :alt="activePreview().alt"
                   class="relative h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
                   decoding="async"
                   @error="projectImageUnavailable = true"
@@ -281,6 +328,17 @@ onBeforeUnmount(() => {
                 </div>
 
                 <div class="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-linear-to-t from-space/35 to-transparent"></div>
+                <div class="absolute bottom-4 left-4 flex gap-2">
+                  <button
+                    v-for="(slide, index) in projectSlides"
+                    :key="slide.src"
+                    type="button"
+                    class="h-2 rounded-full transition-all duration-300"
+                    :class="activeProjectSlide === index ? 'w-8 bg-linear-to-r from-brand-violet to-brand-magenta' : 'w-2 bg-white/35 hover:bg-white/60'"
+                    :aria-label="`Ver ${slide.label}`"
+                    @click.stop="goToProjectSlide(index)"
+                  ></button>
+                </div>
               </div>
             </button>
           </div>
@@ -404,8 +462,8 @@ onBeforeUnmount(() => {
                 <div class="relative flex max-h-[78dvh] min-h-[18rem] items-center justify-center overflow-hidden rounded-[1.25rem] bg-black/30">
                   <img
                     v-if="!projectImageUnavailable"
-                    :src="projectPreviewSrc"
-                    alt="Preview ampliado del proyecto Beto y Más"
+                    :src="activePreview().src"
+                    :alt="activePreview().alt"
                     class="max-h-[78dvh] w-full object-contain"
                     decoding="async"
                     @error="projectImageUnavailable = true"
@@ -417,7 +475,7 @@ onBeforeUnmount(() => {
                 <figcaption class="px-2 pb-1 pt-4 sm:px-3">
                   <p class="text-base font-semibold text-foreground">Beto y Más</p>
                   <p class="mt-1 max-w-3xl text-sm leading-relaxed text-muted">
-                    Vista previa del flujo de fidelización.
+                    {{ activePreview().label }}
                   </p>
                 </figcaption>
               </figure>
