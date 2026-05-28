@@ -44,7 +44,7 @@ export const experiences = [
       },
       {
         src: '/images/experience/assistant-heredia.jpg',
-        alt: 'Equipo de futbol universitario durante indicaciones técnicas',
+        alt: 'Equipo de fútbol universitario durante indicaciones técnicas',
         title: 'Área deportiva',
         description: 'Acompañamiento en procesos deportivos y comunicación con equipos universitarios.',
       },
@@ -68,7 +68,7 @@ export const experiences = [
       },
       {
         src: '/images/experience/assistant-limon.jpg',
-        alt: 'Equipo universitario de futbol recibiendo indicaciones en Limón',
+        alt: 'Equipo universitario de fútbol recibiendo indicaciones en Limón',
         title: 'Representación deportiva',
         description: 'Acompañamiento en torneos y espacios de representación universitaria.',
       },
@@ -103,27 +103,5 @@ export const experiences = [
         description: 'Trabajo colaborativo con estudiantes asistentes y el área de promoción estudiantil.',
       },
     ],
-  },
-  {
-    id: 'beto-y-mas',
-    type: 'development',
-    role: 'Beto y Más',
-    organization: 'Sistema de fidelización y gamificación',
-    area: 'Desarrollo Full Stack',
-    period: '2025 - Actualidad',
-    description:
-      'Participación en el desarrollo de un sistema web de fidelización y gamificación con panel administrativo, juegos, recompensas, puntos y módulos para clientes.',
-    technologies: ['Laravel', 'Vue 3', 'Inertia.js', 'MySQL', 'Docker', 'Railway', 'Scrum'],
-  },
-  {
-    id: 'proyectos-academicos',
-    type: 'projects',
-    role: 'Proyectos académicos de software',
-    organization: 'Universidad Nacional',
-    area: 'Desarrollo de aplicaciones',
-    period: '2024 - Actualidad',
-    description:
-      'Desarrollo de aplicaciones web, móviles y proyectos académicos aplicando arquitectura limpia, APIs REST, bases de datos relacionales, control de versiones y buenas prácticas de programación.',
-    technologies: ['Vue', 'React', 'Android', 'Kotlin', 'Python', '.NET', 'GitHub'],
   },
 ]
