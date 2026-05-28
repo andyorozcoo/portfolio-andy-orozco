@@ -169,7 +169,7 @@ onBeforeUnmount(() => {
         v-for="(item, index) in visibleItems"
         :key="`${currentIndex}-${item.src}`"
         as="figure"
-        class="group/photo relative h-52 overflow-hidden rounded-xl border border-brand-violet/15 bg-[#12121b] transition-all duration-300 hover:-translate-y-1 hover:border-brand-magenta/40 sm:h-56 md:h-48 xl:h-52"
+        class="group/photo relative h-56 overflow-hidden rounded-xl border border-brand-violet/15 bg-[#12121b] transition-all duration-300 hover:-translate-y-1 hover:border-brand-magenta/40 sm:h-60 md:h-52 xl:h-56"
         :delay="index * 0.06"
         y="14"
       >
@@ -177,7 +177,7 @@ onBeforeUnmount(() => {
           v-if="!imageIsUnavailable(item.src)"
           :src="item.src"
           :alt="item.alt"
-          class="h-full w-full object-cover transition-transform duration-500 group-hover/photo:scale-105"
+          class="h-full w-full object-cover object-center transition-transform duration-500 group-hover/photo:scale-105"
           loading="lazy"
           @error="markImageUnavailable(item.src)"
         />
@@ -194,13 +194,16 @@ onBeforeUnmount(() => {
         </div>
 
         <div class="absolute inset-0 bg-linear-to-t from-space via-space/35 to-transparent"></div>
-        <figcaption class="absolute inset-x-0 bottom-0 p-4 text-sm font-medium text-foreground">
-          {{ item.title }}
+        <figcaption class="absolute inset-x-0 bottom-0 p-4">
+          <p class="text-sm font-semibold text-foreground">{{ item.title }}</p>
+          <p v-if="item.description" class="mt-1 line-clamp-2 text-xs leading-relaxed text-muted">
+            {{ item.description }}
+          </p>
         </figcaption>
       </MotionReveal>
     </TransitionGroup>
 
-    <div class="mt-4 flex justify-center gap-2">
+    <div class="mt-4 flex flex-wrap justify-center gap-2">
       <button
         v-for="(item, index) in items"
         :key="item.src"
