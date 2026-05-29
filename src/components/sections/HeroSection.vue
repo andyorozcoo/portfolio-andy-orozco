@@ -59,7 +59,7 @@ const profileImageSrc = `${import.meta.env.BASE_URL}images/profile/profile-main.
             </svg>
           </RouterLink>
           <a
-            href="/andy-orozco-castro-cv.pdf"
+            href="/files/cv-andy-orozco.pdf"
             download
             class="inline-flex items-center justify-center gap-2 rounded-xl border border-brand-violet/45 bg-white/2 px-7 py-3.5 text-sm font-semibold text-brand-magenta backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/55 hover:bg-brand-violet/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-violet"
           >
@@ -69,7 +69,7 @@ const profileImageSrc = `${import.meta.env.BASE_URL}images/profile/profile-main.
             Descargar CV
           </a>
           <a
-            href="https://github.com"
+            href="https://github.com/andyorozcoo"
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/2.5 px-7 py-3.5 text-sm font-semibold text-foreground backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/40 hover:text-brand-magenta focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-violet"
