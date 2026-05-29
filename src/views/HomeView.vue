@@ -4,18 +4,9 @@ import { RouterLink } from 'vue-router'
 import HeroSection from '../components/sections/HeroSection.vue'
 import MotionReveal from '../components/ui/MotionReveal.vue'
 
-const technologies = [
-  { name: 'Laravel', mark: 'Lv', className: 'border-red-400/20 bg-red-400/6 text-red-300' },
-  { name: 'Vue.js', mark: 'Vue', className: 'border-emerald-400/20 bg-emerald-400/6 text-emerald-300' },
-  { name: 'React', mark: 'Re', className: 'border-sky-400/20 bg-sky-400/6 text-sky-300' },
-  { name: 'MySQL', mark: 'My', className: 'border-brand-amber/20 bg-brand-amber/6 text-brand-amber' },
-  { name: 'Docker', mark: 'Dk', className: 'border-blue-400/20 bg-blue-400/6 text-blue-300' },
-  { name: 'Scrum', mark: 'Sc', className: 'border-brand-magenta/20 bg-brand-magenta/6 text-brand-magenta' },
-]
-
 const contributionItems = [
   {
-    title: 'Desarrollo Full Stack',
+    title: 'Full Stack',
     description: 'Interfaces, APIs y bases de datos pensadas como una solución completa.',
   },
   {
@@ -46,6 +37,14 @@ const projectStack = [
   { name: 'Docker', mark: 'Dk', className: 'border-blue-400/20 bg-blue-400/6 text-blue-300' },
   { name: 'Railway', mark: 'Rw', className: 'border-zinc-300/20 bg-zinc-300/6 text-zinc-200' },
   { name: 'Git', mark: 'Git', className: 'border-orange-400/20 bg-orange-400/6 text-orange-300' },
+]
+
+const mainProjectStack = projectStack.slice(0, 4)
+
+const projectKeyPoints = [
+  'Gestión de clientes y puntos',
+  'Recompensas y promociones',
+  'Gamificación y panel administrativo',
 ]
 
 const solutionCards = [
@@ -120,6 +119,7 @@ const projectSlides = [
 const activeProjectSlide = ref(0)
 const projectImageUnavailable = ref(false)
 const isPreviewOpen = ref(false)
+const isProjectDetailsOpen = ref(false)
 const activePreview = () => projectSlides[activeProjectSlide.value]
 
 const goToProjectSlide = (index) => {
@@ -159,7 +159,7 @@ onBeforeUnmount(() => {
   <div>
     <HeroSection />
 
-    <section class="relative pb-14 sm:pb-20">
+    <section v-if="false" class="relative pb-14 sm:pb-20">
       <div class="mx-auto w-full max-w-7xl px-6 lg:px-8">
         <MotionReveal as="header" class="mb-8 max-w-2xl">
           <p class="text-sm font-medium uppercase tracking-[0.26em] text-brand-magenta">Tecnologías</p>
@@ -184,43 +184,43 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
-    <section class="relative pb-14 sm:pb-20">
+    <section class="relative pb-10 sm:pb-20">
       <div class="mx-auto w-full max-w-7xl px-6 lg:px-8">
-        <MotionReveal as="header" class="mb-8 max-w-2xl">
+        <MotionReveal as="header" class="mb-5 max-w-2xl sm:mb-8">
           <p class="text-sm font-medium uppercase tracking-[0.26em] text-brand-magenta">Qué aporto</p>
-          <h2 class="mt-3 text-2xl font-semibold text-foreground sm:text-3xl">Valor para equipos y proyectos</h2>
+          <h2 class="mt-2 text-2xl font-semibold text-foreground sm:mt-3 sm:text-3xl">Valor para equipos y proyectos</h2>
         </MotionReveal>
 
-        <div class="grid gap-4 md:grid-cols-3">
+        <div class="grid gap-3 md:grid-cols-3">
           <MotionReveal
             v-for="(item, index) in contributionItems"
             :key="item.title"
             as="article"
-            class="rounded-2xl border border-brand-violet/20 bg-linear-to-br from-[#18181b]/58 to-space/55 p-5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-brand-magenta/35"
+            class="rounded-2xl border border-brand-violet/20 bg-linear-to-br from-[#18181b]/58 to-space/55 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-brand-magenta/35 sm:p-5 sm:backdrop-blur-xl"
             :delay="index * 0.08"
           >
-            <span class="mb-4 block h-1 w-10 rounded-full bg-linear-to-r from-brand-violet to-brand-magenta"></span>
-            <h3 class="text-lg font-medium text-foreground">{{ item.title }}</h3>
-            <p class="mt-3 text-sm leading-relaxed text-muted">{{ item.description }}</p>
+            <span class="mb-3 block h-1 w-8 rounded-full bg-linear-to-r from-brand-violet to-brand-magenta sm:mb-4 sm:w-10"></span>
+            <h3 class="text-base font-medium text-foreground sm:text-lg">{{ item.title }}</h3>
+            <p class="mt-2 line-clamp-1 text-sm leading-relaxed text-muted sm:mt-3 sm:line-clamp-none">{{ item.description }}</p>
           </MotionReveal>
         </div>
       </div>
     </section>
 
-    <section id="proyecto-destacado" class="relative scroll-mt-24 overflow-hidden pb-16 sm:pb-24">
+    <section id="proyecto-destacado" class="relative scroll-mt-24 overflow-hidden pb-12 sm:pb-24">
       <div class="absolute -left-24 top-16 -z-10 size-96 rounded-full bg-brand-violet/10 blur-[140px]"></div>
       <div class="absolute -right-24 bottom-20 -z-10 size-96 rounded-full bg-brand-magenta/8 blur-[140px]"></div>
 
       <div class="mx-auto w-full max-w-7xl px-6 lg:px-8">
-        <MotionReveal as="header" class="mb-8 max-w-4xl">
+        <MotionReveal as="header" class="mb-6 max-w-4xl sm:mb-8">
           <p class="text-sm font-semibold uppercase tracking-[0.36em] text-brand-magenta">Proyecto principal</p>
-          <h2 class="mt-5 text-3xl font-semibold leading-tight text-foreground sm:text-4xl lg:text-5xl">
+          <h2 class="mt-4 text-3xl font-semibold leading-tight text-foreground sm:mt-5 sm:text-4xl lg:text-5xl">
             Beto y Más
           </h2>
           <p class="mt-4 text-base font-medium text-brand-magenta">
             Plataforma de fidelización, promociones y gamificación empresarial
           </p>
-          <p class="mt-5 max-w-3xl text-base leading-relaxed text-muted">
+          <p class="mt-4 max-w-3xl text-sm leading-relaxed text-muted sm:mt-5 sm:text-base">
             Sistema web desarrollado para centralizar clientes, puntos, recompensas, promociones y dinámicas de
             fidelización desde una plataforma moderna, escalable y orientada a la experiencia de usuario.
           </p>
@@ -228,13 +228,13 @@ onBeforeUnmount(() => {
 
         <MotionReveal
           as="article"
-          class="relative overflow-hidden rounded-[2.25rem] border border-brand-violet/20 bg-linear-to-br from-[#111827]/86 via-space/78 to-[#09090f]/95 p-4 shadow-2xl shadow-black/35 backdrop-blur-xl sm:p-5 lg:p-6"
+          class="relative overflow-hidden rounded-[1.75rem] border border-brand-violet/20 bg-linear-to-br from-[#111827]/86 via-space/78 to-[#09090f]/95 p-3 shadow-2xl shadow-black/35 sm:rounded-[2.25rem] sm:p-5 sm:backdrop-blur-xl lg:p-6"
         >
           <div class="absolute inset-x-12 top-0 h-px bg-linear-to-r from-transparent via-brand-magenta/55 to-transparent"></div>
           <div class="absolute -right-24 top-16 size-72 rounded-full bg-brand-magenta/8 blur-[110px]"></div>
 
           <div class="relative space-y-5">
-            <div class="grid gap-5 xl:grid-cols-[0.9fr_1.1fr]">
+            <div class="hidden gap-5 lg:grid xl:grid-cols-[0.9fr_1.1fr]">
               <div class="rounded-[1.75rem] border border-white/8 bg-white/2.5 p-5 backdrop-blur-xl sm:p-6">
                 <p class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-magenta">Stack utilizado</p>
                 <div class="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -282,6 +282,25 @@ onBeforeUnmount(() => {
               </div>
             </div>
 
+            <div class="rounded-2xl border border-white/8 bg-white/2.5 p-4 lg:hidden">
+              <div class="flex items-center justify-between gap-3">
+                <span class="rounded-full border border-brand-magenta/25 bg-brand-magenta/8 px-3 py-1 text-xs font-medium text-brand-magenta">
+                  Full Stack Developer
+                </span>
+                <span class="text-xs text-muted">Proyecto real</span>
+              </div>
+
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span
+                  v-for="item in mainProjectStack"
+                  :key="item.name"
+                  class="rounded-full border border-brand-violet/20 bg-space/55 px-3 py-1.5 text-xs font-medium text-muted"
+                >
+                  {{ item.name }}
+                </span>
+              </div>
+            </div>
+
             <button
               type="button"
               class="group block w-full overflow-hidden rounded-[1.75rem] border border-white/8 bg-space/45 p-3 text-left shadow-2xl shadow-black/25 transition-all duration-300 hover:-translate-y-1 hover:border-brand-magenta/35 hover:shadow-brand-magenta/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta"
@@ -297,6 +316,7 @@ onBeforeUnmount(() => {
                   :src="activePreview().src"
                   :alt="activePreview().alt"
                   class="relative h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
+                  loading="lazy"
                   decoding="async"
                   @error="projectImageUnavailable = true"
                 />
@@ -341,9 +361,47 @@ onBeforeUnmount(() => {
                 </div>
               </div>
             </button>
+
+            <div class="rounded-2xl border border-white/8 bg-white/2.5 p-4 lg:hidden">
+              <p class="text-sm leading-relaxed text-muted">
+                Plataforma para administrar clientes, puntos, recompensas, promociones y dinámicas de fidelización.
+              </p>
+
+              <div class="mt-4 grid gap-2">
+                <div
+                  v-for="item in projectKeyPoints"
+                  :key="item"
+                  class="flex items-center gap-3 rounded-xl border border-white/8 bg-space/45 px-3 py-2 text-sm text-foreground"
+                >
+                  <span class="size-2 rounded-full bg-brand-magenta"></span>
+                  {{ item }}
+                </div>
+              </div>
+
+              <button
+                type="button"
+                class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-brand-violet/35 bg-brand-violet/10 px-4 py-3 text-sm font-semibold text-brand-magenta transition-all duration-300 hover:border-brand-magenta/45 hover:bg-brand-magenta/10"
+                @click="isProjectDetailsOpen = !isProjectDetailsOpen"
+              >
+                {{ isProjectDetailsOpen ? 'Ocultar detalles' : 'Ver detalles' }}
+                <svg
+                  viewBox="0 0 24 24"
+                  class="size-4 transition-transform duration-300"
+                  :class="isProjectDetailsOpen ? 'rotate-180' : ''"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6" />
+                </svg>
+              </button>
+            </div>
           </div>
 
-          <div class="relative mt-5 grid gap-5 lg:grid-cols-[0.95fr_1.05fr]">
+          <div
+            class="relative mt-5 grid gap-5 lg:grid lg:grid-cols-[0.95fr_1.05fr]"
+            :class="isProjectDetailsOpen ? 'grid' : 'hidden'"
+          >
             <div class="rounded-[1.75rem] border border-brand-violet/18 bg-white/2.5 p-5 backdrop-blur-xl">
               <p class="text-sm font-semibold uppercase tracking-[0.26em] text-brand-magenta">Qué resuelve</p>
               <div class="mt-5 grid gap-3">
@@ -375,7 +433,10 @@ onBeforeUnmount(() => {
             </div>
           </div>
 
-          <div class="relative mt-5 grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+          <div
+            class="relative mt-5 grid gap-5 lg:grid-cols-[1.1fr_0.9fr]"
+            :class="isProjectDetailsOpen ? 'grid' : 'hidden lg:grid'"
+          >
             <div class="rounded-[1.75rem] border border-brand-violet/18 bg-white/2.5 p-5 backdrop-blur-xl">
               <p class="text-sm font-semibold uppercase tracking-[0.26em] text-brand-magenta">Áreas funcionales</p>
               <div class="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -405,7 +466,10 @@ onBeforeUnmount(() => {
             </div>
           </div>
 
-          <div class="relative mt-5 rounded-[1.75rem] border border-brand-violet/18 bg-linear-to-br from-[#18181b]/62 to-space/60 p-5 backdrop-blur-xl">
+          <div
+            class="relative mt-5 rounded-[1.75rem] border border-brand-violet/18 bg-linear-to-br from-[#18181b]/62 to-space/60 p-5 backdrop-blur-xl"
+            :class="isProjectDetailsOpen ? 'block' : 'hidden lg:block'"
+          >
             <p class="text-sm font-semibold uppercase tracking-[0.26em] text-brand-magenta">Enfoque técnico</p>
             <div class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               <div
@@ -418,7 +482,10 @@ onBeforeUnmount(() => {
             </div>
           </div>
 
-          <p class="relative mt-5 rounded-2xl border border-white/8 bg-white/2.5 p-5 text-sm leading-relaxed text-muted">
+          <p
+            class="relative mt-5 rounded-2xl border border-white/8 bg-white/2.5 p-5 text-sm leading-relaxed text-muted"
+            :class="isProjectDetailsOpen ? 'block' : 'hidden lg:block'"
+          >
             Por tratarse de un proyecto colaborativo y privado, el código fuente no se encuentra disponible públicamente.
           </p>
         </MotionReveal>
@@ -485,11 +552,11 @@ onBeforeUnmount(() => {
       </Teleport>
     </section>
 
-    <section class="px-6 pb-20 lg:px-8">
-      <MotionReveal class="mx-auto flex max-w-5xl flex-col items-center rounded-3xl border border-brand-violet/20 bg-linear-to-r from-brand-violet/10 to-brand-magenta/8 px-6 py-10 text-center sm:px-10">
+    <section class="px-6 pb-14 sm:pb-20 lg:px-8">
+      <MotionReveal class="mx-auto flex max-w-5xl flex-col items-center rounded-3xl border border-brand-violet/20 bg-linear-to-r from-brand-violet/10 to-brand-magenta/8 px-5 py-8 text-center sm:px-10 sm:py-10">
         <h2 class="text-2xl font-semibold text-foreground sm:text-3xl">¿Construimos algo juntos?</h2>
-        <p class="mt-4 max-w-xl text-muted">Explora mi trabajo o conversemos sobre oportunidades y proyectos.</p>
-        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <p class="mt-3 max-w-xl text-sm text-muted sm:mt-4 sm:text-base">Explora mi trabajo o conversemos sobre oportunidades y proyectos.</p>
+        <div class="mt-6 grid w-full gap-3 sm:mt-8 sm:w-auto sm:grid-cols-2">
           <RouterLink
             :to="{ path: '/', hash: '#proyecto-destacado' }"
             class="rounded-xl bg-linear-to-r from-brand-violet to-brand-magenta px-6 py-3 text-sm font-medium text-foreground transition-transform duration-300 hover:-translate-y-0.5"
