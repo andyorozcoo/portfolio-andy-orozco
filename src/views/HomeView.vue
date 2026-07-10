@@ -17,12 +17,6 @@ const projectStack = [
   'Scrum',
 ]
 
-const responsibilities = [
-  'Desarrollo de módulos administrativos y lógica de negocio.',
-  'Integración frontend/backend con Laravel, Vue 3 e Inertia.js.',
-  'Implementación de puntos, recompensas, promociones y gamificación.',
-]
-
 const aboutCards = [
   {
     id: 'diplomado-sistemas',
@@ -44,7 +38,7 @@ const projectImageUnavailable = ref(false)
 const credentialImageFailures = ref([])
 const activeCredentialId = ref(null)
 
-const projectImageSrc = `${import.meta.env.BASE_URL}images/projects/beto-preview.jpg`
+const projectImageSrc = `${import.meta.env.BASE_URL}images/projects/beto-showcase.jpg`
 const projectUrl = 'https://betoymas.com/'
 
 const activeCredential = computed(() => {
@@ -98,87 +92,91 @@ onBeforeUnmount(() => {
           <p class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-magenta">Proyecto principal</p>
           <h2 class="mt-3 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Beto y Más</h2>
           <p class="mt-3 text-sm leading-relaxed text-muted sm:text-base">
-            Proyecto concluido orientado a fidelización, puntos y gamificación para clientes.
+            Proyecto real orientado a fidelización, puntos y gamificación para clientes.
           </p>
         </MotionReveal>
 
         <MotionReveal
           as="article"
-          class="overflow-hidden rounded-3xl border border-white/10 bg-[#0f1720]/72 shadow-xl shadow-black/20 backdrop-blur-md"
+          class="mx-auto max-w-2xl overflow-hidden rounded-3xl border border-white/10 bg-[#0f1720]/78 shadow-xl shadow-black/20 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-brand-magenta/30"
         >
-          <div class="grid gap-0 lg:grid-cols-[0.95fr_1.05fr]">
-            <div class="relative min-h-56 overflow-hidden bg-space/70 sm:min-h-72 lg:min-h-full">
-              <img
-                v-if="!projectImageUnavailable"
-                :src="projectImageSrc"
-                alt="Vista previa de Beto y Más"
-                class="h-full min-h-56 w-full object-cover object-top sm:min-h-72 lg:min-h-full"
-                loading="lazy"
-                decoding="async"
-                @error="projectImageUnavailable = true"
-              />
-              <div v-else class="grid h-full min-h-56 place-items-center p-6 text-center sm:min-h-72">
-                <div>
-                  <p class="text-2xl font-semibold text-foreground">Beto y Más</p>
-                  <p class="mt-2 text-sm text-muted">Plataforma de fidelización y gamificación</p>
-                </div>
+          <div class="relative h-44 overflow-hidden bg-space/70 sm:h-56">
+            <img
+              v-if="!projectImageUnavailable"
+              :src="projectImageSrc"
+              alt="Vista previa de Beto y Más"
+              class="h-full w-full object-cover object-top transition-transform duration-700 hover:scale-[1.03]"
+              loading="lazy"
+              decoding="async"
+              @error="projectImageUnavailable = true"
+            />
+            <div v-else class="grid h-full place-items-center p-6 text-center">
+              <div>
+                <p class="text-2xl font-semibold text-foreground">Beto y Más</p>
+                <p class="mt-2 text-sm text-muted">Plataforma de fidelización y gamificación</p>
               </div>
-              <div class="absolute inset-0 bg-linear-to-t from-space/45 via-transparent to-transparent lg:bg-linear-to-r"></div>
             </div>
+            <div class="absolute inset-0 bg-linear-to-t from-space/80 via-space/10 to-transparent"></div>
+          </div>
 
-            <div class="p-5 sm:p-7">
-              <div class="flex flex-wrap items-start justify-between gap-3">
-                <div>
-                  <h3 class="text-2xl font-semibold text-foreground">Beto y Más</h3>
-                  <p class="mt-2 text-sm font-semibold text-brand-magenta">
-                    Plataforma de fidelización y gamificación
-                  </p>
-                </div>
-                <span class="rounded-full border border-brand-violet/25 bg-brand-violet/10 px-3 py-1 text-xs font-semibold text-brand-magenta">
-                  Proyecto concluido
-                </span>
+          <div class="relative px-5 pb-6 pt-0 sm:px-7 sm:pb-7">
+            <div class="-mt-8 flex items-end justify-between gap-4">
+              <div
+                class="grid size-14 place-items-center rounded-2xl border border-brand-violet/30 bg-[#0b1119] text-sm font-bold text-brand-magenta shadow-lg shadow-black/30"
+              >
+                B+
               </div>
-
-              <p class="mt-4 text-sm leading-relaxed text-muted">
-                Sistema web desarrollado para centralizar clientes, puntos, recompensas, promociones y dinámicas de
-                fidelización mediante una plataforma moderna y modular.
-              </p>
-
-              <div class="mt-4 grid gap-3 rounded-2xl border border-white/8 bg-white/3 p-4 sm:grid-cols-2">
-                <div>
-                  <p class="text-xs uppercase tracking-[0.22em] text-muted">Rol</p>
-                  <p class="mt-1 text-sm font-semibold text-foreground">Full Stack Developer</p>
-                </div>
-                <div>
-                  <p class="text-xs uppercase tracking-[0.22em] text-muted">Stack</p>
-                  <p class="mt-1 text-sm font-semibold text-foreground">Laravel + Vue 3</p>
-                </div>
-              </div>
-
-              <div class="mt-4 flex flex-wrap gap-2">
-                <span
-                  v-for="item in projectStack"
-                  :key="item"
-                  class="rounded-full border border-white/10 bg-space/55 px-3 py-1.5 text-xs font-medium text-muted"
-                >
-                  {{ item }}
-                </span>
-              </div>
-
-              <ul class="mt-5 space-y-2.5">
-                <li v-for="item in responsibilities" :key="item" class="flex gap-2.5 text-sm leading-relaxed text-muted">
-                  <span class="mt-2 size-1.5 shrink-0 rounded-full bg-brand-magenta"></span>
-                  <span>{{ item }}</span>
-                </li>
-              </ul>
 
               <a
                 :href="projectUrl"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="mt-6 inline-flex items-center justify-center rounded-full bg-brand-violet px-5 py-2.5 text-sm font-semibold text-space transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-magenta focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta"
+                aria-label="Abrir Beto y Más"
+                class="grid size-10 place-items-center rounded-xl border border-white/10 bg-[#0b1119]/90 text-muted transition-all duration-300 hover:border-brand-magenta/35 hover:text-brand-magenta"
+              >
+                <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
+                </svg>
+              </a>
+            </div>
+
+            <div class="mt-4">
+              <h3 class="text-2xl font-semibold text-foreground">Beto y Más</h3>
+              <p class="mt-1 text-sm font-semibold text-brand-magenta">
+                Plataforma de fidelización y gamificación
+              </p>
+              <p class="mt-2 text-xs font-medium uppercase tracking-[0.22em] text-muted">Rol · Full Stack Developer</p>
+            </div>
+
+            <p class="mt-5 text-sm leading-relaxed text-muted sm:text-base">
+              Sistema web desarrollado para centralizar clientes, puntos, recompensas, promociones y dinámicas de
+              fidelización mediante una plataforma moderna y modular.
+            </p>
+
+            <div class="mt-5">
+              <p class="mb-3 text-center text-xs font-semibold uppercase tracking-[0.24em] text-muted">Stack</p>
+              <div class="flex flex-wrap justify-center gap-2">
+                <span
+                  v-for="item in projectStack"
+                  :key="item"
+                  class="rounded-lg border border-brand-violet/20 bg-brand-violet/8 px-3 py-1.5 text-xs font-semibold text-brand-magenta"
+                >
+                  {{ item }}
+                </span>
+              </div>
+            </div>
+
+            <div class="mt-6 border-t border-white/8 pt-5">
+              <a
+                :href="projectUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-brand-violet/30 bg-brand-violet/10 px-5 py-3 text-sm font-semibold text-brand-magenta transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/40 hover:bg-brand-violet/15 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta"
               >
                 Ver proyecto
+                <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
+                </svg>
               </a>
             </div>
           </div>
