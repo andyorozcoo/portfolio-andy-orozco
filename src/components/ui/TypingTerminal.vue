@@ -2,9 +2,8 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 
 const code = `const developer = {
-  name: "Andy Orozco Castro",
+  name: "Andy Orozco",
   role: "Full Stack Developer",
-  education: "Ingeniería en Sistemas",
   stack: ["Laravel", "Vue", "MySQL"],
   available: true
 }`
@@ -34,7 +33,7 @@ const typeCode = (index = 0) => {
   }
 
   typedCode.value += code[index]
-  typingTimer = window.setTimeout(() => typeCode(index + 1), 34)
+  typingTimer = window.setTimeout(() => typeCode(index + 1), 36)
 }
 
 onMounted(() => {
@@ -53,17 +52,17 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="overflow-hidden rounded-2xl border border-white/8 bg-space/70 shadow-lg shadow-black/20 backdrop-blur-md">
-    <div class="flex items-center gap-2 border-b border-white/8 px-4 py-3">
-      <span class="size-2.5 rounded-full bg-brand-magenta"></span>
-      <span class="size-2.5 rounded-full bg-brand-amber"></span>
-      <span class="size-2.5 rounded-full bg-emerald-400"></span>
-      <span class="ml-2 text-[0.68rem] text-muted">developer.js</span>
+  <div class="overflow-hidden rounded-2xl border border-white/8 bg-[#0f1720]/78 shadow-lg shadow-black/20 backdrop-blur-md">
+    <div class="flex items-center gap-2 border-b border-white/8 px-3.5 py-2.5">
+      <span class="size-2 rounded-full bg-red-400"></span>
+      <span class="size-2 rounded-full bg-brand-amber"></span>
+      <span class="size-2 rounded-full bg-brand-magenta"></span>
+      <span class="ml-2 text-[0.66rem] text-muted">developer.js</span>
     </div>
 
-    <pre class="min-h-[10.5rem] overflow-hidden whitespace-pre-wrap px-4 py-4 font-mono text-[0.68rem] leading-relaxed text-muted sm:text-[0.72rem]"><code>{{ typedCode }}</code><span
+    <pre class="min-h-[8.25rem] overflow-hidden whitespace-pre-wrap px-3.5 py-3.5 font-mono text-[0.66rem] leading-relaxed text-muted sm:text-[0.7rem]"><code>{{ typedCode }}</code><span
       v-if="!reduceMotion"
-      class="ml-0.5 inline-block h-4 w-1 translate-y-0.5 animate-pulse bg-brand-magenta align-middle"
+      class="ml-0.5 inline-block h-3.5 w-1 translate-y-0.5 animate-pulse bg-brand-magenta align-middle"
       :class="isComplete ? 'opacity-70' : 'opacity-100'"
     ></span></pre>
   </div>

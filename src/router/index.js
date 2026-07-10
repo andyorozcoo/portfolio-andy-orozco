@@ -1,21 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import AboutView from '../views/AboutView.vue'
-import ContactView from '../views/ContactView.vue'
-import ExperienceView from '../views/ExperienceView.vue'
 import HomeView from '../views/HomeView.vue'
-import SkillsView from '../views/SkillsView.vue'
-import StackView from '../views/StackView.vue'
 
 const routes = [
   { path: '/', name: 'home', component: HomeView },
-  { path: '/inicio', redirect: '/' },
-  { path: '/sobre-mi', name: 'about', component: AboutView },
-  { path: '/experiencia', name: 'experience', component: ExperienceView },
-  { path: '/stack', name: 'stack', component: StackView },
-  { path: '/habilidades', name: 'skills', component: SkillsView },
-  { path: '/proyectos', redirect: { path: '/', hash: '#proyecto-destacado' } },
-  { path: '/certificaciones', redirect: '/sobre-mi' },
-  { path: '/contacto', name: 'contact', component: ContactView },
+  { path: '/inicio', redirect: { path: '/', hash: '#inicio' } },
+  { path: '/sobre-mi', redirect: { path: '/', hash: '#sobre-mi' } },
+  { path: '/experiencia', redirect: { path: '/', hash: '#experiencia' } },
+  { path: '/proyectos', redirect: { path: '/', hash: '#proyecto' } },
+  { path: '/proyecto', redirect: { path: '/', hash: '#proyecto' } },
+  { path: '/habilidades', redirect: { path: '/', hash: '#habilidades' } },
+  { path: '/stack', redirect: { path: '/', hash: '#habilidades' } },
+  { path: '/certificaciones', redirect: { path: '/', hash: '#sobre-mi' } },
+  { path: '/contacto', redirect: { path: '/', hash: '#contacto' } },
 ]
 
 const router = createRouter({
@@ -23,7 +19,7 @@ const router = createRouter({
   routes,
   scrollBehavior(to) {
     if (to.hash) {
-      return { el: to.hash, top: 96, behavior: 'smooth' }
+      return { el: to.hash, top: 88, behavior: 'smooth' }
     }
 
     return { top: 0 }

@@ -1,7 +1,9 @@
 <script setup>
-import { ref } from 'vue'
-import { RouterLink } from 'vue-router'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import ContactSection from '../components/sections/ContactSection.vue'
+import ExperienceSection from '../components/sections/ExperienceSection.vue'
 import HeroSection from '../components/sections/HeroSection.vue'
+import SkillsSection from '../components/sections/SkillsSection.vue'
 import MotionReveal from '../components/ui/MotionReveal.vue'
 
 const projectStack = [
@@ -15,113 +17,168 @@ const projectStack = [
   'Scrum',
 ]
 
+const responsibilities = [
+  'Desarrollo de módulos administrativos y lógica de negocio.',
+  'Integración frontend/backend con Laravel, Vue 3 e Inertia.js.',
+  'Implementación de puntos, recompensas, promociones y gamificación.',
+]
+
+const aboutCards = [
+  {
+    id: 'diplomado-sistemas',
+    title: 'Diplomado en Ingeniería en Sistemas',
+    year: 'Formación académica',
+    description: 'Base académica en software, bases de datos y resolución de problemas.',
+    image: `${import.meta.env.BASE_URL}images/about/diplomado-sistemas.jpg`,
+  },
+  {
+    id: 'estudiante-merito',
+    title: 'Estudiante Mérito',
+    year: '2025',
+    description: 'Reconocimiento por desempeño y participación en el área deportiva.',
+    image: `${import.meta.env.BASE_URL}images/about/estudiante-merito.jpg`,
+  },
+]
+
 const projectImageUnavailable = ref(false)
-const projectImageSrc = ref(`${import.meta.env.BASE_URL}images/projects/beto-showcase.jpg`)
-const projectFallbackImageSrc = `${import.meta.env.BASE_URL}images/projects/beto-preview.jpg`
+const credentialImageFailures = ref([])
+const activeCredentialId = ref(null)
+
+const projectImageSrc = `${import.meta.env.BASE_URL}images/projects/beto-preview.jpg`
 const projectUrl = 'https://betoymas.com/'
 
-const handleProjectImageError = () => {
-  if (projectImageSrc.value !== projectFallbackImageSrc) {
-    projectImageSrc.value = projectFallbackImageSrc
-    return
-  }
+const activeCredential = computed(() => {
+  return aboutCards.find((card) => card.id === activeCredentialId.value)
+})
 
-  projectImageUnavailable.value = true
+const markCredentialImageAsFailed = (id) => {
+  if (!credentialImageFailures.value.includes(id)) {
+    credentialImageFailures.value = [...credentialImageFailures.value, id]
+  }
 }
+
+const credentialHasImage = (id) => !credentialImageFailures.value.includes(id)
+
+const openCredential = (id) => {
+  activeCredentialId.value = id
+}
+
+const closeCredential = () => {
+  activeCredentialId.value = null
+}
+
+const handleKeydown = (event) => {
+  if (event.key === 'Escape') {
+    closeCredential()
+  }
+}
+
+watch(activeCredentialId, (id) => {
+  document.body.classList.toggle('menu-open', Boolean(id))
+})
+
+onMounted(() => {
+  document.addEventListener('keydown', handleKeydown)
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('keydown', handleKeydown)
+  document.body.classList.remove('menu-open')
+})
 </script>
 
 <template>
   <div>
     <HeroSection />
+    <ExperienceSection />
 
-    <section id="proyecto-destacado" class="relative scroll-mt-24 overflow-hidden pb-12 sm:pb-20">
-      <div class="absolute -left-24 top-16 -z-10 size-80 rounded-full bg-brand-violet/10 blur-[120px]"></div>
-      <div class="absolute -right-24 bottom-20 -z-10 size-80 rounded-full bg-brand-magenta/8 blur-[120px]"></div>
-
-      <div class="mx-auto w-full max-w-5xl px-6 lg:px-8">
-        <MotionReveal as="header" class="mb-6 max-w-3xl sm:mb-8">
-          <p class="text-sm font-semibold uppercase tracking-[0.34em] text-brand-magenta">Proyecto principal</p>
-          <h2 class="mt-4 text-3xl font-semibold leading-tight text-foreground sm:text-4xl">
-            Beto y Más
-          </h2>
+    <section id="proyecto" class="relative scroll-mt-20 px-5 py-10 sm:px-6 sm:py-12">
+      <div class="mx-auto w-full max-w-5xl">
+        <MotionReveal as="header" class="mb-7 max-w-2xl">
+          <p class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-magenta">Proyecto principal</p>
+          <h2 class="mt-3 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Beto y Más</h2>
           <p class="mt-3 text-sm leading-relaxed text-muted sm:text-base">
-            Plataforma de fidelización y gamificación para clientes.
+            Proyecto concluido orientado a fidelización, puntos y gamificación para clientes.
           </p>
         </MotionReveal>
 
         <MotionReveal
           as="article"
-          class="group overflow-hidden rounded-[1.75rem] border border-brand-violet/20 bg-linear-to-br from-[#111827]/86 via-space/78 to-[#09090f]/95 shadow-2xl shadow-black/35 transition-all duration-300 hover:-translate-y-1 hover:border-brand-magenta/35 hover:shadow-brand-magenta/10 sm:rounded-[2rem] sm:backdrop-blur-xl"
+          class="overflow-hidden rounded-3xl border border-white/10 bg-[#0f1720]/72 shadow-xl shadow-black/20 backdrop-blur-md"
         >
-          <div class="relative aspect-[4/3] overflow-hidden bg-space/70 sm:aspect-[16/8] lg:aspect-[16/7]">
-            <img
-              v-if="!projectImageUnavailable"
-              :src="projectImageSrc"
-              alt="Vista previa del proyecto Beto y Más"
-              class="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
-              loading="lazy"
-              decoding="async"
-              @error="handleProjectImageError"
-            />
-
-            <div
-              v-else
-              class="grid h-full place-items-center bg-[radial-gradient(circle_at_30%_20%,rgba(124,58,237,0.22),transparent_34%),radial-gradient(circle_at_72%_78%,rgba(236,72,153,0.18),transparent_34%)] p-6 text-center"
-            >
-              <div>
-                <p class="text-2xl font-semibold text-foreground">Beto y Más</p>
-                <p class="mt-2 text-sm text-muted">Plataforma de fidelización y gamificación</p>
+          <div class="grid gap-0 lg:grid-cols-[0.95fr_1.05fr]">
+            <div class="relative min-h-56 overflow-hidden bg-space/70 sm:min-h-72 lg:min-h-full">
+              <img
+                v-if="!projectImageUnavailable"
+                :src="projectImageSrc"
+                alt="Vista previa de Beto y Más"
+                class="h-full min-h-56 w-full object-cover object-top sm:min-h-72 lg:min-h-full"
+                loading="lazy"
+                decoding="async"
+                @error="projectImageUnavailable = true"
+              />
+              <div v-else class="grid h-full min-h-56 place-items-center p-6 text-center sm:min-h-72">
+                <div>
+                  <p class="text-2xl font-semibold text-foreground">Beto y Más</p>
+                  <p class="mt-2 text-sm text-muted">Plataforma de fidelización y gamificación</p>
+                </div>
               </div>
+              <div class="absolute inset-0 bg-linear-to-t from-space/45 via-transparent to-transparent lg:bg-linear-to-r"></div>
             </div>
 
-            <div class="absolute inset-0 bg-linear-to-t from-space/70 via-space/5 to-transparent"></div>
-          </div>
-
-          <div class="p-5 sm:p-7">
-            <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-              <div>
-                <h3 class="text-2xl font-semibold text-foreground sm:text-3xl">Beto y Más</h3>
-                <p class="mt-2 text-sm font-medium text-brand-magenta sm:text-base">
-                  Plataforma de fidelización y gamificación
-                </p>
+            <div class="p-5 sm:p-7">
+              <div class="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <h3 class="text-2xl font-semibold text-foreground">Beto y Más</h3>
+                  <p class="mt-2 text-sm font-semibold text-brand-magenta">
+                    Plataforma de fidelización y gamificación
+                  </p>
+                </div>
+                <span class="rounded-full border border-brand-violet/25 bg-brand-violet/10 px-3 py-1 text-xs font-semibold text-brand-magenta">
+                  Proyecto concluido
+                </span>
               </div>
 
-              <span class="w-fit rounded-full border border-brand-violet/25 bg-brand-violet/10 px-3 py-1.5 text-xs font-medium text-muted">
-                Rol: Full Stack Developer
-              </span>
-            </div>
-
-            <p class="mt-5 text-sm leading-relaxed text-muted sm:text-base">
-              Sistema web desarrollado para centralizar la gestión de clientes, puntos, recompensas, promociones y
-              dinámicas de fidelización mediante una plataforma moderna orientada a experiencia de usuario y
-              escalabilidad.
-            </p>
-
-            <div class="mt-5 flex flex-wrap gap-2">
-              <span
-                v-for="item in projectStack"
-                :key="item"
-                class="rounded-full border border-brand-violet/20 bg-space/55 px-3 py-1.5 text-xs font-medium text-muted"
-              >
-                {{ item }}
-              </span>
-            </div>
-
-            <div class="mt-6 flex flex-col gap-4 border-t border-white/8 pt-5 sm:flex-row sm:items-center sm:justify-between">
-              <p class="text-xs leading-relaxed text-muted sm:max-w-md">
-                Proyecto colaborativo desarrollado como parte de Ingeniería de Sistemas.
+              <p class="mt-4 text-sm leading-relaxed text-muted">
+                Sistema web desarrollado para centralizar clientes, puntos, recompensas, promociones y dinámicas de
+                fidelización mediante una plataforma moderna y modular.
               </p>
+
+              <div class="mt-4 grid gap-3 rounded-2xl border border-white/8 bg-white/3 p-4 sm:grid-cols-2">
+                <div>
+                  <p class="text-xs uppercase tracking-[0.22em] text-muted">Rol</p>
+                  <p class="mt-1 text-sm font-semibold text-foreground">Full Stack Developer</p>
+                </div>
+                <div>
+                  <p class="text-xs uppercase tracking-[0.22em] text-muted">Stack</p>
+                  <p class="mt-1 text-sm font-semibold text-foreground">Laravel + Vue 3</p>
+                </div>
+              </div>
+
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span
+                  v-for="item in projectStack"
+                  :key="item"
+                  class="rounded-full border border-white/10 bg-space/55 px-3 py-1.5 text-xs font-medium text-muted"
+                >
+                  {{ item }}
+                </span>
+              </div>
+
+              <ul class="mt-5 space-y-2.5">
+                <li v-for="item in responsibilities" :key="item" class="flex gap-2.5 text-sm leading-relaxed text-muted">
+                  <span class="mt-2 size-1.5 shrink-0 rounded-full bg-brand-magenta"></span>
+                  <span>{{ item }}</span>
+                </li>
+              </ul>
 
               <a
                 :href="projectUrl"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center justify-center gap-2 rounded-xl bg-linear-to-r from-brand-violet to-brand-magenta px-5 py-3 text-sm font-semibold text-foreground shadow-lg shadow-brand-magenta/15 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-brand-magenta/25 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta"
+                class="mt-6 inline-flex items-center justify-center rounded-full bg-brand-violet px-5 py-2.5 text-sm font-semibold text-space transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-magenta focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta"
               >
                 Ver proyecto
-                <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
-                </svg>
               </a>
             </div>
           </div>
@@ -129,27 +186,113 @@ const handleProjectImageError = () => {
       </div>
     </section>
 
-    <section class="px-6 pb-14 sm:pb-20 lg:px-8">
-      <MotionReveal class="mx-auto flex max-w-5xl flex-col items-center rounded-3xl border border-brand-violet/20 bg-linear-to-r from-brand-violet/10 to-brand-magenta/8 px-5 py-8 text-center sm:px-10 sm:py-10">
-        <h2 class="text-2xl font-semibold text-foreground sm:text-3xl">¿Construimos algo juntos?</h2>
-        <p class="mt-3 max-w-xl text-sm text-muted sm:mt-4 sm:text-base">
-          Explora mi trabajo o conversemos sobre oportunidades y proyectos.
-        </p>
-        <div class="mt-6 grid w-full gap-3 sm:mt-8 sm:w-auto sm:grid-cols-2">
-          <RouterLink
-            :to="{ path: '/', hash: '#proyecto-destacado' }"
-            class="rounded-xl bg-linear-to-r from-brand-violet to-brand-magenta px-6 py-3 text-sm font-medium text-foreground transition-transform duration-300 hover:-translate-y-0.5"
+    <section id="sobre-mi" class="relative scroll-mt-20 px-5 py-10 sm:px-6 sm:py-12">
+      <div class="mx-auto grid w-full max-w-5xl gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+        <MotionReveal>
+          <p class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-magenta">Sobre mí</p>
+          <h2 class="mt-3 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+            Más allá del código
+          </h2>
+          <p class="mt-3 text-sm leading-relaxed text-muted sm:text-base">
+            Soy desarrollador full stack en formación y estudiante de Ingeniería en Sistemas de Información en la
+            Universidad Nacional de Costa Rica.
+          </p>
+          <p class="mt-3 text-sm leading-relaxed text-muted sm:text-base">
+            Mi trayectoria combina desarrollo de software, trabajo colaborativo, participación universitaria y formación
+            técnica orientada a crear soluciones funcionales y bien estructuradas.
+          </p>
+        </MotionReveal>
+
+        <div class="grid gap-3 sm:grid-cols-2">
+          <MotionReveal
+            v-for="(card, index) in aboutCards"
+            :key="card.id"
+            as="article"
+            class="group overflow-hidden rounded-2xl border border-white/10 bg-[#0f1720]/72 shadow-lg shadow-black/15 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/35"
+            :delay="index * 0.08"
           >
-            Explorar proyecto
-          </RouterLink>
-          <RouterLink
-            to="/contacto"
-            class="rounded-xl border border-brand-violet/35 bg-white/2 px-6 py-3 text-sm font-medium text-foreground transition-all duration-300 hover:border-brand-magenta/40 hover:text-brand-magenta"
-          >
-            Contactarme
-          </RouterLink>
+            <button
+              type="button"
+              class="block w-full text-left"
+              :aria-label="`Abrir imagen de ${card.title}`"
+              @click="openCredential(card.id)"
+            >
+              <div class="relative h-32 overflow-hidden bg-space/70">
+                <img
+                  v-if="credentialHasImage(card.id)"
+                  :src="card.image"
+                  :alt="card.title"
+                  class="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                  decoding="async"
+                  @error="markCredentialImageAsFailed(card.id)"
+                />
+                <div v-else class="grid h-full place-items-center bg-brand-violet/8 text-sm font-semibold text-brand-magenta">
+                  Evidencia
+                </div>
+                <div class="absolute inset-0 bg-linear-to-t from-space/45 to-transparent"></div>
+              </div>
+              <div class="p-4">
+                <div class="flex items-center justify-between gap-3">
+                  <h3 class="text-sm font-semibold text-foreground">{{ card.title }}</h3>
+                  <span class="shrink-0 rounded-full border border-white/10 px-2.5 py-1 text-[0.68rem] text-muted">
+                    {{ card.year }}
+                  </span>
+                </div>
+                <p class="mt-2 text-xs leading-relaxed text-muted sm:text-sm">{{ card.description }}</p>
+              </div>
+            </button>
+          </MotionReveal>
         </div>
-      </MotionReveal>
+      </div>
+
+      <Teleport to="body">
+        <Transition
+          enter-active-class="transition duration-200 ease-out"
+          enter-from-class="opacity-0"
+          enter-to-class="opacity-100"
+          leave-active-class="transition duration-150 ease-in"
+          leave-from-class="opacity-100"
+          leave-to-class="opacity-0"
+        >
+          <div
+            v-if="activeCredential"
+            class="fixed inset-0 z-[90] grid place-items-center bg-space/88 p-4 backdrop-blur-xl"
+            role="dialog"
+            aria-modal="true"
+            :aria-label="activeCredential.title"
+            @click.self="closeCredential"
+          >
+            <button
+              type="button"
+              class="absolute right-4 top-4 grid size-10 place-items-center rounded-full border border-white/10 bg-[#0f1720] text-foreground transition-colors hover:border-brand-magenta/40 hover:text-brand-magenta"
+              aria-label="Cerrar imagen"
+              @click="closeCredential"
+            >
+              <svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path stroke-linecap="round" d="M6 6l12 12M18 6 6 18" />
+              </svg>
+            </button>
+
+            <figure class="w-full max-w-3xl overflow-hidden rounded-3xl border border-white/10 bg-[#0f1720] p-3 shadow-2xl shadow-black/50">
+              <img
+                v-if="credentialHasImage(activeCredential.id)"
+                :src="activeCredential.image"
+                :alt="activeCredential.title"
+                class="max-h-[74dvh] w-full rounded-2xl object-contain"
+                decoding="async"
+              />
+              <figcaption class="px-2 py-3">
+                <p class="font-semibold text-foreground">{{ activeCredential.title }}</p>
+                <p class="mt-1 text-sm text-muted">{{ activeCredential.description }}</p>
+              </figcaption>
+            </figure>
+          </div>
+        </Transition>
+      </Teleport>
     </section>
+
+    <SkillsSection />
+    <ContactSection />
   </div>
 </template>

@@ -28,7 +28,7 @@ export const experiences = [
     period: '2023 - Actualidad',
     description:
       'Apoyo en actividades deportivas, organización de convivios, logística de eventos, acompañamiento estudiantil y promoción de la participación universitaria.',
-    technologies: ['Liderazgo', 'Trabajo en equipo', 'Organización', 'Comunicación', 'Disciplina'],
+    technologies: ['Liderazgo', 'Organización', 'Comunicación', 'Disciplina'],
     gallery: [
       {
         src: '/images/experience/assistant-activity-01.jpg',

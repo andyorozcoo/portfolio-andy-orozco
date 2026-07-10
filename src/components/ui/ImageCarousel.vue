@@ -45,11 +45,6 @@ const updateVisibleCount = () => {
     return
   }
 
-  if (window.innerWidth >= 1280) {
-    visibleCount.value = 3
-    return
-  }
-
   if (window.innerWidth >= 768) {
     visibleCount.value = 2
     return

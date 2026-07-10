@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-space: #0c0914;
-  --color-brand-violet: #8b5cf6;
-  --color-brand-magenta: #fb7185;
-  --color-brand-amber: #f59e0b;
+  --color-space: #080b10;
+  --color-brand-violet: #14b8a6;
+  --color-brand-magenta: #2dd4bf;
+  --color-brand-amber: #38bdf8;
   --color-foreground: #f8fafc;
-  --color-muted: #a8a0af;
+  --color-muted: #94a3b8;
   --font-sans: "Inter", "Segoe UI", Arial, sans-serif;
 }
 
