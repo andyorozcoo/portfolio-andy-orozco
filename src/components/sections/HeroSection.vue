@@ -2,13 +2,13 @@
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 
-const profileTags = ['Full Stack Developer', 'APIs REST', 'Arquitectura modular', 'Scrum']
+const profileTags = ['Full Stack', 'Laravel', 'Vue', 'Scrum']
 const imageUnavailable = ref(false)
 const profileImageSrc = `${import.meta.env.BASE_URL}images/profile/profile-main.png`
 </script>
 
 <template>
-  <section id="inicio" class="relative flex scroll-mt-20 items-center overflow-hidden pb-10 pt-24 sm:pb-16 sm:pt-32 lg:min-h-screen lg:pb-20">
+  <section id="inicio" class="relative flex scroll-mt-20 items-center overflow-hidden pb-10 pt-24 sm:pb-14 sm:pt-28 lg:min-h-[88vh] lg:pb-16">
     <div class="absolute left-0 top-28 -z-10 size-72 rounded-full bg-brand-violet/10 blur-[110px]"></div>
     <div class="absolute bottom-24 right-0 -z-10 h-80 w-96 rounded-full bg-brand-magenta/10 blur-[120px]"></div>
 
@@ -29,12 +29,12 @@ const profileImageSrc = `${import.meta.env.BASE_URL}images/profile/profile-main.
 
         <div class="mt-5 max-w-2xl space-y-4 text-sm leading-relaxed text-muted sm:mt-7 sm:text-lg">
           <p>
-            Desarrollador full stack enfocado en soluciones web modernas, APIs REST y lógica de negocio para sistemas
-            funcionales.
+            Desarrollador full stack enfocado en construir soluciones web modernas, APIs REST y lógica de negocio para
+            sistemas funcionales.
           </p>
           <p class="hidden sm:block">
             Trabajo con Laravel, Vue.js, React y bases de datos relacionales, aplicando buenas prácticas de
-            arquitectura, modularidad y desarrollo colaborativo bajo metodologías ágiles.
+            arquitectura, modularidad y trabajo colaborativo bajo metodologías ágiles.
           </p>
         </div>
 
@@ -53,11 +53,12 @@ const profileImageSrc = `${import.meta.env.BASE_URL}images/profile/profile-main.
             :to="{ path: '/', hash: '#proyecto-destacado' }"
             class="group inline-flex items-center justify-center gap-2 rounded-xl bg-linear-to-r from-brand-violet to-brand-magenta px-4 py-3 text-xs font-semibold text-foreground shadow-lg shadow-brand-magenta/15 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-brand-magenta/30 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta sm:px-7 sm:py-3.5 sm:text-sm"
           >
-            Ver proyectos
+            Ver proyecto
             <svg viewBox="0 0 24 24" class="size-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="1.8">
               <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" />
             </svg>
           </RouterLink>
+
           <a
             href="/files/cv-andy-orozco.pdf"
             download
@@ -68,6 +69,7 @@ const profileImageSrc = `${import.meta.env.BASE_URL}images/profile/profile-main.
             </svg>
             Descargar CV
           </a>
+
           <a
             href="https://github.com/andyorozcoo"
             target="_blank"

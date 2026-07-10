@@ -4,21 +4,6 @@ import { RouterLink } from 'vue-router'
 import HeroSection from '../components/sections/HeroSection.vue'
 import MotionReveal from '../components/ui/MotionReveal.vue'
 
-const contributionItems = [
-  {
-    title: 'Full Stack',
-    description: 'Frontend, APIs y datos conectados.',
-  },
-  {
-    title: 'Proyectos reales',
-    description: 'Soluciones aplicadas a necesidades concretas.',
-  },
-  {
-    title: 'Trabajo colaborativo',
-    description: 'Comunicación clara dentro del equipo.',
-  },
-]
-
 const projectStack = [
   'Laravel',
   'Vue 3',
@@ -49,34 +34,7 @@ const handleProjectImageError = () => {
   <div>
     <HeroSection />
 
-    <section class="relative pb-10 sm:pb-20">
-      <div class="mx-auto w-full max-w-7xl px-6 lg:px-8">
-        <MotionReveal as="header" class="mb-5 max-w-2xl sm:mb-8">
-          <p class="text-sm font-medium uppercase tracking-[0.26em] text-brand-magenta">Qué aporto</p>
-          <h2 class="mt-2 text-2xl font-semibold text-foreground sm:mt-3 sm:text-3xl">
-            Valor para equipos y proyectos
-          </h2>
-        </MotionReveal>
-
-        <div class="grid gap-3 md:grid-cols-3">
-          <MotionReveal
-            v-for="(item, index) in contributionItems"
-            :key="item.title"
-            as="article"
-            class="rounded-2xl border border-brand-violet/20 bg-linear-to-br from-[#18181b]/58 to-space/55 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-brand-magenta/35 sm:p-5 sm:backdrop-blur-xl"
-            :delay="index * 0.08"
-          >
-            <span class="mb-3 block h-1 w-8 rounded-full bg-linear-to-r from-brand-violet to-brand-magenta sm:mb-4 sm:w-10"></span>
-            <h3 class="text-base font-medium text-foreground sm:text-lg">{{ item.title }}</h3>
-            <p class="mt-2 line-clamp-1 text-sm leading-relaxed text-muted sm:mt-3 sm:line-clamp-none">
-              {{ item.description }}
-            </p>
-          </MotionReveal>
-        </div>
-      </div>
-    </section>
-
-    <section id="proyecto-destacado" class="relative scroll-mt-24 overflow-hidden pb-12 sm:pb-24">
+    <section id="proyecto-destacado" class="relative scroll-mt-24 overflow-hidden pb-12 sm:pb-20">
       <div class="absolute -left-24 top-16 -z-10 size-80 rounded-full bg-brand-violet/10 blur-[120px]"></div>
       <div class="absolute -right-24 bottom-20 -z-10 size-80 rounded-full bg-brand-magenta/8 blur-[120px]"></div>
 
