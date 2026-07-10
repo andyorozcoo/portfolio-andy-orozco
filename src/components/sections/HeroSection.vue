@@ -12,7 +12,7 @@ const profileImageSrc = `${import.meta.env.BASE_URL}images/profile/profile-main.
     <div class="absolute left-0 top-28 -z-10 size-72 rounded-full bg-brand-violet/10 blur-[110px]"></div>
     <div class="absolute bottom-24 right-0 -z-10 h-80 w-96 rounded-full bg-brand-magenta/10 blur-[120px]"></div>
 
-    <div class="mx-auto grid w-full max-w-7xl items-center gap-8 px-6 sm:gap-12 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14 lg:px-8">
+    <div class="mx-auto grid w-full max-w-7xl items-center gap-8 px-6 sm:gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12 lg:px-8">
       <div class="motion-safe:animate-[hero-rise_700ms_ease-out_both]">
         <p
           class="mb-4 inline-flex rounded-full border border-brand-violet/20 bg-linear-to-r from-brand-violet/10 to-brand-magenta/10 px-3.5 py-1.5 text-xs font-medium text-brand-magenta backdrop-blur-sm sm:mb-6 sm:px-4 sm:py-2 sm:text-sm"
@@ -84,14 +84,14 @@ const profileImageSrc = `${import.meta.env.BASE_URL}images/profile/profile-main.
         </div>
       </div>
 
-      <div class="relative mx-auto w-full max-w-[19rem] motion-safe:animate-[hero-scale_700ms_180ms_ease-out_both] sm:max-w-[31rem] lg:ml-auto">
-        <div class="absolute -right-5 top-12 -z-10 size-64 rounded-full bg-brand-violet/22 blur-[100px]"></div>
-        <div class="absolute -bottom-6 left-4 -z-10 size-56 rounded-full bg-brand-magenta/18 blur-[100px]"></div>
+      <div class="relative mx-auto flex w-full max-w-[19rem] flex-col gap-4 motion-safe:animate-[hero-scale_700ms_180ms_ease-out_both] sm:max-w-[21rem] lg:ml-auto lg:max-w-[21.25rem]">
+        <div class="absolute -right-4 top-10 -z-10 size-44 rounded-full bg-brand-violet/14 blur-[72px]"></div>
+        <div class="absolute -bottom-4 left-5 -z-10 size-40 rounded-full bg-brand-magenta/12 blur-[72px]"></div>
 
-        <div class="relative overflow-hidden rounded-[2rem] border border-brand-violet/20 bg-linear-to-br from-[#18181b]/76 to-space/80 p-3 shadow-2xl shadow-black/35 backdrop-blur-xl sm:p-4">
-          <div class="absolute inset-x-10 top-0 h-px bg-linear-to-r from-transparent via-brand-magenta/60 to-transparent"></div>
+        <div class="relative overflow-hidden rounded-[1.6rem] border border-brand-violet/18 bg-linear-to-br from-[#18181b]/70 to-space/78 p-2.5 shadow-xl shadow-black/25 backdrop-blur-md">
+          <div class="absolute inset-x-10 top-0 h-px bg-linear-to-r from-transparent via-brand-magenta/45 to-transparent"></div>
 
-          <div class="relative aspect-[4/5] overflow-hidden rounded-[1.5rem] border border-white/8 bg-linear-to-br from-brand-violet/16 to-brand-magenta/10">
+          <div class="relative aspect-[4/5] overflow-hidden rounded-[1.25rem] border border-white/8 bg-linear-to-br from-brand-violet/12 to-brand-magenta/8">
             <img
               v-if="!imageUnavailable"
               :src="profileImageSrc"
@@ -100,10 +100,10 @@ const profileImageSrc = `${import.meta.env.BASE_URL}images/profile/profile-main.
               @error="imageUnavailable = true"
             />
 
-            <div class="absolute inset-0 bg-linear-to-t from-space/28 via-space/8 to-space/18"></div>
+            <div class="absolute inset-0 bg-linear-to-t from-space/22 via-space/5 to-space/12"></div>
             <div class="absolute inset-0 bg-brand-magenta/5 mix-blend-multiply"></div>
-            <div class="absolute -left-10 top-0 h-full w-28 bg-space/20 blur-2xl"></div>
-            <div class="absolute -right-10 top-0 h-full w-28 bg-space/20 blur-2xl"></div>
+            <div class="absolute -left-8 top-0 h-full w-20 bg-space/15 blur-xl"></div>
+            <div class="absolute -right-8 top-0 h-full w-20 bg-space/15 blur-xl"></div>
 
             <div v-if="imageUnavailable" class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
               <div class="grid size-16 place-items-center rounded-2xl bg-linear-to-br from-brand-violet to-brand-magenta text-base font-semibold text-foreground shadow-lg shadow-brand-magenta/20">
@@ -112,6 +112,20 @@ const profileImageSrc = `${import.meta.env.BASE_URL}images/profile/profile-main.
               <p class="mt-4 text-xs font-medium text-foreground">Fotografía profesional</p>
               <p class="mt-1.5 max-w-44 text-[0.68rem] leading-relaxed text-muted">Agrega tu imagen en /images/profile/profile-main.png</p>
             </div>
+          </div>
+        </div>
+
+        <div class="overflow-hidden rounded-2xl border border-white/8 bg-space/70 shadow-lg shadow-black/20 backdrop-blur-md">
+          <div class="flex items-center gap-2 border-b border-white/8 px-4 py-3">
+            <span class="size-2.5 rounded-full bg-brand-magenta"></span>
+            <span class="size-2.5 rounded-full bg-brand-amber"></span>
+            <span class="size-2.5 rounded-full bg-emerald-400"></span>
+            <span class="ml-2 text-[0.68rem] text-muted">andy.profile</span>
+          </div>
+          <div class="space-y-2 px-4 py-4 font-mono text-[0.72rem] leading-relaxed text-muted">
+            <p><span class="text-brand-magenta">const</span> rol = <span class="text-foreground">'Full Stack'</span></p>
+            <p><span class="text-brand-magenta">stack</span> = ['Laravel', 'Vue']</p>
+            <p><span class="text-emerald-300">status</span>: disponible</p>
           </div>
         </div>
       </div>
