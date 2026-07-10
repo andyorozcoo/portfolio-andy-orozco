@@ -5,12 +5,12 @@ import { experiences } from '../../data/experience'
 </script>
 
 <template>
-  <section id="experiencia" class="relative scroll-mt-20 overflow-hidden py-16 sm:py-24">
+  <section id="experiencia" class="relative scroll-mt-20 overflow-hidden py-14 sm:py-20">
     <div class="absolute -left-32 top-1/3 -z-10 size-96 rounded-full bg-brand-magenta/6 blur-[140px]"></div>
     <div class="absolute -right-24 bottom-20 -z-10 size-80 rounded-full bg-brand-violet/7 blur-[130px]"></div>
 
     <div class="mx-auto w-full max-w-7xl px-6 lg:px-8">
-      <MotionReveal as="header" class="mx-auto mb-10 max-w-3xl text-center sm:mb-14">
+      <MotionReveal as="header" class="mx-auto mb-8 max-w-3xl text-center sm:mb-12">
         <p class="mb-4 text-sm font-medium uppercase tracking-[0.26em] text-brand-magenta">Experiencia</p>
         <h2 class="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
           Experiencia, liderazgo y
@@ -18,7 +18,7 @@ import { experiences } from '../../data/experience'
             proyectos reales
           </span>
         </h2>
-        <p class="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
+        <p class="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
           Mi experiencia combina desarrollo de software, trabajo colaborativo, metodologías ágiles y participación
           activa en espacios universitarios.
         </p>

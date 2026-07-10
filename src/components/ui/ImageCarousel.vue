@@ -174,7 +174,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div
-    class="relative overflow-hidden rounded-2xl border border-brand-violet/18 bg-white/2.5 p-3 shadow-xl shadow-brand-violet/5 backdrop-blur-xl sm:p-4"
+    class="relative overflow-hidden rounded-2xl border border-brand-violet/18 bg-white/2.5 p-2.5 shadow-xl shadow-brand-violet/5 backdrop-blur-xl sm:p-3"
     @mouseenter="isPaused = true"
     @mouseleave="isPaused = false"
     @focusin="isPaused = true"
@@ -184,13 +184,13 @@ onBeforeUnmount(() => {
   >
     <div class="absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-brand-magenta/45 to-transparent"></div>
 
-    <div class="mb-4 flex items-center justify-between gap-3">
+    <div class="mb-3 flex items-center justify-between gap-3">
       <p class="text-xs font-medium uppercase tracking-[0.22em] text-brand-magenta">Galería</p>
 
       <div class="flex items-center gap-2">
         <button
           type="button"
-          class="grid size-9 place-items-center rounded-full border border-white/10 bg-space/65 text-muted transition-all duration-300 hover:border-brand-magenta/40 hover:text-brand-magenta focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-violet"
+          class="grid size-8 place-items-center rounded-full border border-white/10 bg-space/65 text-muted transition-all duration-300 hover:border-brand-magenta/40 hover:text-brand-magenta focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-violet"
           aria-label="Imagen anterior"
           @click="goPrevious"
         >
@@ -200,7 +200,7 @@ onBeforeUnmount(() => {
         </button>
         <button
           type="button"
-          class="grid size-9 place-items-center rounded-full border border-white/10 bg-space/65 text-muted transition-all duration-300 hover:border-brand-magenta/40 hover:text-brand-magenta focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-violet"
+          class="grid size-8 place-items-center rounded-full border border-white/10 bg-space/65 text-muted transition-all duration-300 hover:border-brand-magenta/40 hover:text-brand-magenta focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-violet"
           aria-label="Imagen siguiente"
           @click="goNext"
         >
@@ -223,7 +223,7 @@ onBeforeUnmount(() => {
         v-for="(item, index) in visibleItems"
         :key="`${currentIndex}-${item.src}`"
         as="figure"
-        class="group/photo relative h-56 overflow-hidden rounded-xl border border-brand-violet/15 bg-[#12121b] transition-all duration-300 hover:-translate-y-1 hover:border-brand-magenta/40 sm:h-60 md:h-52 xl:h-56"
+        class="group/photo relative h-44 overflow-hidden rounded-xl border border-brand-violet/15 bg-[#12121b] transition-all duration-300 hover:-translate-y-1 hover:border-brand-magenta/40 sm:h-48 md:h-44 xl:h-48"
         :delay="index * 0.06"
         y="14"
       >
@@ -256,16 +256,16 @@ onBeforeUnmount(() => {
         </div>
 
         <div class="pointer-events-none absolute inset-0 bg-linear-to-t from-space via-space/35 to-transparent"></div>
-        <figcaption class="pointer-events-none absolute inset-x-0 bottom-0 p-4">
-          <p class="text-sm font-semibold text-foreground">{{ item.title }}</p>
-          <p v-if="item.description" class="mt-1 line-clamp-2 text-xs leading-relaxed text-muted">
+        <figcaption class="pointer-events-none absolute inset-x-0 bottom-0 p-3">
+          <p class="text-xs font-semibold text-foreground sm:text-sm">{{ item.title }}</p>
+          <p v-if="item.description" class="mt-1 line-clamp-1 text-[0.68rem] leading-relaxed text-muted">
             {{ item.description }}
           </p>
         </figcaption>
       </MotionReveal>
     </TransitionGroup>
 
-    <div class="mt-4 flex flex-wrap justify-center gap-2">
+    <div class="mt-3 flex flex-wrap justify-center gap-2">
       <button
         v-for="(item, index) in items"
         :key="item.src"

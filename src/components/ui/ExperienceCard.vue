@@ -11,17 +11,17 @@ defineProps({
 
 <template>
   <article
-    class="group rounded-2xl border border-brand-violet/20 bg-linear-to-br from-[#18181b]/65 to-space/65 p-5 shadow-xl shadow-brand-violet/4 backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/35 hover:shadow-brand-magenta/7 sm:p-8"
+    class="group rounded-2xl border border-brand-violet/20 bg-linear-to-br from-[#18181b]/65 to-space/65 p-4 shadow-xl shadow-brand-violet/4 backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/35 hover:shadow-brand-magenta/7 sm:p-6"
   >
-    <div class="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
       <div class="flex min-w-0 items-start gap-4">
         <div
-          class="grid size-12 shrink-0 place-items-center rounded-xl bg-linear-to-br from-brand-violet to-brand-magenta text-foreground shadow-lg shadow-brand-magenta/15 transition-transform duration-300 group-hover:scale-105"
+          class="grid size-10 shrink-0 place-items-center rounded-xl bg-linear-to-br from-brand-violet to-brand-magenta text-foreground shadow-lg shadow-brand-magenta/15 transition-transform duration-300 group-hover:scale-105"
         >
           <svg
             v-if="experience.type === 'education'"
             viewBox="0 0 24 24"
-            class="size-6"
+            class="size-5"
             fill="none"
             stroke="currentColor"
             stroke-width="1.7"
@@ -32,7 +32,7 @@ defineProps({
           <svg
             v-else-if="experience.type === 'development'"
             viewBox="0 0 24 24"
-            class="size-6"
+            class="size-5"
             fill="none"
             stroke="currentColor"
             stroke-width="1.7"
@@ -42,7 +42,7 @@ defineProps({
           <svg
             v-else
             viewBox="0 0 24 24"
-            class="size-6"
+            class="size-5"
             fill="none"
             stroke="currentColor"
             stroke-width="1.7"
@@ -53,7 +53,7 @@ defineProps({
         </div>
 
         <div class="min-w-0">
-          <h3 class="text-xl font-medium text-foreground transition-colors duration-300 group-hover:text-brand-magenta sm:text-2xl">
+          <h3 class="text-lg font-medium text-foreground transition-colors duration-300 group-hover:text-brand-magenta sm:text-xl">
             {{ experience.role }}
           </h3>
           <p class="mt-1 text-sm font-medium text-brand-magenta sm:text-base">{{ experience.organization }}</p>
@@ -68,23 +68,23 @@ defineProps({
       </span>
     </div>
 
-    <p class="mt-6 text-base leading-relaxed text-muted">{{ experience.description }}</p>
+    <p class="mt-4 text-sm leading-relaxed text-muted sm:text-base">{{ experience.description }}</p>
 
-    <div class="mt-6 flex flex-wrap gap-2.5">
+    <div class="mt-4 flex flex-wrap gap-2">
       <span
         v-for="technology in experience.technologies"
         :key="technology"
-        class="rounded-lg border border-brand-violet/20 bg-space/55 px-3 py-1.5 text-sm text-muted transition-all duration-300 hover:border-brand-magenta/40 hover:text-brand-magenta"
+        class="rounded-lg border border-brand-violet/20 bg-space/55 px-2.5 py-1.5 text-xs text-muted transition-all duration-300 hover:border-brand-magenta/40 hover:text-brand-magenta sm:text-sm"
       >
         {{ technology }}
       </span>
     </div>
 
-    <div v-if="experience.gallery?.length" class="mt-8 border-t border-white/7 pt-7">
-      <div class="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+    <div v-if="experience.gallery?.length" class="mt-6 border-t border-white/7 pt-5">
+      <div class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p class="text-xs uppercase tracking-[0.24em] text-brand-magenta">Vida universitaria</p>
-          <h4 class="mt-2 text-lg font-medium text-foreground">Momentos y actividades</h4>
+          <h4 class="mt-2 text-base font-medium text-foreground sm:text-lg">Momentos y actividades</h4>
         </div>
         <p class="text-xs text-muted">Galería de participación y trabajo en equipo</p>
       </div>
