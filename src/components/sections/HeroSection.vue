@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
+import TypingTerminal from '../ui/TypingTerminal.vue'
 
 const profileTags = ['Full Stack', 'Laravel', 'Vue', 'Scrum']
 const imageUnavailable = ref(false)
@@ -115,19 +116,7 @@ const profileImageSrc = `${import.meta.env.BASE_URL}images/profile/profile-main.
           </div>
         </div>
 
-        <div class="overflow-hidden rounded-2xl border border-white/8 bg-space/70 shadow-lg shadow-black/20 backdrop-blur-md">
-          <div class="flex items-center gap-2 border-b border-white/8 px-4 py-3">
-            <span class="size-2.5 rounded-full bg-brand-magenta"></span>
-            <span class="size-2.5 rounded-full bg-brand-amber"></span>
-            <span class="size-2.5 rounded-full bg-emerald-400"></span>
-            <span class="ml-2 text-[0.68rem] text-muted">andy.profile</span>
-          </div>
-          <div class="space-y-2 px-4 py-4 font-mono text-[0.72rem] leading-relaxed text-muted">
-            <p><span class="text-brand-magenta">const</span> rol = <span class="text-foreground">'Full Stack'</span></p>
-            <p><span class="text-brand-magenta">stack</span> = ['Laravel', 'Vue']</p>
-            <p><span class="text-emerald-300">status</span>: disponible</p>
-          </div>
-        </div>
+        <TypingTerminal />
       </div>
     </div>
   </section>
