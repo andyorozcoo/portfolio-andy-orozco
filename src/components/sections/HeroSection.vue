@@ -1,14 +1,10 @@
 <script setup>
-import { ref } from 'vue'
 import TypingTerminal from '../ui/TypingTerminal.vue'
-
-const imageUnavailable = ref(false)
-const profileImageSrc = `${import.meta.env.BASE_URL}images/profile/profile-main.png`
 </script>
 
 <template>
   <section id="inicio" class="relative scroll-mt-20 px-5 pb-12 pt-24 sm:px-6 sm:pb-14 sm:pt-28">
-    <div class="mx-auto grid w-full max-w-5xl items-center gap-8 lg:grid-cols-[1fr_20rem]">
+    <div class="mx-auto grid w-full max-w-5xl items-center gap-8 lg:grid-cols-[1fr_23rem] lg:gap-12">
       <div class="motion-safe:animate-[hero-rise_650ms_ease-out_both]">
         <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/4 px-3 py-1.5 text-xs font-medium text-muted">
           <span class="size-2 rounded-full bg-brand-magenta"></span>
@@ -64,24 +60,7 @@ const profileImageSrc = `${import.meta.env.BASE_URL}images/profile/profile-main.
         </div>
       </div>
 
-      <div class="mx-auto flex w-full max-w-[18rem] flex-col gap-4 motion-safe:animate-[hero-scale_650ms_140ms_ease-out_both] lg:ml-auto">
-        <div class="relative mx-auto w-40 overflow-hidden rounded-full border border-white/10 bg-[#0f1720] p-1 shadow-xl shadow-black/25 sm:w-44 lg:w-48">
-          <div class="aspect-square overflow-hidden rounded-full bg-brand-violet/10">
-            <img
-              v-if="!imageUnavailable"
-              :src="profileImageSrc"
-              alt="Fotografía profesional de Andy Orozco"
-              class="h-full w-full object-cover object-[center_30%]"
-              loading="eager"
-              decoding="async"
-              @error="imageUnavailable = true"
-            />
-            <div v-else class="grid h-full place-items-center text-3xl font-semibold text-brand-magenta">
-              AO
-            </div>
-          </div>
-        </div>
-
+      <div class="mx-auto flex w-full max-w-[22rem] flex-col motion-safe:animate-[hero-scale_650ms_140ms_ease-out_both] lg:ml-auto lg:-translate-y-5">
         <TypingTerminal />
       </div>
     </div>

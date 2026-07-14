@@ -12,6 +12,8 @@ const navLinks = [
 
 const isMenuOpen = ref(false)
 const activeSection = ref('inicio')
+const avatarUnavailable = ref(false)
+const profileImageSrc = `${import.meta.env.BASE_URL}images/profile/profile-main.png`
 let observer
 
 const closeMenu = () => {
@@ -93,10 +95,22 @@ onBeforeUnmount(() => {
         class="group flex shrink-0 items-center gap-3 focus-visible:rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-violet"
         @click.prevent="scrollToSection('#inicio')"
       >
-        <span
-          class="grid size-9 place-items-center rounded-full border border-brand-violet/25 bg-brand-violet/10 text-xs font-semibold tracking-wide text-brand-magenta transition-transform duration-300 group-hover:scale-105"
-        >
-          AO
+        <span class="relative grid size-10 place-items-center rounded-full border border-brand-violet/30 bg-brand-violet/10 p-0.5 transition-transform duration-300 group-hover:scale-105">
+          <span class="overflow-hidden rounded-full">
+            <img
+              v-if="!avatarUnavailable"
+              :src="profileImageSrc"
+              alt="Andy Orozco"
+              class="size-9 object-cover object-[center_28%]"
+              loading="eager"
+              decoding="async"
+              @error="avatarUnavailable = true"
+            />
+            <span v-else class="grid size-9 place-items-center text-xs font-semibold tracking-wide text-brand-magenta">
+              AO
+            </span>
+          </span>
+          <span class="absolute -bottom-0.5 -right-0.5 size-3 rounded-full border-2 border-space bg-brand-magenta"></span>
         </span>
         <span class="hidden text-sm font-semibold tracking-wide text-foreground sm:block">
           Andy Orozco
