@@ -45,6 +45,11 @@ const updateVisibleCount = () => {
     return
   }
 
+  if (window.innerWidth >= 1024) {
+    visibleCount.value = 3
+    return
+  }
+
   if (window.innerWidth >= 768) {
     visibleCount.value = 2
     return
@@ -208,7 +213,7 @@ onBeforeUnmount(() => {
 
     <TransitionGroup
       tag="div"
-      class="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3"
+      class="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3"
       enter-active-class="transition duration-500 ease-out"
       enter-from-class="translate-y-3 opacity-0 scale-98"
       enter-to-class="translate-y-0 opacity-100 scale-100"
@@ -218,7 +223,7 @@ onBeforeUnmount(() => {
         v-for="(item, index) in visibleItems"
         :key="`${currentIndex}-${item.src}`"
         as="figure"
-        class="group/photo relative h-44 overflow-hidden rounded-xl border border-brand-violet/15 bg-[#12121b] transition-all duration-300 hover:-translate-y-1 hover:border-brand-magenta/40 sm:h-48 md:h-44 xl:h-48"
+        class="group/photo relative h-44 overflow-hidden rounded-xl border border-brand-violet/15 bg-[#12121b] transition-all duration-300 hover:-translate-y-1 hover:border-brand-magenta/40 sm:h-48 md:h-44 lg:h-44 xl:h-48"
         :delay="index * 0.06"
         y="14"
       >

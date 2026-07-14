@@ -113,7 +113,7 @@ onBeforeUnmount(() => {
           <span class="absolute -bottom-0.5 -right-0.5 size-3 rounded-full border-2 border-space bg-brand-magenta"></span>
         </span>
         <span class="hidden text-sm font-semibold tracking-wide text-foreground sm:block">
-          Andy Orozco
+          Andy Orozco Castro
         </span>
       </a>
 

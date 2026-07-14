@@ -6,13 +6,8 @@ import TypingTerminal from '../ui/TypingTerminal.vue'
   <section id="inicio" class="relative scroll-mt-20 px-5 pb-12 pt-24 sm:px-6 sm:pb-14 sm:pt-28">
     <div class="mx-auto grid w-full max-w-5xl items-center gap-8 lg:grid-cols-[1fr_23rem] lg:gap-12">
       <div class="motion-safe:animate-[hero-rise_650ms_ease-out_both]">
-        <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/4 px-3 py-1.5 text-xs font-medium text-muted">
-          <span class="size-2 rounded-full bg-brand-magenta"></span>
-          Disponible para oportunidades junior y prácticas
-        </div>
-
         <h1 class="max-w-2xl text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-          Hola, soy Andy Orozco
+          Andy Orozco Castro
         </h1>
         <p class="mt-3 text-xl font-semibold text-brand-magenta sm:text-2xl">Full Stack Developer</p>
 
