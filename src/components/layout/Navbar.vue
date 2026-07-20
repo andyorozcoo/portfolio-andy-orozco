@@ -2,10 +2,9 @@
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
 const navLinks = [
-  { href: '#inicio', label: 'Inicio' },
+  { href: '#sobre-mi', label: 'Sobre mí' },
   { href: '#experiencia', label: 'Experiencia' },
   { href: '#proyecto', label: 'Proyecto' },
-  { href: '#sobre-mi', label: 'Sobre mí' },
   { href: '#habilidades', label: 'Habilidades' },
   { href: '#contacto', label: 'Contacto' },
 ]
@@ -144,14 +143,6 @@ onBeforeUnmount(() => {
           ></span>
         </a>
       </div>
-
-      <a
-        href="#contacto"
-        class="ml-6 hidden rounded-full bg-brand-violet px-4 py-2 text-sm font-semibold text-space shadow-lg shadow-brand-violet/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-magenta hover:shadow-brand-violet/25 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta lg:inline-flex"
-        @click.prevent="scrollToSection('#contacto')"
-      >
-        Contacto
-      </a>
 
       <button
         type="button"
