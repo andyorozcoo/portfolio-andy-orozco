@@ -13,6 +13,7 @@ const navLinks = [
 const isMenuOpen = ref(false)
 const activeSection = ref('inicio')
 const avatarUnavailable = ref(false)
+const isScrolled = ref(false)
 const profileImageSrc = `${import.meta.env.BASE_URL}images/profile/profile-main.png`
 let observer
 
@@ -45,6 +46,10 @@ const closeMenuOnDesktop = () => {
   }
 }
 
+const updateScrollState = () => {
+  isScrolled.value = window.scrollY > 12
+}
+
 watch(isMenuOpen, (isOpen) => {
   document.body.classList.toggle('menu-open', isOpen)
 })
@@ -52,6 +57,8 @@ watch(isMenuOpen, (isOpen) => {
 onMounted(() => {
   document.addEventListener('keydown', closeWithEscape)
   window.addEventListener('resize', closeMenuOnDesktop)
+  window.addEventListener('scroll', updateScrollState, { passive: true })
+  updateScrollState()
 
   observer = new IntersectionObserver(
     (entries) => {
@@ -81,13 +88,17 @@ onMounted(() => {
 onBeforeUnmount(() => {
   document.removeEventListener('keydown', closeWithEscape)
   window.removeEventListener('resize', closeMenuOnDesktop)
+  window.removeEventListener('scroll', updateScrollState)
   observer?.disconnect()
   document.body.classList.remove('menu-open')
 })
 </script>
 
 <template>
-  <header class="fixed inset-x-0 top-0 z-50 border-b border-white/8 bg-space/82 backdrop-blur-xl">
+  <header
+    class="fixed inset-x-0 top-0 z-50 border-b transition-all duration-300"
+    :class="isScrolled ? 'border-white/10 bg-space/78 shadow-lg shadow-black/20 backdrop-blur-2xl' : 'border-white/6 bg-space/62 backdrop-blur-xl'"
+  >
     <nav aria-label="Navegación principal" class="mx-auto flex h-16 w-full max-w-5xl items-center px-5 sm:px-6">
       <a
         href="#inicio"
@@ -95,7 +106,7 @@ onBeforeUnmount(() => {
         class="group flex shrink-0 items-center gap-3 focus-visible:rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-violet"
         @click.prevent="scrollToSection('#inicio')"
       >
-        <span class="relative grid size-10 place-items-center rounded-full border border-brand-violet/30 bg-brand-violet/10 p-0.5 transition-transform duration-300 group-hover:scale-105">
+        <span class="relative grid size-10 place-items-center rounded-full border border-white/10 bg-white/4 p-0.5 transition-transform duration-300 group-hover:scale-105 group-active:scale-[0.98]">
           <span class="overflow-hidden rounded-full">
             <img
               v-if="!avatarUnavailable"
@@ -110,7 +121,7 @@ onBeforeUnmount(() => {
               AO
             </span>
           </span>
-          <span class="absolute -bottom-0.5 -right-0.5 size-3 rounded-full border-2 border-space bg-brand-magenta"></span>
+          <span class="absolute -bottom-0.5 -right-0.5 size-3 rounded-full border-2 border-space bg-brand-violet motion-safe:animate-[subtle-pulse_2.8s_ease-in-out_infinite]"></span>
         </span>
         <span class="hidden text-sm font-semibold tracking-wide text-foreground sm:block">
           Andy Orozco Castro
@@ -136,7 +147,7 @@ onBeforeUnmount(() => {
 
       <a
         href="#contacto"
-        class="ml-6 hidden rounded-full bg-brand-violet px-4 py-2 text-sm font-semibold text-space transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-magenta focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta lg:inline-flex"
+        class="ml-6 hidden rounded-full bg-brand-violet px-4 py-2 text-sm font-semibold text-space shadow-lg shadow-brand-violet/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-magenta hover:shadow-brand-violet/25 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta lg:inline-flex"
         @click.prevent="scrollToSection('#contacto')"
       >
         Contacto

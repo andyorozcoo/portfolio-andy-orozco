@@ -25,7 +25,7 @@ import TypingTerminal from '../ui/TypingTerminal.vue'
         <div class="mt-7 flex flex-wrap gap-3">
           <a
             href="#contacto"
-            class="inline-flex items-center justify-center rounded-full bg-brand-violet px-5 py-2.5 text-sm font-semibold text-space transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-magenta focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta"
+            class="inline-flex items-center justify-center rounded-full bg-brand-violet px-5 py-2.5 text-sm font-semibold text-space shadow-lg shadow-brand-violet/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-magenta hover:shadow-brand-violet/25 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta"
           >
             Contactarme
           </a>
@@ -33,7 +33,7 @@ import TypingTerminal from '../ui/TypingTerminal.vue'
             href="https://www.linkedin.com/in/andy-orozco"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/3 px-5 py-2.5 text-sm font-semibold text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/40 hover:text-brand-magenta"
+            class="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/3 px-5 py-2.5 text-sm font-semibold text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/40 hover:bg-white/5 hover:text-brand-magenta active:scale-[0.98]"
           >
             LinkedIn
           </a>
@@ -41,14 +41,14 @@ import TypingTerminal from '../ui/TypingTerminal.vue'
             href="https://github.com/andyorozcoo"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/3 px-5 py-2.5 text-sm font-semibold text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/40 hover:text-brand-magenta"
+            class="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/3 px-5 py-2.5 text-sm font-semibold text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/40 hover:bg-white/5 hover:text-brand-magenta active:scale-[0.98]"
           >
             GitHub
           </a>
           <a
             href="/files/cv-andy-orozco.pdf"
             download
-            class="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/3 px-5 py-2.5 text-sm font-semibold text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/40 hover:text-brand-magenta"
+            class="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/3 px-5 py-2.5 text-sm font-semibold text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/40 hover:bg-white/5 hover:text-brand-magenta active:scale-[0.98]"
           >
             Descargar CV
           </a>
@@ -56,7 +56,9 @@ import TypingTerminal from '../ui/TypingTerminal.vue'
       </div>
 
       <div class="mx-auto flex w-full max-w-[22rem] flex-col motion-safe:animate-[hero-scale_650ms_140ms_ease-out_both] lg:ml-auto lg:-translate-y-5">
+        <div class="motion-safe:animate-[premium-float_5.5s_ease-in-out_infinite]">
         <TypingTerminal />
+        </div>
       </div>
     </div>
   </section>

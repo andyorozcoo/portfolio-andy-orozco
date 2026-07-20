@@ -98,14 +98,14 @@ onBeforeUnmount(() => {
 
         <MotionReveal
           as="article"
-          class="mx-auto max-w-2xl overflow-hidden rounded-3xl border border-white/10 bg-[#0f1720]/78 shadow-xl shadow-black/20 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-brand-magenta/30"
+          class="mx-auto max-w-2xl overflow-hidden rounded-3xl border border-white/10 bg-[#0f1720]/78 shadow-xl shadow-black/20 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-brand-violet/30 hover:shadow-brand-violet/10"
         >
           <div class="relative h-44 overflow-hidden bg-space/70 sm:h-56">
             <img
               v-if="!projectImageUnavailable"
               :src="projectImageSrc"
               alt="Vista previa de Beto y Más"
-              class="h-full w-full object-cover object-top transition-transform duration-700 hover:scale-[1.03]"
+              class="h-full w-full object-cover object-top transition-transform duration-700 hover:scale-[1.04]"
               loading="lazy"
               decoding="async"
               @error="projectImageUnavailable = true"
@@ -132,7 +132,7 @@ onBeforeUnmount(() => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Abrir Beto y Más"
-                class="grid size-10 place-items-center rounded-xl border border-white/10 bg-[#0b1119]/90 text-muted transition-all duration-300 hover:border-brand-magenta/35 hover:text-brand-magenta"
+                class="grid size-10 place-items-center rounded-xl border border-white/10 bg-[#0b1119]/90 text-muted transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-violet/35 hover:text-brand-magenta active:scale-[0.98]"
               >
                 <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="1.8">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
@@ -159,7 +159,7 @@ onBeforeUnmount(() => {
                 <span
                   v-for="item in projectStack"
                   :key="item"
-                  class="rounded-lg border border-brand-violet/20 bg-brand-violet/8 px-3 py-1.5 text-xs font-semibold text-brand-magenta"
+                  class="rounded-lg border border-white/10 bg-white/3 px-3 py-1.5 text-xs font-semibold text-muted transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-violet/35 hover:text-brand-magenta"
                 >
                   {{ item }}
                 </span>
@@ -171,7 +171,7 @@ onBeforeUnmount(() => {
                 :href="projectUrl"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-brand-violet/30 bg-brand-violet/10 px-5 py-3 text-sm font-semibold text-brand-magenta transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/40 hover:bg-brand-violet/15 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta"
+                class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-brand-violet/25 bg-brand-violet/10 px-5 py-3 text-sm font-semibold text-brand-magenta transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-violet/45 hover:bg-brand-violet/15 hover:shadow-lg hover:shadow-brand-violet/10 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta"
               >
                 Ver proyecto
                 <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -206,7 +206,7 @@ onBeforeUnmount(() => {
             v-for="(card, index) in aboutCards"
             :key="card.id"
             as="article"
-            class="group overflow-hidden rounded-2xl border border-white/10 bg-[#0f1720]/72 shadow-lg shadow-black/15 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/35"
+            class="group overflow-hidden rounded-2xl border border-white/10 bg-[#0f1720]/72 shadow-lg shadow-black/15 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-brand-violet/30 hover:shadow-brand-violet/10"
             :delay="index * 0.08"
           >
             <button
@@ -220,7 +220,7 @@ onBeforeUnmount(() => {
                   v-if="credentialHasImage(card.id)"
                   :src="card.image"
                   :alt="card.title"
-                  class="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  class="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
                   decoding="async"
                   @error="markCredentialImageAsFailed(card.id)"
@@ -263,7 +263,7 @@ onBeforeUnmount(() => {
           >
             <button
               type="button"
-              class="absolute right-4 top-4 grid size-10 place-items-center rounded-full border border-white/10 bg-[#0f1720] text-foreground transition-colors hover:border-brand-magenta/40 hover:text-brand-magenta"
+              class="absolute right-4 top-4 grid size-10 place-items-center rounded-full border border-white/10 bg-[#0f1720] text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-violet/40 hover:text-brand-magenta"
               aria-label="Cerrar imagen"
               @click="closeCredential"
             >

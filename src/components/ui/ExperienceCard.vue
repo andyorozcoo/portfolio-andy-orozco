@@ -11,12 +11,12 @@ defineProps({
 
 <template>
   <article
-    class="group rounded-2xl border border-brand-violet/20 bg-linear-to-br from-[#18181b]/65 to-space/65 p-4 shadow-xl shadow-brand-violet/4 backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/35 hover:shadow-brand-magenta/7 sm:p-6"
+    class="group rounded-2xl border border-white/10 bg-linear-to-br from-[#101827]/78 to-space/72 p-4 shadow-xl shadow-black/20 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-brand-violet/30 hover:shadow-brand-violet/10 sm:p-6"
   >
     <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
       <div class="flex min-w-0 items-start gap-4">
         <div
-          class="grid size-10 shrink-0 place-items-center rounded-xl bg-linear-to-br from-brand-violet to-brand-magenta text-foreground shadow-lg shadow-brand-magenta/15 transition-transform duration-300 group-hover:scale-105"
+          class="grid size-10 shrink-0 place-items-center rounded-xl bg-linear-to-br from-brand-violet to-brand-magenta text-space shadow-lg shadow-brand-violet/15 transition-transform duration-300 group-hover:scale-105"
         >
           <svg
             v-if="experience.type === 'education'"
@@ -62,7 +62,7 @@ defineProps({
       </div>
 
       <span
-        class="inline-flex shrink-0 self-start rounded-full border border-brand-violet/30 bg-brand-violet/12 px-3.5 py-2 text-xs font-medium text-brand-magenta"
+        class="inline-flex shrink-0 self-start rounded-full border border-white/10 bg-white/4 px-3.5 py-2 text-xs font-medium text-brand-magenta"
       >
         {{ experience.period }}
       </span>
@@ -74,7 +74,7 @@ defineProps({
       <span
         v-for="technology in experience.technologies"
         :key="technology"
-        class="rounded-lg border border-brand-violet/20 bg-space/55 px-2.5 py-1.5 text-xs text-muted transition-all duration-300 hover:border-brand-magenta/40 hover:text-brand-magenta sm:text-sm"
+        class="rounded-lg border border-white/10 bg-space/55 px-2.5 py-1.5 text-xs text-muted transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-violet/35 hover:text-brand-magenta sm:text-sm"
       >
         {{ technology }}
       </span>

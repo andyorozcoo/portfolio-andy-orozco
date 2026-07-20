@@ -24,7 +24,7 @@ const contactLinks = [
 <template>
   <section id="contacto" class="relative scroll-mt-20 px-5 py-10 sm:px-6 sm:py-12">
     <MotionReveal
-      class="mx-auto max-w-5xl rounded-3xl border border-white/10 bg-[#0f1720]/72 p-6 shadow-xl shadow-black/20 backdrop-blur-md sm:p-8"
+      class="mx-auto max-w-5xl rounded-3xl border border-white/10 bg-[#0f1720]/72 p-6 shadow-xl shadow-black/20 backdrop-blur-md transition-all duration-300 hover:border-brand-violet/25 hover:shadow-brand-violet/8 sm:p-8"
     >
       <div class="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
         <div>
@@ -42,7 +42,7 @@ const contactLinks = [
             :href="contact.href"
             target="_blank"
             rel="noopener noreferrer"
-            class="rounded-full border border-white/10 bg-white/3 px-4 py-2 text-sm font-semibold text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-magenta/40 hover:text-brand-magenta"
+            class="rounded-full border border-white/10 bg-white/3 px-4 py-2 text-sm font-semibold text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-violet/40 hover:bg-white/5 hover:text-brand-magenta active:scale-[0.98]"
           >
             {{ contact.label }}
           </a>

@@ -52,7 +52,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="overflow-hidden rounded-2xl border border-white/8 bg-[#0f1720]/82 shadow-xl shadow-black/25 backdrop-blur-md">
+  <div class="overflow-hidden rounded-2xl border border-white/10 bg-[#0f1720]/82 shadow-xl shadow-black/25 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-violet/30 hover:shadow-brand-violet/10">
     <div class="flex items-center gap-2 border-b border-white/8 px-4 py-3">
       <span class="size-2 rounded-full bg-red-400"></span>
       <span class="size-2 rounded-full bg-brand-amber"></span>

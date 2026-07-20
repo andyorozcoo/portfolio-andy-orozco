@@ -174,7 +174,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div
-    class="relative overflow-hidden rounded-2xl border border-brand-violet/18 bg-white/2.5 p-2.5 shadow-xl shadow-brand-violet/5 backdrop-blur-xl sm:p-3"
+    class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/2.5 p-2.5 shadow-xl shadow-black/15 backdrop-blur-xl sm:p-3"
     @mouseenter="isPaused = true"
     @mouseleave="isPaused = false"
     @focusin="isPaused = true"
@@ -223,7 +223,7 @@ onBeforeUnmount(() => {
         v-for="(item, index) in visibleItems"
         :key="`${currentIndex}-${item.src}`"
         as="figure"
-        class="group/photo relative h-44 overflow-hidden rounded-xl border border-brand-violet/15 bg-[#12121b] transition-all duration-300 hover:-translate-y-1 hover:border-brand-magenta/40 sm:h-48 md:h-44 lg:h-44 xl:h-48"
+        class="group/photo relative h-44 overflow-hidden rounded-xl border border-white/10 bg-[#12121b] transition-all duration-300 hover:-translate-y-1 hover:border-brand-violet/35 hover:shadow-lg hover:shadow-brand-violet/10 sm:h-48 md:h-44 lg:h-44 xl:h-48"
         :delay="index * 0.06"
         y="14"
       >
@@ -271,7 +271,7 @@ onBeforeUnmount(() => {
         :key="item.src"
         type="button"
         class="h-2 rounded-full transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-violet"
-        :class="currentIndex === index ? 'w-7 bg-linear-to-r from-brand-violet to-brand-magenta' : 'w-2 bg-white/18 hover:bg-brand-magenta/45'"
+        :class="currentIndex === index ? 'w-7 bg-linear-to-r from-brand-violet to-brand-magenta' : 'w-2 bg-white/18 hover:bg-brand-violet/45'"
         :aria-label="`Ir a imagen ${index + 1}`"
         :aria-current="currentIndex === index"
         @click="goTo(index)"
@@ -295,7 +295,7 @@ onBeforeUnmount(() => {
           :aria-label="activeLightboxItem.title"
           @click.self="closeLightbox"
         >
-          <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(124,58,237,0.20),transparent_32%),radial-gradient(circle_at_70%_80%,rgba(236,72,153,0.16),transparent_30%)]"></div>
+          <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(96,165,250,0.20),transparent_32%),radial-gradient(circle_at_70%_80%,rgba(167,139,250,0.14),transparent_30%)]"></div>
 
           <button
             type="button"
@@ -341,7 +341,7 @@ onBeforeUnmount(() => {
           >
             <figure
               :key="activeLightboxItem.src"
-              class="relative z-10 w-full max-w-6xl overflow-hidden rounded-[1.75rem] border border-brand-violet/20 bg-linear-to-br from-[#18181b]/85 to-space/90 p-3 shadow-2xl shadow-black/50 backdrop-blur-xl sm:p-4"
+              class="relative z-10 w-full max-w-6xl overflow-hidden rounded-[1.75rem] border border-white/10 bg-linear-to-br from-[#101827]/88 to-space/92 p-3 shadow-2xl shadow-black/50 backdrop-blur-xl sm:p-4"
             >
               <div class="relative flex max-h-[78dvh] min-h-[18rem] items-center justify-center overflow-hidden rounded-[1.25rem] bg-black/30">
                 <img

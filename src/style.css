@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-space: #080b10;
-  --color-brand-violet: #14b8a6;
-  --color-brand-magenta: #2dd4bf;
-  --color-brand-amber: #38bdf8;
+  --color-space: #070a12;
+  --color-brand-violet: #60a5fa;
+  --color-brand-magenta: #a78bfa;
+  --color-brand-amber: #fbbf24;
   --color-foreground: #f8fafc;
-  --color-muted: #94a3b8;
+  --color-muted: #9ca3af;
   --font-sans: "Inter", "Segoe UI", Arial, sans-serif;
 }
 
@@ -35,7 +35,9 @@ body {
   min-height: 100vh;
   margin: 0;
   overflow-x: hidden;
-  background: var(--color-space);
+  background:
+    radial-gradient(circle at 50% -10%, rgba(96, 165, 250, 0.1), transparent 32rem),
+    var(--color-space);
 }
 
 body.menu-open {
@@ -55,6 +57,12 @@ a {
 button,
 a {
   -webkit-tap-highlight-color: transparent;
+}
+
+button,
+a,
+article {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 #app {
@@ -95,4 +103,38 @@ a {
     transition-duration: 1ms !important;
   }
 
+}
+
+@keyframes premium-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -3px, 0);
+  }
+}
+
+@keyframes subtle-pulse {
+  0%,
+  100% {
+    opacity: 0.78;
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-brand-violet) 26%, transparent);
+  }
+
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 0 6px transparent;
+  }
+}
+
+@keyframes aurora-shift {
+  0% {
+    transform: translate3d(-1.5%, -1%, 0) scale(1);
+  }
+
+  100% {
+    transform: translate3d(1.5%, 1%, 0) scale(1.04);
+  }
 }

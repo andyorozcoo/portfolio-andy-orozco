@@ -20,7 +20,7 @@ import { experiences } from '../../data/experience'
 
       <div class="relative">
         <div
-          class="absolute bottom-5 left-4 top-5 hidden w-px bg-linear-to-b from-brand-violet/55 via-brand-magenta/35 to-transparent sm:block"
+          class="absolute bottom-5 left-4 top-5 hidden w-px bg-linear-to-b from-brand-violet/45 via-brand-magenta/25 to-transparent sm:block"
         ></div>
 
         <div class="sm:pl-10">
@@ -31,9 +31,9 @@ import { experiences } from '../../data/experience'
             :delay="index * 0.08"
           >
             <div
-              class="absolute -left-[2.05rem] top-7 z-10 hidden size-4 items-center justify-center rounded-full border border-brand-magenta/45 bg-space sm:flex"
+              class="absolute -left-[2.05rem] top-7 z-10 hidden size-4 items-center justify-center rounded-full border border-brand-violet/45 bg-space shadow-lg shadow-brand-violet/20 sm:flex"
             >
-              <span class="size-1.5 rounded-full bg-brand-magenta"></span>
+              <span class="size-1.5 rounded-full bg-brand-violet motion-safe:animate-[subtle-pulse_3s_ease-in-out_infinite]"></span>
             </div>
 
             <ExperienceCard :experience="experience" />

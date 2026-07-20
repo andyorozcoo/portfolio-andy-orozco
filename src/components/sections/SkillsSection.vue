@@ -34,11 +34,11 @@ const activeCategory = computed(() => {
             role="tab"
             :aria-selected="activeCategoryId === category.id"
             :aria-controls="`skills-panel-${category.id}`"
-            class="rounded-full border px-3.5 py-2 text-xs font-semibold whitespace-nowrap transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-violet sm:text-sm"
+            class="rounded-full border px-3.5 py-2 text-xs font-semibold whitespace-nowrap transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-violet sm:text-sm"
             :class="
               activeCategoryId === category.id
-                ? 'border-brand-violet bg-brand-violet text-space'
-                : 'border-white/10 bg-[#0f1720]/75 text-muted hover:border-brand-violet/35 hover:text-foreground'
+                ? 'border-brand-violet bg-brand-violet text-space shadow-lg shadow-brand-violet/15'
+                : 'border-white/10 bg-[#0f1720]/75 text-muted hover:border-brand-violet/35 hover:bg-white/4 hover:text-foreground'
             "
             @click="activeCategoryId = category.id"
           >
