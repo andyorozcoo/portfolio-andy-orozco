@@ -2,12 +2,14 @@
 import { RouterView } from 'vue-router'
 import Footer from './components/layout/Footer.vue'
 import Navbar from './components/layout/Navbar.vue'
+import ScrollProgress from './components/layout/ScrollProgress.vue'
 import SpaceBackground from './components/layout/SpaceBackground.vue'
 </script>
 
 <template>
   <div class="relative isolate flex min-h-screen flex-col overflow-x-hidden bg-space text-foreground">
     <SpaceBackground />
+    <ScrollProgress />
 
     <Navbar />
 

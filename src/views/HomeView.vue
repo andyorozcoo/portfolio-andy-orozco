@@ -35,6 +35,7 @@ const aboutCards = [
 ]
 
 const projectImageUnavailable = ref(false)
+const projectPreviewIsOpen = ref(false)
 const credentialImageFailures = ref([])
 const activeCredentialId = ref(null)
 
@@ -61,14 +62,25 @@ const closeCredential = () => {
   activeCredentialId.value = null
 }
 
-const handleKeydown = (event) => {
-  if (event.key === 'Escape') {
-    closeCredential()
+const openProjectPreview = () => {
+  if (!projectImageUnavailable.value) {
+    projectPreviewIsOpen.value = true
   }
 }
 
-watch(activeCredentialId, (id) => {
-  document.body.classList.toggle('menu-open', Boolean(id))
+const closeProjectPreview = () => {
+  projectPreviewIsOpen.value = false
+}
+
+const handleKeydown = (event) => {
+  if (event.key === 'Escape') {
+    closeCredential()
+    closeProjectPreview()
+  }
+}
+
+watch([activeCredentialId, projectPreviewIsOpen], ([id, isProjectOpen]) => {
+  document.body.classList.toggle('menu-open', Boolean(id) || isProjectOpen)
 })
 
 onMounted(() => {
@@ -88,7 +100,7 @@ onBeforeUnmount(() => {
 
     <section id="proyecto" class="relative scroll-mt-20 px-5 py-10 sm:px-6 sm:py-12">
       <div class="mx-auto w-full max-w-5xl">
-        <MotionReveal as="header" class="mb-7 max-w-2xl">
+        <MotionReveal as="header" class="mb-7 max-w-2xl" :x="-12" :delay="0.02">
           <p class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-magenta">Proyecto principal</p>
           <h2 class="mt-3 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Beto y Más</h2>
           <p class="mt-3 text-sm leading-relaxed text-muted sm:text-base">
@@ -99,17 +111,26 @@ onBeforeUnmount(() => {
         <MotionReveal
           as="article"
           class="mx-auto max-w-2xl overflow-hidden rounded-3xl border border-white/10 bg-[#0f1720]/78 shadow-xl shadow-black/20 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-brand-violet/30 hover:shadow-brand-violet/10"
+          :delay="0.1"
+          :y="26"
         >
           <div class="relative h-44 overflow-hidden bg-space/70 sm:h-56">
-            <img
+            <button
               v-if="!projectImageUnavailable"
-              :src="projectImageSrc"
-              alt="Vista previa de Beto y Más"
-              class="h-full w-full object-cover object-top transition-transform duration-700 hover:scale-[1.04]"
-              loading="lazy"
-              decoding="async"
-              @error="projectImageUnavailable = true"
-            />
+              type="button"
+              class="group/preview h-full w-full cursor-zoom-in overflow-hidden text-left focus-visible:outline-2 focus-visible:outline-inset focus-visible:outline-brand-violet"
+              aria-label="Abrir vista previa de Beto y Más"
+              @click="openProjectPreview"
+            >
+              <img
+                :src="projectImageSrc"
+                alt="Vista previa de Beto y Más"
+                class="h-full w-full object-cover object-top transition-transform duration-700 group-hover/preview:scale-[1.04]"
+                loading="lazy"
+                decoding="async"
+                @error="projectImageUnavailable = true"
+              />
+            </button>
             <div v-else class="grid h-full place-items-center p-6 text-center">
               <div>
                 <p class="text-2xl font-semibold text-foreground">Beto y Más</p>
@@ -122,7 +143,7 @@ onBeforeUnmount(() => {
           <div class="relative px-5 pb-6 pt-0 sm:px-7 sm:pb-7">
             <div class="-mt-8 flex items-end justify-between gap-4">
               <div
-                class="grid size-14 place-items-center rounded-2xl border border-brand-violet/30 bg-[#0b1119] text-sm font-bold text-brand-magenta shadow-lg shadow-black/30"
+                class="grid size-14 place-items-center rounded-2xl border border-brand-violet/30 bg-[#0b1119] text-sm font-bold text-brand-magenta shadow-lg shadow-black/30 transition-transform duration-300 hover:-translate-y-0.5"
               >
                 B+
               </div>
@@ -171,22 +192,75 @@ onBeforeUnmount(() => {
                 :href="projectUrl"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-brand-violet/25 bg-brand-violet/10 px-5 py-3 text-sm font-semibold text-brand-magenta transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-violet/45 hover:bg-brand-violet/15 hover:shadow-lg hover:shadow-brand-violet/10 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta"
+                class="group inline-flex w-full items-center justify-center gap-2 rounded-xl border border-brand-violet/25 bg-brand-violet/10 px-5 py-3 text-sm font-semibold text-brand-magenta transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-violet/45 hover:bg-brand-violet/15 hover:shadow-lg hover:shadow-brand-violet/10 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta"
               >
                 Ver proyecto
-                <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="1.8">
+                <svg viewBox="0 0 24 24" class="size-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="1.8">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
                 </svg>
               </a>
             </div>
           </div>
         </MotionReveal>
+
+        <Teleport to="body">
+          <Transition
+            enter-active-class="transition duration-250 ease-out"
+            enter-from-class="opacity-0"
+            enter-to-class="opacity-100"
+            leave-active-class="transition duration-180 ease-in"
+            leave-from-class="opacity-100"
+            leave-to-class="opacity-0"
+          >
+            <div
+              v-if="projectPreviewIsOpen"
+              class="fixed inset-0 z-[90] grid place-items-center bg-space/88 p-4 backdrop-blur-xl"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Vista previa del proyecto Beto y Más"
+              @click.self="closeProjectPreview"
+            >
+              <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(96,165,250,0.18),transparent_32%),radial-gradient(circle_at_70%_80%,rgba(167,139,250,0.14),transparent_30%)]"></div>
+
+              <button
+                type="button"
+                class="absolute right-4 top-4 z-20 grid size-10 place-items-center rounded-full border border-white/10 bg-[#0f1720] text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-violet/40 hover:text-brand-magenta"
+                aria-label="Cerrar vista previa"
+                @click="closeProjectPreview"
+              >
+                <svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path stroke-linecap="round" d="M6 6l12 12M18 6 6 18" />
+                </svg>
+              </button>
+
+              <Transition
+                appear
+                enter-active-class="transition duration-300 ease-out"
+                enter-from-class="translate-y-3 opacity-0 scale-[0.98] blur-sm"
+                enter-to-class="translate-y-0 opacity-100 scale-100 blur-0"
+              >
+                <figure class="relative z-10 w-full max-w-5xl overflow-hidden rounded-3xl border border-white/10 bg-[#0f1720] p-3 shadow-2xl shadow-black/50">
+                  <img
+                    :src="projectImageSrc"
+                    alt="Vista ampliada del proyecto Beto y Más"
+                    class="max-h-[76dvh] w-full rounded-2xl object-contain"
+                    decoding="async"
+                  />
+                  <figcaption class="px-2 py-3">
+                    <p class="font-semibold text-foreground">Beto y Más</p>
+                    <p class="mt-1 text-sm text-muted">Vista previa del proyecto real.</p>
+                  </figcaption>
+                </figure>
+              </Transition>
+            </div>
+          </Transition>
+        </Teleport>
       </div>
     </section>
 
     <section id="sobre-mi" class="relative scroll-mt-20 px-5 py-10 sm:px-6 sm:py-12">
       <div class="mx-auto grid w-full max-w-5xl gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-        <MotionReveal>
+        <MotionReveal :x="-14" :delay="0.02">
           <p class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-magenta">Sobre mí</p>
           <h2 class="mt-3 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
             Más allá del código
@@ -207,7 +281,8 @@ onBeforeUnmount(() => {
             :key="card.id"
             as="article"
             class="group overflow-hidden rounded-2xl border border-white/10 bg-[#0f1720]/72 shadow-lg shadow-black/15 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-brand-violet/30 hover:shadow-brand-violet/10"
-            :delay="index * 0.08"
+            :delay="0.08 + index * 0.08"
+            :x="index % 2 === 0 ? 12 : -12"
           >
             <button
               type="button"
@@ -246,10 +321,10 @@ onBeforeUnmount(() => {
 
       <Teleport to="body">
         <Transition
-          enter-active-class="transition duration-200 ease-out"
+          enter-active-class="transition duration-250 ease-out"
           enter-from-class="opacity-0"
           enter-to-class="opacity-100"
-          leave-active-class="transition duration-150 ease-in"
+          leave-active-class="transition duration-180 ease-in"
           leave-from-class="opacity-100"
           leave-to-class="opacity-0"
         >
@@ -272,19 +347,26 @@ onBeforeUnmount(() => {
               </svg>
             </button>
 
-            <figure class="w-full max-w-3xl overflow-hidden rounded-3xl border border-white/10 bg-[#0f1720] p-3 shadow-2xl shadow-black/50">
-              <img
-                v-if="credentialHasImage(activeCredential.id)"
-                :src="activeCredential.image"
-                :alt="activeCredential.title"
-                class="max-h-[74dvh] w-full rounded-2xl object-contain"
-                decoding="async"
-              />
-              <figcaption class="px-2 py-3">
-                <p class="font-semibold text-foreground">{{ activeCredential.title }}</p>
-                <p class="mt-1 text-sm text-muted">{{ activeCredential.description }}</p>
-              </figcaption>
-            </figure>
+            <Transition
+              appear
+              enter-active-class="transition duration-300 ease-out"
+              enter-from-class="translate-y-3 opacity-0 scale-[0.98] blur-sm"
+              enter-to-class="translate-y-0 opacity-100 scale-100 blur-0"
+            >
+              <figure class="w-full max-w-3xl overflow-hidden rounded-3xl border border-white/10 bg-[#0f1720] p-3 shadow-2xl shadow-black/50">
+                <img
+                  v-if="credentialHasImage(activeCredential.id)"
+                  :src="activeCredential.image"
+                  :alt="activeCredential.title"
+                  class="max-h-[74dvh] w-full rounded-2xl object-contain"
+                  decoding="async"
+                />
+                <figcaption class="px-2 py-3">
+                  <p class="font-semibold text-foreground">{{ activeCredential.title }}</p>
+                  <p class="mt-1 text-sm text-muted">{{ activeCredential.description }}</p>
+                </figcaption>
+              </figure>
+            </Transition>
           </div>
         </Transition>
       </Teleport>
