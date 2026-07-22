@@ -1,6 +1,5 @@
 <script setup>
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import MotionReveal from './MotionReveal.vue'
 
 const props = defineProps({
   items: {
@@ -250,13 +249,10 @@ onBeforeUnmount(() => {
       enter-to-class="translate-y-0 opacity-100 scale-100"
       leave-active-class="hidden"
     >
-      <MotionReveal
-        v-for="(item, index) in visibleItems"
+      <figure
+        v-for="item in visibleItems"
         :key="item.src"
-        as="figure"
         class="group/photo relative h-44 overflow-hidden rounded-xl border border-white/10 bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-brand-cyan/35 hover:shadow-lg hover:shadow-brand-cyan/10 sm:h-48 md:h-44 lg:h-44 xl:h-48"
-        :delay="index * 0.06"
-        y="14"
       >
         <button
           v-if="!imageIsUnavailable(item.src)"
@@ -293,7 +289,7 @@ onBeforeUnmount(() => {
             {{ item.description }}
           </p>
         </figcaption>
-      </MotionReveal>
+      </figure>
     </TransitionGroup>
 
     <div class="mt-3 flex flex-wrap justify-center gap-2">

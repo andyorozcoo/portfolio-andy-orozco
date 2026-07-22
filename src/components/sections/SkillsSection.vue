@@ -66,14 +66,7 @@ const activeCategory = computed(() => {
             <p class="mb-4 max-w-2xl text-sm leading-relaxed text-muted">{{ activeCategory.description }}</p>
 
             <div class="grid grid-cols-3 gap-2.5 sm:grid-cols-4 md:grid-cols-6">
-              <MotionReveal
-                v-for="(skill, index) in activeCategory.skills"
-                :key="skill.name"
-                :delay="index * 0.035"
-                y="10"
-              >
-                <SkillCard :skill="skill" />
-              </MotionReveal>
+              <SkillCard v-for="skill in activeCategory.skills" :key="skill.name" :skill="skill" />
             </div>
           </div>
         </Transition>
