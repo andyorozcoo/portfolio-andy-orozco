@@ -36,7 +36,8 @@ const projectImageUnavailable = ref(false)
 const projectPreviewIsOpen = ref(false)
 const activeAboutCardId = ref(null)
 
-const projectImageSrc = `${import.meta.env.BASE_URL}images/projects/beto-showcase.jpg`
+const projectImageSrc = `${import.meta.env.BASE_URL}images/optimized/projects/beto-showcase-card.jpg`
+const projectPreviewSrc = `${import.meta.env.BASE_URL}images/optimized/projects/beto-showcase-preview.jpg`
 const projectUrl = 'https://betoymas.com/'
 
 const projectCards = [
@@ -268,6 +269,8 @@ onBeforeUnmount(() => {
                 <img
                   :src="project.imageSrc"
                   :alt="`Vista previa de ${project.title}`"
+                  width="384"
+                  height="900"
                   class="h-full w-full object-cover object-top transition-transform duration-700 group-hover/preview:scale-[1.04]"
                   loading="lazy"
                   decoding="async"
@@ -396,8 +399,10 @@ onBeforeUnmount(() => {
               >
                 <figure class="premium-card relative z-10 w-full max-w-5xl overflow-hidden rounded-3xl p-3 shadow-2xl shadow-black/50">
                   <img
-                    :src="projectImageSrc"
+                    :src="projectPreviewSrc"
                     alt="Vista ampliada del proyecto Beto y Más"
+                    width="683"
+                    height="1600"
                     class="max-h-[76dvh] w-full rounded-2xl object-contain"
                     decoding="async"
                   />

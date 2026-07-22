@@ -13,7 +13,7 @@ const isMenuOpen = ref(false)
 const activeSection = ref('inicio')
 const avatarUnavailable = ref(false)
 const isScrolled = ref(false)
-const profileImageSrc = `${import.meta.env.BASE_URL}images/profile/profile-main.png`
+const profileImageSrc = `${import.meta.env.BASE_URL}images/optimized/profile/profile-main-avatar.jpg`
 let observer
 
 const closeMenu = () => {
@@ -111,6 +111,8 @@ onBeforeUnmount(() => {
               v-if="!avatarUnavailable"
               :src="profileImageSrc"
               alt="Andy Orozco"
+              width="36"
+              height="36"
               class="size-9 object-cover object-[center_28%]"
               loading="eager"
               decoding="async"
