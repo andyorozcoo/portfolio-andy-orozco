@@ -1,12 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  --color-space: #070a12;
-  --color-brand-violet: #60a5fa;
-  --color-brand-magenta: #a78bfa;
+  --color-space: #05070d;
+  --color-brand-violet: #8b5cf6;
+  --color-brand-magenta: #c084fc;
+  --color-brand-cyan: #22d3ee;
+  --color-brand-blue: #60a5fa;
   --color-brand-amber: #fbbf24;
   --color-foreground: #f8fafc;
-  --color-muted: #9ca3af;
+  --color-muted: #94a3b8;
+  --color-surface: #0b1220;
+  --color-surface-soft: #111827;
   --font-sans: "Inter", "Segoe UI", Arial, sans-serif;
 }
 
@@ -36,7 +40,8 @@ body {
   margin: 0;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at 50% -10%, rgba(96, 165, 250, 0.1), transparent 32rem),
+    radial-gradient(circle at 50% -12%, rgba(34, 211, 238, 0.13), transparent 34rem),
+    radial-gradient(circle at 16% 8%, rgba(139, 92, 246, 0.12), transparent 26rem),
     var(--color-space);
 }
 
@@ -46,7 +51,7 @@ body.menu-open {
 
 body::selection {
   color: var(--color-foreground);
-  background: color-mix(in srgb, var(--color-brand-violet) 70%, transparent);
+  background: color-mix(in srgb, var(--color-brand-cyan) 68%, transparent);
 }
 
 a {
@@ -63,6 +68,87 @@ button,
 a,
 article {
   transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.section-shell {
+  position: relative;
+  scroll-margin-top: 5rem;
+  padding: 3rem 1.25rem;
+}
+
+.section-container {
+  width: 100%;
+  max-width: 64rem;
+  margin-inline: auto;
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-brand-cyan);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.section-eyebrow::before {
+  content: "";
+  width: 1.75rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-brand-cyan));
+  opacity: 0.85;
+}
+
+.premium-card {
+  position: relative;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  background:
+    linear-gradient(135deg, rgb(15 23 42 / 0.82), rgb(5 7 13 / 0.76)),
+    radial-gradient(circle at 20% 0%, rgb(34 211 238 / 0.08), transparent 30rem);
+  box-shadow: 0 24px 80px rgb(0 0 0 / 0.26);
+  backdrop-filter: blur(18px);
+}
+
+.premium-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgb(34 211 238 / 0.18), transparent 28%, rgb(139 92 246 / 0.14));
+  opacity: 0;
+  transition: opacity 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.premium-card:hover::before {
+  opacity: 1;
+}
+
+.premium-pill {
+  border: 1px solid rgb(255 255 255 / 0.1);
+  background: rgb(255 255 255 / 0.045);
+  color: var(--color-muted);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06);
+}
+
+.premium-button-primary {
+  background: linear-gradient(135deg, var(--color-brand-cyan), var(--color-brand-blue) 48%, var(--color-brand-violet));
+  color: #020617;
+  box-shadow: 0 16px 44px rgb(34 211 238 / 0.16), inset 0 1px 0 rgb(255 255 255 / 0.28);
+}
+
+.premium-button-secondary {
+  border: 1px solid rgb(255 255 255 / 0.1);
+  background: rgb(255 255 255 / 0.045);
+  color: var(--color-foreground);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06);
+}
+
+.premium-button-primary:hover,
+.premium-button-secondary:hover {
+  transform: translateY(-2px);
 }
 
 #app {
@@ -103,6 +189,12 @@ article {
     transition-duration: 1ms !important;
   }
 
+}
+
+@media (min-width: 640px) {
+  .section-shell {
+    padding: 4rem 1.5rem;
+  }
 }
 
 @keyframes premium-float {

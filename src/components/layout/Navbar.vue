@@ -96,16 +96,16 @@ onBeforeUnmount(() => {
 <template>
   <header
     class="fixed inset-x-0 top-0 z-50 border-b transition-all duration-300"
-    :class="isScrolled ? 'border-white/10 bg-space/78 shadow-lg shadow-black/20 backdrop-blur-2xl' : 'border-white/6 bg-space/62 backdrop-blur-xl'"
+    :class="isScrolled ? 'border-white/10 bg-space/82 shadow-2xl shadow-black/25 backdrop-blur-2xl' : 'border-white/6 bg-space/58 backdrop-blur-xl'"
   >
     <nav aria-label="Navegación principal" class="mx-auto flex h-16 w-full max-w-5xl items-center px-5 sm:px-6">
       <a
         href="#inicio"
         aria-label="Andy Orozco, inicio"
-        class="group flex shrink-0 items-center gap-3 focus-visible:rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-violet"
+        class="group flex shrink-0 items-center gap-3 focus-visible:rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-cyan"
         @click.prevent="scrollToSection('#inicio')"
       >
-        <span class="relative grid size-10 place-items-center rounded-full border border-white/10 bg-white/4 p-0.5 transition-transform duration-300 group-hover:scale-105 group-active:scale-[0.98]">
+        <span class="relative grid size-10 place-items-center rounded-full border border-white/12 bg-white/5 p-0.5 shadow-lg shadow-brand-cyan/8 transition-transform duration-300 group-hover:scale-105 group-active:scale-[0.98]">
           <span class="overflow-hidden rounded-full">
             <img
               v-if="!avatarUnavailable"
@@ -116,11 +116,11 @@ onBeforeUnmount(() => {
               decoding="async"
               @error="avatarUnavailable = true"
             />
-            <span v-else class="grid size-9 place-items-center text-xs font-semibold tracking-wide text-brand-magenta">
+            <span v-else class="grid size-9 place-items-center text-xs font-semibold tracking-wide text-brand-cyan">
               AO
             </span>
           </span>
-          <span class="absolute -bottom-0.5 -right-0.5 size-3 rounded-full border-2 border-space bg-brand-violet motion-safe:animate-[subtle-pulse_2.8s_ease-in-out_infinite]"></span>
+          <span class="absolute -bottom-0.5 -right-0.5 size-3 rounded-full border-2 border-space bg-brand-cyan motion-safe:animate-[subtle-pulse_2.8s_ease-in-out_infinite]"></span>
         </span>
         <span class="hidden text-sm font-semibold tracking-wide text-foreground sm:block">
           Andy Orozco Castro
@@ -133,12 +133,12 @@ onBeforeUnmount(() => {
           :key="link.href"
           :href="link.href"
           class="group relative px-1 py-3 text-sm font-medium transition-colors duration-300"
-          :class="activeSection === link.href.slice(1) ? 'text-brand-magenta' : 'text-muted hover:text-foreground'"
+          :class="activeSection === link.href.slice(1) ? 'text-brand-cyan' : 'text-muted hover:text-foreground'"
           @click.prevent="scrollToSection(link.href)"
         >
           {{ link.label }}
           <span
-            class="absolute inset-x-0 bottom-1 h-px origin-center bg-brand-magenta transition-transform duration-300"
+            class="absolute inset-x-0 bottom-1 h-px origin-center bg-linear-to-r from-brand-cyan to-brand-violet transition-transform duration-300"
             :class="activeSection === link.href.slice(1) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'"
           ></span>
         </a>
@@ -146,7 +146,7 @@ onBeforeUnmount(() => {
 
       <button
         type="button"
-        class="ml-auto grid size-10 place-items-center rounded-xl border border-white/10 bg-white/3 text-foreground transition-colors duration-300 hover:border-brand-magenta/35 hover:text-brand-magenta focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-violet lg:hidden"
+        class="ml-auto grid size-10 place-items-center rounded-xl border border-white/10 bg-white/4 text-foreground shadow-lg shadow-black/10 transition-colors duration-300 hover:border-brand-cyan/35 hover:text-brand-cyan focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-cyan lg:hidden"
         :aria-expanded="isMenuOpen"
         aria-controls="mobile-navigation"
         :aria-label="isMenuOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'"
@@ -180,11 +180,11 @@ onBeforeUnmount(() => {
             :key="link.href"
             :href="link.href"
             class="flex items-center justify-between rounded-lg px-3 py-3 text-sm font-medium transition-colors"
-            :class="activeSection === link.href.slice(1) ? 'bg-brand-violet/10 text-brand-magenta' : 'text-muted hover:bg-white/5 hover:text-foreground'"
+            :class="activeSection === link.href.slice(1) ? 'bg-brand-cyan/10 text-brand-cyan' : 'text-muted hover:bg-white/5 hover:text-foreground'"
             @click.prevent="scrollToSection(link.href)"
           >
             {{ link.label }}
-            <span v-if="activeSection === link.href.slice(1)" class="size-1.5 rounded-full bg-brand-magenta"></span>
+          <span v-if="activeSection === link.href.slice(1)" class="size-1.5 rounded-full bg-brand-cyan"></span>
           </a>
         </div>
       </div>

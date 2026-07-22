@@ -41,6 +41,7 @@ onBeforeUnmount(() => {
     class="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-space"
     :style="{ '--parallax-y': `${parallaxOffset}px` }"
   >
+    <div class="premium-grid absolute inset-0"></div>
     <div class="starfield stars-soft absolute inset-0"></div>
     <div class="starfield stars-blue absolute inset-0"></div>
     <div class="constellation constellation-a"></div>
@@ -59,17 +60,26 @@ onBeforeUnmount(() => {
   will-change: transform;
 }
 
+.premium-grid {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(to bottom, black 0%, transparent 78%);
+  opacity: 0.35;
+}
+
 .stars-soft {
   background-image:
-    radial-gradient(circle, rgba(248, 250, 252, 0.48) 0.8px, transparent 1.15px),
-    radial-gradient(circle, rgba(96, 165, 250, 0.42) 1px, transparent 1.35px);
+    radial-gradient(circle, rgba(248, 250, 252, 0.34) 0.8px, transparent 1.15px),
+    radial-gradient(circle, rgba(34, 211, 238, 0.32) 1px, transparent 1.35px);
   background-position:
     18px 34px,
     82px 112px;
   background-size:
     172px 172px,
     254px 254px;
-  opacity: 0.32;
+  opacity: 0.22;
   mask-image: radial-gradient(ellipse at 50% 18%, black 6%, transparent 76%);
   transform: translate3d(0, calc(var(--parallax-y, 0px) * -1), 0);
   animation: drift-stars 38s ease-in-out infinite alternate;
@@ -77,15 +87,15 @@ onBeforeUnmount(() => {
 
 .stars-blue {
   background-image:
-    radial-gradient(circle, rgba(167, 139, 250, 0.34) 0.9px, transparent 1.25px),
-    radial-gradient(circle, rgba(96, 165, 250, 0.24) 0.8px, transparent 1.2px);
+    radial-gradient(circle, rgba(139, 92, 246, 0.3) 0.9px, transparent 1.25px),
+    radial-gradient(circle, rgba(96, 165, 250, 0.2) 0.8px, transparent 1.2px);
   background-position:
     64px 92px,
     148px 42px;
   background-size:
     292px 292px,
     348px 348px;
-  opacity: 0.2;
+  opacity: 0.16;
   mask-image: radial-gradient(ellipse at 58% 22%, black, transparent 72%);
   transform: translate3d(0, calc(var(--parallax-y, 0px) * -1.6), 0);
   animation: drift-warm-stars 45s ease-in-out infinite alternate;
@@ -98,9 +108,9 @@ onBeforeUnmount(() => {
   border-radius: 9999px;
   opacity: 0.18;
   background:
-    linear-gradient(35deg, transparent 45%, rgba(96, 165, 250, 0.38) 46%, transparent 47%),
-    radial-gradient(circle at 24% 28%, rgba(96, 165, 250, 0.8) 0 1.2px, transparent 1.4px),
-    radial-gradient(circle at 68% 46%, rgba(167, 139, 250, 0.74) 0 1.2px, transparent 1.4px),
+    linear-gradient(35deg, transparent 45%, rgba(34, 211, 238, 0.34) 46%, transparent 47%),
+    radial-gradient(circle at 24% 28%, rgba(34, 211, 238, 0.75) 0 1.2px, transparent 1.4px),
+    radial-gradient(circle at 68% 46%, rgba(139, 92, 246, 0.7) 0 1.2px, transparent 1.4px),
     radial-gradient(circle at 44% 72%, rgba(248, 250, 252, 0.58) 0 1px, transparent 1.3px);
   filter: blur(0.1px);
   will-change: transform;
@@ -132,7 +142,7 @@ onBeforeUnmount(() => {
   top: 12%;
   width: min(45rem, 70vw);
   height: 35rem;
-  background: rgba(96, 165, 250, 0.12);
+  background: rgba(34, 211, 238, 0.12);
   transform: rotate(-18deg);
   animation: aurora-shift 24s ease-in-out infinite alternate;
 }
@@ -142,7 +152,7 @@ onBeforeUnmount(() => {
   top: -6rem;
   width: min(43rem, 68vw);
   height: 33rem;
-  background: rgba(167, 139, 250, 0.1);
+  background: rgba(139, 92, 246, 0.11);
   transform: rotate(14deg);
   animation: aurora-shift 28s ease-in-out infinite alternate-reverse;
 }
@@ -160,7 +170,7 @@ onBeforeUnmount(() => {
   width: 52rem;
   max-width: 70vw;
   border-radius: 45% 55% 48% 52%;
-  background: linear-gradient(110deg, transparent, rgba(96, 165, 250, 0.08), rgba(167, 139, 250, 0.04), transparent);
+  background: linear-gradient(110deg, transparent, rgba(34, 211, 238, 0.08), rgba(139, 92, 246, 0.05), transparent);
 }
 
 .mist-bottom {
@@ -170,13 +180,13 @@ onBeforeUnmount(() => {
   width: 42rem;
   max-width: 70vw;
   border-radius: 55% 45% 57% 43%;
-  background: linear-gradient(110deg, transparent, rgba(96, 165, 250, 0.05), rgba(167, 139, 250, 0.05), transparent);
+  background: linear-gradient(110deg, transparent, rgba(96, 165, 250, 0.05), rgba(34, 211, 238, 0.05), transparent);
 }
 
 .vignette {
   background:
-    radial-gradient(circle at 52% 15%, transparent 0%, rgba(7, 10, 18, 0.16) 44%, #070a12 86%),
-    linear-gradient(to bottom, transparent, rgba(7, 10, 18, 0.52) 82%, #070a12 100%);
+    radial-gradient(circle at 52% 15%, transparent 0%, rgba(5, 7, 13, 0.1) 42%, #05070d 88%),
+    linear-gradient(to bottom, transparent, rgba(5, 7, 13, 0.46) 76%, #05070d 100%);
 }
 
 @keyframes drift-stars {

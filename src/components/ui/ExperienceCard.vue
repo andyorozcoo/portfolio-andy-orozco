@@ -11,12 +11,12 @@ defineProps({
 
 <template>
   <article
-    class="group rounded-2xl border border-white/10 bg-linear-to-br from-[#101827]/78 to-space/72 p-4 shadow-xl shadow-black/20 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-brand-violet/30 hover:shadow-brand-violet/10 sm:p-6"
+    class="premium-card group rounded-2xl p-4 transition-all duration-300 hover:-translate-y-1 hover:border-brand-cyan/25 hover:shadow-brand-cyan/10 sm:p-6"
   >
     <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
       <div class="flex min-w-0 items-start gap-4">
         <div
-          class="grid size-10 shrink-0 place-items-center rounded-xl bg-linear-to-br from-brand-violet to-brand-magenta text-space shadow-lg shadow-brand-violet/15 transition-transform duration-300 group-hover:scale-105"
+          class="grid size-10 shrink-0 place-items-center rounded-xl bg-linear-to-br from-brand-cyan via-brand-blue to-brand-violet text-space shadow-lg shadow-brand-cyan/15 transition-transform duration-300 group-hover:scale-105"
         >
           <svg
             v-if="experience.type === 'education'"
@@ -53,16 +53,16 @@ defineProps({
         </div>
 
         <div class="min-w-0">
-          <h3 class="text-lg font-medium text-foreground transition-colors duration-300 group-hover:text-brand-magenta sm:text-xl">
+          <h3 class="text-lg font-medium text-foreground transition-colors duration-300 group-hover:text-brand-cyan sm:text-xl">
             {{ experience.role }}
           </h3>
-          <p class="mt-1 text-sm font-medium text-brand-magenta sm:text-base">{{ experience.organization }}</p>
+          <p class="mt-1 text-sm font-medium text-brand-cyan sm:text-base">{{ experience.organization }}</p>
           <p class="mt-1 text-sm text-muted">{{ experience.area }}</p>
         </div>
       </div>
 
       <span
-        class="inline-flex shrink-0 self-start rounded-full border border-white/10 bg-white/4 px-3.5 py-2 text-xs font-medium text-brand-magenta"
+        class="premium-pill inline-flex shrink-0 self-start rounded-full px-3.5 py-2 text-xs font-medium text-brand-cyan"
       >
         {{ experience.period }}
       </span>
@@ -74,7 +74,7 @@ defineProps({
       <span
         v-for="technology in experience.technologies"
         :key="technology"
-        class="rounded-lg border border-white/10 bg-space/55 px-2.5 py-1.5 text-xs text-muted transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-violet/35 hover:text-brand-magenta sm:text-sm"
+        class="premium-pill rounded-lg px-2.5 py-1.5 text-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-cyan/35 hover:text-brand-cyan sm:text-sm"
       >
         {{ technology }}
       </span>
@@ -83,7 +83,7 @@ defineProps({
     <div v-if="experience.gallery?.length" class="mt-6 border-t border-white/7 pt-5">
       <div class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p class="text-xs uppercase tracking-[0.24em] text-brand-magenta">Vida universitaria</p>
+          <p class="text-xs uppercase tracking-[0.24em] text-brand-cyan">Vida universitaria</p>
           <h4 class="mt-2 text-base font-medium text-foreground sm:text-lg">Momentos y actividades</h4>
         </div>
         <p class="text-xs text-muted">Galería de participación y trabajo en equipo</p>

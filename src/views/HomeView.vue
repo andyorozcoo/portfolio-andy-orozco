@@ -111,11 +111,11 @@ onBeforeUnmount(() => {
   <div>
     <HeroSection />
 
-    <section id="sobre-mi" class="relative scroll-mt-20 px-5 py-10 sm:px-6 sm:py-12">
-      <div class="mx-auto w-full max-w-5xl">
+    <section id="sobre-mi" class="section-shell">
+      <div class="section-container">
         <MotionReveal as="header" class="mx-auto mb-8 max-w-3xl text-center" :y="18" :delay="0.02">
-          <p class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-magenta">Sobre mí</p>
-          <h2 class="mt-3 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+          <p class="section-eyebrow justify-center">Sobre mí</p>
+          <h2 class="mt-3 text-2xl font-semibold tracking-[-0.03em] text-foreground sm:text-4xl">
             Más allá del código
           </h2>
           <p class="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
@@ -132,7 +132,7 @@ onBeforeUnmount(() => {
         </MotionReveal>
 
         <div class="relative mx-auto mt-8 max-w-4xl">
-          <div class="absolute left-4 top-4 bottom-4 w-px bg-linear-to-b from-brand-violet/60 via-brand-magenta/35 to-transparent md:left-1/2 md:-translate-x-1/2"></div>
+          <div class="absolute left-4 top-4 bottom-4 w-px bg-linear-to-b from-brand-cyan/60 via-brand-violet/35 to-transparent md:left-1/2 md:-translate-x-1/2"></div>
 
           <div class="space-y-5">
             <MotionReveal
@@ -144,25 +144,25 @@ onBeforeUnmount(() => {
               :x="index % 2 === 0 ? -16 : 16"
             >
               <div
-                class="absolute left-4 top-5 z-10 size-3 -translate-x-1/2 rounded-full border border-brand-violet/60 bg-brand-magenta shadow-lg shadow-brand-magenta/30 motion-safe:animate-[subtle-pulse_2.8s_ease-in-out_infinite] md:left-1/2"
+                class="absolute left-4 top-5 z-10 size-3 -translate-x-1/2 rounded-full border border-brand-cyan/60 bg-brand-cyan shadow-lg shadow-brand-cyan/30 motion-safe:animate-[subtle-pulse_2.8s_ease-in-out_infinite] md:left-1/2"
               ></div>
 
               <button
                 type="button"
-                class="group rounded-2xl border border-white/10 bg-[#0f1720]/76 p-5 text-left shadow-lg shadow-black/15 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-brand-violet/30 hover:shadow-brand-violet/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta md:col-span-1"
+                class="premium-card group rounded-2xl p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:border-brand-cyan/25 hover:shadow-brand-cyan/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-cyan md:col-span-1"
                 :class="index % 2 === 0 ? 'md:col-start-1' : 'md:col-start-3'"
                 :aria-label="`Abrir evidencia de ${card.title}`"
                 @click="openAboutCard(card.id)"
               >
                 <div class="mb-4 flex items-center justify-between gap-3">
-                  <span class="rounded-full border border-brand-violet/20 bg-brand-violet/8 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-brand-magenta">
+                  <span class="rounded-full border border-brand-cyan/20 bg-brand-cyan/8 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-brand-cyan">
                     {{ card.year }}
                   </span>
-                  <span class="h-px flex-1 bg-linear-to-r from-brand-violet/35 to-transparent"></span>
+                  <span class="h-px flex-1 bg-linear-to-r from-brand-cyan/35 to-transparent"></span>
                 </div>
                 <h3 class="text-base font-semibold text-foreground">{{ card.title }}</h3>
                 <p class="mt-3 text-sm leading-relaxed text-muted">{{ card.description }}</p>
-                <span class="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-brand-magenta transition-colors duration-300 group-hover:text-foreground">
+                <span class="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-brand-cyan transition-colors duration-300 group-hover:text-foreground">
                   Ver evidencia
                   <svg viewBox="0 0 24 24" class="size-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="1.8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
@@ -171,7 +171,7 @@ onBeforeUnmount(() => {
               </button>
 
               <div
-                class="hidden text-sm font-semibold text-brand-magenta md:block"
+                class="hidden text-sm font-semibold text-brand-cyan md:block"
                 :class="index % 2 === 0 ? 'md:col-start-3' : 'md:col-start-1 md:row-start-1 md:text-right'"
               >
                 {{ card.year }}
@@ -200,7 +200,7 @@ onBeforeUnmount(() => {
           >
             <button
               type="button"
-              class="absolute right-4 top-4 z-20 grid size-10 place-items-center rounded-full border border-white/10 bg-[#0f1720] text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-violet/40 hover:text-brand-magenta"
+              class="absolute right-4 top-4 z-20 grid size-10 place-items-center rounded-full border border-white/10 bg-surface text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-cyan/40 hover:text-brand-cyan"
               aria-label="Cerrar evidencia"
               @click="closeAboutCard"
             >
@@ -215,13 +215,13 @@ onBeforeUnmount(() => {
               enter-from-class="translate-y-3 opacity-0 scale-[0.98] blur-sm"
               enter-to-class="translate-y-0 opacity-100 scale-100 blur-0"
             >
-              <article class="relative w-full max-w-2xl overflow-hidden rounded-3xl border border-white/10 bg-[#0f1720] p-5 shadow-2xl shadow-black/50 sm:p-6">
-                <div class="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-brand-magenta/55 to-transparent"></div>
-                <p class="text-xs font-semibold uppercase tracking-[0.24em] text-brand-magenta">{{ activeAboutCard.year }}</p>
+              <article class="premium-card relative w-full max-w-2xl overflow-hidden rounded-3xl p-5 shadow-2xl shadow-black/50 sm:p-6">
+                <div class="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-brand-cyan/55 to-transparent"></div>
+                <p class="text-xs font-semibold uppercase tracking-[0.24em] text-brand-cyan">{{ activeAboutCard.year }}</p>
                 <h3 class="mt-3 text-xl font-semibold text-foreground">{{ activeAboutCard.title }}</h3>
                 <p class="mt-3 text-sm leading-relaxed text-muted">{{ activeAboutCard.description }}</p>
 
-                <div class="mt-6 grid min-h-56 place-items-center rounded-2xl border border-dashed border-white/15 bg-white/3 p-6 text-center">
+                <div class="mt-6 grid min-h-56 place-items-center rounded-2xl border border-dashed border-brand-cyan/20 bg-white/3 p-6 text-center">
                   <div>
                     <p class="text-sm font-semibold text-foreground">Espacio para evidencia</p>
                     <p class="mx-auto mt-2 max-w-sm text-xs leading-relaxed text-muted">
@@ -238,11 +238,11 @@ onBeforeUnmount(() => {
 
     <ExperienceSection />
 
-    <section id="proyecto" class="relative scroll-mt-20 px-5 py-10 sm:px-6 sm:py-12">
-      <div class="mx-auto w-full max-w-5xl">
+    <section id="proyecto" class="section-shell">
+      <div class="section-container">
         <MotionReveal as="header" class="mb-7 max-w-2xl" :x="-12" :delay="0.02">
-          <p class="text-xs font-semibold uppercase tracking-[0.28em] text-brand-magenta">Proyecto principal</p>
-          <h2 class="mt-3 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Beto y Más</h2>
+          <p class="section-eyebrow">Proyecto principal</p>
+          <h2 class="mt-3 text-2xl font-semibold tracking-[-0.03em] text-foreground sm:text-4xl">Beto y Más</h2>
           <p class="mt-3 text-sm leading-relaxed text-muted sm:text-base">
             Proyecto real orientado a fidelización, puntos y gamificación para clientes.
           </p>
@@ -253,7 +253,7 @@ onBeforeUnmount(() => {
             v-for="(project, index) in projectCards"
             :key="project.id"
             as="article"
-            class="mx-auto flex h-full w-full max-w-xl flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#0f1720]/78 shadow-xl shadow-black/20 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-brand-violet/30 hover:shadow-brand-violet/10 lg:max-w-none"
+            class="premium-card mx-auto flex h-full w-full max-w-xl flex-col overflow-hidden rounded-3xl transition-all duration-300 hover:-translate-y-1 hover:border-brand-cyan/25 hover:shadow-brand-cyan/10 lg:max-w-none"
             :delay="0.1 + index * 0.08"
             :y="26"
           >
@@ -261,7 +261,7 @@ onBeforeUnmount(() => {
               <button
                 v-if="project.available && !projectImageUnavailable"
                 type="button"
-                class="group/preview h-full w-full cursor-zoom-in overflow-hidden text-left focus-visible:outline-2 focus-visible:outline-inset focus-visible:outline-brand-violet"
+                class="group/preview h-full w-full cursor-zoom-in overflow-hidden text-left focus-visible:outline-2 focus-visible:outline-inset focus-visible:outline-brand-cyan"
                 :aria-label="`Abrir vista previa de ${project.title}`"
                 @click="openProjectPreview"
               >
@@ -291,7 +291,7 @@ onBeforeUnmount(() => {
                   target="_blank"
                   rel="noopener noreferrer"
                   :aria-label="`Abrir ${project.title}`"
-                  class="grid size-10 place-items-center rounded-xl border border-white/10 bg-[#0b1119]/90 text-muted transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-violet/35 hover:text-brand-magenta active:scale-[0.98]"
+                  class="grid size-10 place-items-center rounded-xl border border-white/10 bg-space/90 text-muted transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-cyan/35 hover:text-brand-cyan active:scale-[0.98]"
                 >
                   <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="1.8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
@@ -299,7 +299,7 @@ onBeforeUnmount(() => {
                 </a>
                 <span
                   v-else
-                  class="grid size-10 place-items-center rounded-xl border border-white/10 bg-[#0b1119]/90 text-muted/70"
+                  class="grid size-10 place-items-center rounded-xl border border-white/10 bg-space/90 text-muted/70"
                   aria-hidden="true"
                 >
                   <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -311,7 +311,7 @@ onBeforeUnmount(() => {
 
               <div class="mt-4">
                 <h3 class="text-2xl font-semibold text-foreground">{{ project.title }}</h3>
-                <p class="mt-1 text-sm font-semibold text-brand-magenta">
+                <p class="mt-1 text-sm font-semibold text-brand-cyan">
                   {{ project.subtitle }}
                 </p>
                 <p class="mt-2 text-xs font-medium uppercase tracking-[0.22em] text-muted">Rol · {{ project.role }}</p>
@@ -327,7 +327,7 @@ onBeforeUnmount(() => {
                   <span
                     v-for="item in project.stack"
                     :key="`${project.id}-${item}`"
-                    class="rounded-lg border border-white/10 bg-white/3 px-3 py-1.5 text-xs font-semibold text-muted transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-violet/35 hover:text-brand-magenta"
+                    class="premium-pill rounded-lg px-3 py-1.5 text-xs font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-cyan/35 hover:text-brand-cyan"
                   >
                     {{ item }}
                   </span>
@@ -340,7 +340,7 @@ onBeforeUnmount(() => {
                   :href="project.url"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="group inline-flex w-full items-center justify-center gap-2 rounded-xl border border-brand-violet/25 bg-brand-violet/10 px-5 py-3 text-sm font-semibold text-brand-magenta transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-violet/45 hover:bg-brand-violet/15 hover:shadow-lg hover:shadow-brand-violet/10 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta"
+                  class="premium-button-primary group inline-flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-300 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-cyan"
                 >
                   Ver proyecto
                   <svg viewBox="0 0 24 24" class="size-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -349,7 +349,7 @@ onBeforeUnmount(() => {
                 </a>
                 <span
                   v-else
-                  class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-brand-violet/15 bg-brand-violet/8 px-5 py-3 text-sm font-semibold text-muted"
+                  class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-brand-cyan/15 bg-brand-cyan/8 px-5 py-3 text-sm font-semibold text-muted"
                 >
                   En desarrollo
                 </span>
@@ -375,11 +375,11 @@ onBeforeUnmount(() => {
               aria-label="Vista previa del proyecto Beto y Más"
               @click.self="closeProjectPreview"
             >
-              <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(96,165,250,0.18),transparent_32%),radial-gradient(circle_at_70%_80%,rgba(167,139,250,0.14),transparent_30%)]"></div>
+              <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(34,211,238,0.18),transparent_32%),radial-gradient(circle_at_70%_80%,rgba(139,92,246,0.14),transparent_30%)]"></div>
 
               <button
                 type="button"
-                class="absolute right-4 top-4 z-20 grid size-10 place-items-center rounded-full border border-white/10 bg-[#0f1720] text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-violet/40 hover:text-brand-magenta"
+                class="absolute right-4 top-4 z-20 grid size-10 place-items-center rounded-full border border-white/10 bg-surface text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-cyan/40 hover:text-brand-cyan"
                 aria-label="Cerrar vista previa"
                 @click="closeProjectPreview"
               >
@@ -394,7 +394,7 @@ onBeforeUnmount(() => {
                 enter-from-class="translate-y-3 opacity-0 scale-[0.98] blur-sm"
                 enter-to-class="translate-y-0 opacity-100 scale-100 blur-0"
               >
-                <figure class="relative z-10 w-full max-w-5xl overflow-hidden rounded-3xl border border-white/10 bg-[#0f1720] p-3 shadow-2xl shadow-black/50">
+                <figure class="premium-card relative z-10 w-full max-w-5xl overflow-hidden rounded-3xl p-3 shadow-2xl shadow-black/50">
                   <img
                     :src="projectImageSrc"
                     alt="Vista ampliada del proyecto Beto y Más"
