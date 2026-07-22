@@ -1,5 +1,7 @@
 <script setup>
-import ImageCarousel from './ImageCarousel.vue'
+import { defineAsyncComponent } from 'vue'
+
+const ImageCarousel = defineAsyncComponent(() => import('./ImageCarousel.vue'))
 
 defineProps({
   experience: {

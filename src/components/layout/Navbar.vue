@@ -15,6 +15,8 @@ const avatarUnavailable = ref(false)
 const isScrolled = ref(false)
 const profileImageSrc = `${import.meta.env.BASE_URL}images/optimized/profile/profile-main-avatar.jpg`
 let observer
+let sectionMutationObserver
+const observedSectionIds = new Set()
 
 const closeMenu = () => {
   isMenuOpen.value = false
@@ -49,6 +51,21 @@ const updateScrollState = () => {
   isScrolled.value = window.scrollY > 12
 }
 
+const observeAvailableSections = () => {
+  navLinks.forEach((link) => {
+    const section = document.querySelector(link.href)
+
+    if (section && !observedSectionIds.has(section.id)) {
+      observer.observe(section)
+      observedSectionIds.add(section.id)
+    }
+  })
+
+  if (observedSectionIds.size === navLinks.length) {
+    sectionMutationObserver?.disconnect()
+  }
+}
+
 watch(isMenuOpen, (isOpen) => {
   document.body.classList.toggle('menu-open', isOpen)
 })
@@ -75,13 +92,10 @@ onMounted(() => {
     },
   )
 
-  navLinks.forEach((link) => {
-    const section = document.querySelector(link.href)
+  observeAvailableSections()
 
-    if (section) {
-      observer.observe(section)
-    }
-  })
+  sectionMutationObserver = new MutationObserver(observeAvailableSections)
+  sectionMutationObserver.observe(document.body, { childList: true, subtree: true })
 })
 
 onBeforeUnmount(() => {
@@ -89,6 +103,8 @@ onBeforeUnmount(() => {
   window.removeEventListener('resize', closeMenuOnDesktop)
   window.removeEventListener('scroll', updateScrollState)
   observer?.disconnect()
+  sectionMutationObserver?.disconnect()
+  observedSectionIds.clear()
   document.body.classList.remove('menu-open')
 })
 </script>

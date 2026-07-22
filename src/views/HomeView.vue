@@ -1,10 +1,11 @@
 <script setup>
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import ContactSection from '../components/sections/ContactSection.vue'
-import ExperienceSection from '../components/sections/ExperienceSection.vue'
+import { computed, defineAsyncComponent, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import HeroSection from '../components/sections/HeroSection.vue'
-import SkillsSection from '../components/sections/SkillsSection.vue'
 import MotionReveal from '../components/ui/MotionReveal.vue'
+
+const ExperienceSection = defineAsyncComponent(() => import('../components/sections/ExperienceSection.vue'))
+const SkillsSection = defineAsyncComponent(() => import('../components/sections/SkillsSection.vue'))
+const ContactSection = defineAsyncComponent(() => import('../components/sections/ContactSection.vue'))
 
 const projectStack = [
   'Laravel',
