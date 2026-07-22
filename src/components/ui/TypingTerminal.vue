@@ -10,8 +10,12 @@ const code = `const developer = {
 
 const typedCode = ref('')
 const isComplete = ref(false)
+const terminalRef = ref(null)
+const isInViewport = ref(true)
+let typedIndex = 0
 let typingTimer
 let restartTimer
+let visibilityObserver
 
 const reduceMotion =
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -21,19 +25,56 @@ const clearTimers = () => {
   window.clearTimeout(restartTimer)
 }
 
-const typeCode = (index = 0) => {
-  if (index >= code.length) {
+const typeCode = () => {
+  if (!isInViewport.value) {
+    clearTimers()
+    return
+  }
+
+  if (typedIndex >= code.length) {
     isComplete.value = true
     restartTimer = window.setTimeout(() => {
+      if (!isInViewport.value) {
+        return
+      }
+
       typedCode.value = ''
+      typedIndex = 0
       isComplete.value = false
       typeCode()
     }, 3200)
     return
   }
 
-  typedCode.value += code[index]
-  typingTimer = window.setTimeout(() => typeCode(index + 1), 36)
+  typedCode.value += code[typedIndex]
+  typedIndex += 1
+  typingTimer = window.setTimeout(typeCode, 36)
+}
+
+const setupVisibilityObserver = () => {
+  if (typeof IntersectionObserver === 'undefined' || !terminalRef.value) {
+    return
+  }
+
+  visibilityObserver = new IntersectionObserver(
+    ([entry]) => {
+      isInViewport.value = entry.isIntersecting
+
+      if (entry.isIntersecting) {
+        clearTimers()
+        typeCode()
+        return
+      }
+
+      clearTimers()
+    },
+    {
+      rootMargin: '80px 0px',
+      threshold: 0.1,
+    },
+  )
+
+  visibilityObserver.observe(terminalRef.value)
 }
 
 onMounted(() => {
@@ -43,16 +84,21 @@ onMounted(() => {
     return
   }
 
-  typeCode()
+  setupVisibilityObserver()
+
+  if (!visibilityObserver) {
+    typeCode()
+  }
 })
 
 onBeforeUnmount(() => {
   clearTimers()
+  visibilityObserver?.disconnect()
 })
 </script>
 
 <template>
-  <div class="premium-card premium-glass overflow-hidden rounded-[1.35rem] transition-all duration-300 hover:-translate-y-1 hover:border-brand-cyan/25 hover:shadow-brand-cyan/10">
+  <div ref="terminalRef" class="premium-card premium-glass overflow-hidden rounded-[1.35rem] transition-all duration-300 hover:-translate-y-1 hover:border-brand-cyan/25 hover:shadow-brand-cyan/10">
     <div class="relative flex items-center gap-2 border-b border-white/8 bg-white/[0.025] px-4 py-3">
       <div class="absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-brand-cyan/45 to-transparent"></div>
       <span class="size-2 rounded-full bg-red-400"></span>
