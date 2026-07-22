@@ -6,14 +6,16 @@ let ticking = false
 
 const reduceMotion =
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+const reduceBackgroundWork =
+  typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches
 
 const updateParallax = () => {
-  parallaxOffset.value = window.scrollY * 0.018
+  parallaxOffset.value = window.scrollY * 0.01
   ticking = false
 }
 
 const handleScroll = () => {
-  if (reduceMotion || ticking) {
+  if (reduceMotion || reduceBackgroundWork || ticking) {
     return
   }
 
@@ -22,7 +24,7 @@ const handleScroll = () => {
 }
 
 onMounted(() => {
-  if (reduceMotion) {
+  if (reduceMotion || reduceBackgroundWork) {
     return
   }
 
@@ -57,7 +59,6 @@ onBeforeUnmount(() => {
 <style scoped>
 .starfield {
   background-repeat: repeat;
-  will-change: transform;
 }
 
 .premium-grid {
@@ -79,10 +80,10 @@ onBeforeUnmount(() => {
   background-size:
     172px 172px,
     254px 254px;
-  opacity: 0.22;
+  opacity: 0.18;
   mask-image: radial-gradient(ellipse at 50% 18%, black 6%, transparent 76%);
-  transform: translate3d(0, calc(var(--parallax-y, 0px) * -1), 0);
-  animation: drift-stars 38s ease-in-out infinite alternate;
+  transform: translate3d(0, calc(var(--parallax-y, 0px) * -0.6), 0);
+  animation: drift-stars 56s ease-in-out infinite alternate;
 }
 
 .stars-blue {
@@ -95,10 +96,10 @@ onBeforeUnmount(() => {
   background-size:
     292px 292px,
     348px 348px;
-  opacity: 0.16;
+  opacity: 0.12;
   mask-image: radial-gradient(ellipse at 58% 22%, black, transparent 72%);
-  transform: translate3d(0, calc(var(--parallax-y, 0px) * -1.6), 0);
-  animation: drift-warm-stars 45s ease-in-out infinite alternate;
+  transform: translate3d(0, calc(var(--parallax-y, 0px) * -0.8), 0);
+  animation: drift-warm-stars 64s ease-in-out infinite alternate;
 }
 
 .constellation {
@@ -112,29 +113,24 @@ onBeforeUnmount(() => {
     radial-gradient(circle at 24% 28%, rgba(34, 211, 238, 0.75) 0 1.2px, transparent 1.4px),
     radial-gradient(circle at 68% 46%, rgba(139, 92, 246, 0.7) 0 1.2px, transparent 1.4px),
     radial-gradient(circle at 44% 72%, rgba(248, 250, 252, 0.58) 0 1px, transparent 1.3px);
-  filter: blur(0.1px);
-  will-change: transform;
 }
 
 .constellation-a {
   left: 8%;
   top: 22%;
-  transform: translate3d(0, calc(var(--parallax-y, 0px) * -2.2), 0) rotate(-12deg);
-  animation: constellation-float 18s ease-in-out infinite alternate;
+  transform: translate3d(0, calc(var(--parallax-y, 0px) * -0.9), 0) rotate(-12deg);
 }
 
 .constellation-b {
   right: 12%;
   bottom: 18%;
-  transform: translate3d(0, calc(var(--parallax-y, 0px) * -1.8), 0) rotate(18deg);
-  animation: constellation-float 22s ease-in-out infinite alternate-reverse;
+  transform: translate3d(0, calc(var(--parallax-y, 0px) * -0.7), 0) rotate(18deg);
 }
 
 .nebula {
   position: absolute;
   border-radius: 9999px;
-  filter: blur(92px);
-  will-change: transform;
+  filter: blur(72px);
 }
 
 .nebula-violet {
@@ -144,7 +140,7 @@ onBeforeUnmount(() => {
   height: 35rem;
   background: rgba(34, 211, 238, 0.12);
   transform: rotate(-18deg);
-  animation: aurora-shift 24s ease-in-out infinite alternate;
+  animation: aurora-shift 36s ease-in-out infinite alternate;
 }
 
 .nebula-lilac {
@@ -154,13 +150,13 @@ onBeforeUnmount(() => {
   height: 33rem;
   background: rgba(139, 92, 246, 0.11);
   transform: rotate(14deg);
-  animation: aurora-shift 28s ease-in-out infinite alternate-reverse;
+  animation: aurora-shift 42s ease-in-out infinite alternate-reverse;
 }
 
 .mist {
   position: absolute;
-  filter: blur(56px);
-  opacity: 0.4;
+  filter: blur(38px);
+  opacity: 0.32;
 }
 
 .mist-top {
@@ -205,15 +201,9 @@ onBeforeUnmount(() => {
   }
 }
 
-@keyframes constellation-float {
-  to {
-    opacity: 0.26;
-  }
-}
-
 @media (max-width: 640px) {
   .nebula {
-    filter: blur(86px);
+    filter: blur(52px);
   }
 
   .nebula-violet,
@@ -227,7 +217,20 @@ onBeforeUnmount(() => {
   }
 
   .constellation {
-    opacity: 0.1;
+    opacity: 0.08;
+  }
+
+  .stars-soft,
+  .stars-blue,
+  .constellation-a,
+  .constellation-b {
+    transform: none;
+    animation: none;
+  }
+
+  .nebula-violet,
+  .nebula-lilac {
+    animation: none;
   }
 }
 
