@@ -96,7 +96,7 @@ onBeforeUnmount(() => {
 <template>
   <header
     class="fixed inset-x-0 top-0 z-50 border-b transition-all duration-300"
-    :class="isScrolled ? 'border-white/10 bg-space/82 shadow-2xl shadow-black/25 backdrop-blur-2xl' : 'border-white/6 bg-space/58 backdrop-blur-xl'"
+    :class="isScrolled ? 'border-white/10 bg-space/86 shadow-2xl shadow-black/25 backdrop-blur-xl' : 'border-white/6 bg-space/68 backdrop-blur-lg'"
   >
     <nav aria-label="Navegación principal" class="mx-auto flex h-16 w-full max-w-5xl items-center px-5 sm:px-6">
       <a
@@ -174,7 +174,7 @@ onBeforeUnmount(() => {
       <div
         v-if="isMenuOpen"
         id="mobile-navigation"
-        class="border-t border-white/5 bg-space/96 px-5 pb-5 pt-3 backdrop-blur-xl lg:hidden"
+        class="border-t border-white/5 bg-space/96 px-5 pb-5 pt-3 backdrop-blur-sm lg:hidden"
       >
         <div class="mx-auto flex max-w-5xl flex-col">
           <a

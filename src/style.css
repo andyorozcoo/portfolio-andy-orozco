@@ -108,7 +108,11 @@ article {
     linear-gradient(135deg, rgb(15 23 42 / 0.82), rgb(5 7 13 / 0.76)),
     radial-gradient(circle at 20% 0%, rgb(34 211 238 / 0.08), transparent 30rem);
   box-shadow: 0 24px 80px rgb(0 0 0 / 0.26);
-  backdrop-filter: blur(18px);
+  isolation: isolate;
+}
+
+.premium-glass {
+  backdrop-filter: blur(16px);
 }
 
 .premium-card::before {

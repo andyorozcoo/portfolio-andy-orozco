@@ -52,7 +52,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="premium-card overflow-hidden rounded-[1.35rem] transition-all duration-300 hover:-translate-y-1 hover:border-brand-cyan/25 hover:shadow-brand-cyan/10">
+  <div class="premium-card premium-glass overflow-hidden rounded-[1.35rem] transition-all duration-300 hover:-translate-y-1 hover:border-brand-cyan/25 hover:shadow-brand-cyan/10">
     <div class="relative flex items-center gap-2 border-b border-white/8 bg-white/[0.025] px-4 py-3">
       <div class="absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-brand-cyan/45 to-transparent"></div>
       <span class="size-2 rounded-full bg-red-400"></span>

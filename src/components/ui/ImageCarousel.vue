@@ -299,7 +299,7 @@ onBeforeUnmount(() => {
 
           <button
             type="button"
-            class="absolute right-4 top-4 z-20 grid size-11 place-items-center rounded-full border border-white/10 bg-space/75 text-foreground shadow-lg shadow-black/30 backdrop-blur-xl transition-all duration-300 hover:border-brand-cyan/45 hover:text-brand-cyan focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-cyan sm:right-6 sm:top-6"
+            class="absolute right-4 top-4 z-20 grid size-11 place-items-center rounded-full border border-white/10 bg-space/82 text-foreground shadow-lg shadow-black/30 backdrop-blur-sm transition-all duration-300 hover:border-brand-cyan/45 hover:text-brand-cyan focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-cyan sm:right-6 sm:top-6"
             aria-label="Cerrar imagen"
             @click="closeLightbox"
           >
@@ -310,7 +310,7 @@ onBeforeUnmount(() => {
 
           <button
             type="button"
-            class="absolute left-3 top-1/2 z-20 grid size-11 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-space/75 text-foreground shadow-lg shadow-black/30 backdrop-blur-xl transition-all duration-300 hover:border-brand-cyan/45 hover:text-brand-cyan focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-cyan sm:left-6"
+            class="absolute left-3 top-1/2 z-20 grid size-11 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-space/82 text-foreground shadow-lg shadow-black/30 backdrop-blur-sm transition-all duration-300 hover:border-brand-cyan/45 hover:text-brand-cyan focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-cyan sm:left-6"
             aria-label="Imagen anterior"
             @click="goPreviousLightbox"
           >
@@ -321,7 +321,7 @@ onBeforeUnmount(() => {
 
           <button
             type="button"
-            class="absolute right-3 top-1/2 z-20 grid size-11 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-space/75 text-foreground shadow-lg shadow-black/30 backdrop-blur-xl transition-all duration-300 hover:border-brand-cyan/45 hover:text-brand-cyan focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-cyan sm:right-6"
+            class="absolute right-3 top-1/2 z-20 grid size-11 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-space/82 text-foreground shadow-lg shadow-black/30 backdrop-blur-sm transition-all duration-300 hover:border-brand-cyan/45 hover:text-brand-cyan focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-cyan sm:right-6"
             aria-label="Imagen siguiente"
             @click="goNextLightbox"
           >
@@ -341,7 +341,7 @@ onBeforeUnmount(() => {
           >
             <figure
               :key="activeLightboxItem.src"
-              class="premium-card relative z-10 w-full max-w-6xl overflow-hidden rounded-[1.75rem] p-3 shadow-2xl shadow-black/50 sm:p-4"
+              class="premium-card premium-glass relative z-10 w-full max-w-6xl overflow-hidden rounded-[1.75rem] p-3 shadow-2xl shadow-black/50 sm:p-4"
             >
               <div class="relative flex max-h-[78dvh] min-h-[18rem] items-center justify-center overflow-hidden rounded-[1.25rem] bg-black/30">
                 <img

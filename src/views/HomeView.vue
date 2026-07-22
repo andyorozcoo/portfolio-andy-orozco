@@ -216,7 +216,7 @@ onBeforeUnmount(() => {
               enter-from-class="translate-y-3 opacity-0 scale-[0.98] blur-sm"
               enter-to-class="translate-y-0 opacity-100 scale-100 blur-0"
             >
-              <article class="premium-card relative w-full max-w-2xl overflow-hidden rounded-3xl p-5 shadow-2xl shadow-black/50 sm:p-6">
+              <article class="premium-card premium-glass relative w-full max-w-2xl overflow-hidden rounded-3xl p-5 shadow-2xl shadow-black/50 sm:p-6">
                 <div class="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-brand-cyan/55 to-transparent"></div>
                 <p class="text-xs font-semibold uppercase tracking-[0.24em] text-brand-cyan">{{ activeAboutCard.year }}</p>
                 <h3 class="mt-3 text-xl font-semibold text-foreground">{{ activeAboutCard.title }}</h3>
@@ -397,7 +397,7 @@ onBeforeUnmount(() => {
                 enter-from-class="translate-y-3 opacity-0 scale-[0.98] blur-sm"
                 enter-to-class="translate-y-0 opacity-100 scale-100 blur-0"
               >
-                <figure class="premium-card relative z-10 w-full max-w-5xl overflow-hidden rounded-3xl p-3 shadow-2xl shadow-black/50">
+                <figure class="premium-card premium-glass relative z-10 w-full max-w-5xl overflow-hidden rounded-3xl p-3 shadow-2xl shadow-black/50">
                   <img
                     :src="projectPreviewSrc"
                     alt="Vista ampliada del proyecto Beto y Más"
