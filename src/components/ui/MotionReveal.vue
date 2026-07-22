@@ -28,7 +28,7 @@ const props = defineProps({
   },
   blur: {
     type: Number,
-    default: 8,
+    default: 0,
   },
 })
 
@@ -37,16 +37,21 @@ const reduceMotion =
 
 const initialMotion = computed(() => {
   if (reduceMotion) {
-    return { opacity: 1, x: 0, y: 0, scale: 1, filter: 'blur(0px)' }
+    return { opacity: 1, x: 0, y: 0, scale: 1 }
   }
 
-  return {
+  const motion = {
     opacity: 0,
     x: props.x,
     y: props.y,
     scale: props.scale,
-    filter: `blur(${props.blur}px)`,
   }
+
+  if (props.blur > 0) {
+    motion.filter = `blur(${props.blur}px)`
+  }
+
+  return motion
 })
 
 const visibleMotion = computed(() => {
@@ -56,17 +61,15 @@ const visibleMotion = computed(() => {
       x: 0,
       y: 0,
       scale: 1,
-      filter: 'blur(0px)',
       transition: { duration: 1 },
     }
   }
 
-  return {
+  const motion = {
     opacity: 1,
     x: 0,
     y: 0,
     scale: 1,
-    filter: 'blur(0px)',
     transition: {
       type: 'spring',
       stiffness: 105,
@@ -75,6 +78,12 @@ const visibleMotion = computed(() => {
       delay: props.delay,
     },
   }
+
+  if (props.blur > 0) {
+    motion.filter = 'blur(0px)'
+  }
+
+  return motion
 })
 </script>
 
