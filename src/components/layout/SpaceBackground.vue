@@ -1,47 +1,7 @@
-<script setup>
-import { onBeforeUnmount, onMounted, ref } from 'vue'
-
-const parallaxOffset = ref(0)
-let ticking = false
-
-const reduceMotion =
-  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
-const reduceBackgroundWork =
-  typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches
-
-const updateParallax = () => {
-  parallaxOffset.value = window.scrollY * 0.01
-  ticking = false
-}
-
-const handleScroll = () => {
-  if (reduceMotion || reduceBackgroundWork || ticking) {
-    return
-  }
-
-  ticking = true
-  window.requestAnimationFrame(updateParallax)
-}
-
-onMounted(() => {
-  if (reduceMotion || reduceBackgroundWork) {
-    return
-  }
-
-  updateParallax()
-  window.addEventListener('scroll', handleScroll, { passive: true })
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('scroll', handleScroll)
-})
-</script>
-
 <template>
   <div
     aria-hidden="true"
     class="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-space"
-    :style="{ '--parallax-y': `${parallaxOffset}px` }"
   >
     <div class="premium-grid absolute inset-0"></div>
     <div class="starfield stars-soft absolute inset-0"></div>
@@ -82,8 +42,6 @@ onBeforeUnmount(() => {
     254px 254px;
   opacity: 0.18;
   mask-image: radial-gradient(ellipse at 50% 18%, black 6%, transparent 76%);
-  transform: translate3d(0, calc(var(--parallax-y, 0px) * -0.6), 0);
-  animation: drift-stars 56s ease-in-out infinite alternate;
 }
 
 .stars-blue {
@@ -98,8 +56,6 @@ onBeforeUnmount(() => {
     348px 348px;
   opacity: 0.12;
   mask-image: radial-gradient(ellipse at 58% 22%, black, transparent 72%);
-  transform: translate3d(0, calc(var(--parallax-y, 0px) * -0.8), 0);
-  animation: drift-warm-stars 64s ease-in-out infinite alternate;
 }
 
 .constellation {
@@ -118,13 +74,13 @@ onBeforeUnmount(() => {
 .constellation-a {
   left: 8%;
   top: 22%;
-  transform: translate3d(0, calc(var(--parallax-y, 0px) * -0.9), 0) rotate(-12deg);
+  transform: rotate(-12deg);
 }
 
 .constellation-b {
   right: 12%;
   bottom: 18%;
-  transform: translate3d(0, calc(var(--parallax-y, 0px) * -0.7), 0) rotate(18deg);
+  transform: rotate(18deg);
 }
 
 .nebula {
@@ -140,7 +96,6 @@ onBeforeUnmount(() => {
   height: 35rem;
   background: rgba(34, 211, 238, 0.12);
   transform: rotate(-18deg);
-  animation: aurora-shift 36s ease-in-out infinite alternate;
 }
 
 .nebula-lilac {
@@ -150,7 +105,6 @@ onBeforeUnmount(() => {
   height: 33rem;
   background: rgba(139, 92, 246, 0.11);
   transform: rotate(14deg);
-  animation: aurora-shift 42s ease-in-out infinite alternate-reverse;
 }
 
 .mist {
@@ -185,22 +139,6 @@ onBeforeUnmount(() => {
     linear-gradient(to bottom, transparent, rgba(5, 7, 13, 0.46) 76%, #05070d 100%);
 }
 
-@keyframes drift-stars {
-  to {
-    background-position:
-      28px 24px,
-      92px 102px;
-  }
-}
-
-@keyframes drift-warm-stars {
-  to {
-    background-position:
-      54px 105px,
-      138px 55px;
-  }
-}
-
 @media (max-width: 640px) {
   .nebula {
     filter: blur(52px);
@@ -220,25 +158,9 @@ onBeforeUnmount(() => {
     opacity: 0.08;
   }
 
-  .stars-soft,
-  .stars-blue,
   .constellation-a,
   .constellation-b {
     transform: none;
-    animation: none;
-  }
-
-  .nebula-violet,
-  .nebula-lilac {
-    animation: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .starfield,
-  .nebula,
-  .constellation {
-    animation: none;
   }
 }
 </style>
