@@ -39,6 +39,31 @@ const activeAboutCardId = ref(null)
 const projectImageSrc = `${import.meta.env.BASE_URL}images/projects/beto-showcase.jpg`
 const projectUrl = 'https://betoymas.com/'
 
+const projectCards = [
+  {
+    id: 'beto-y-mas',
+    title: 'Beto y Más',
+    subtitle: 'Plataforma de fidelización y gamificación',
+    role: 'Full Stack Developer',
+    description:
+      'Sistema web desarrollado para centralizar clientes, puntos, recompensas, promociones y dinámicas de fidelización mediante una plataforma moderna y modular.',
+    stack: projectStack,
+    imageSrc: projectImageSrc,
+    url: projectUrl,
+    available: true,
+  },
+  {
+    id: 'proximamente',
+    title: 'Próximamente',
+    subtitle: 'Nueva experiencia digital en desarrollo',
+    role: 'Frontend Developer',
+    description:
+      'Espacio reservado para un próximo caso de estudio con enfoque en interfaces modernas, rendimiento y una experiencia de usuario cuidada.',
+    stack: ['Vue 3', 'TailwindCSS', 'API REST', 'UX/UI'],
+    available: false,
+  },
+]
+
 const activeAboutCard = computed(() => {
   return aboutCards.find((card) => card.id === activeAboutCardId.value)
 })
@@ -223,94 +248,115 @@ onBeforeUnmount(() => {
           </p>
         </MotionReveal>
 
-        <MotionReveal
-          as="article"
-          class="mx-auto max-w-2xl overflow-hidden rounded-3xl border border-white/10 bg-[#0f1720]/78 shadow-xl shadow-black/20 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-brand-violet/30 hover:shadow-brand-violet/10"
-          :delay="0.1"
-          :y="26"
-        >
-          <div class="relative h-44 overflow-hidden bg-space/70 sm:h-56">
-            <button
-              v-if="!projectImageUnavailable"
-              type="button"
-              class="group/preview h-full w-full cursor-zoom-in overflow-hidden text-left focus-visible:outline-2 focus-visible:outline-inset focus-visible:outline-brand-violet"
-              aria-label="Abrir vista previa de Beto y Más"
-              @click="openProjectPreview"
-            >
-              <img
-                :src="projectImageSrc"
-                alt="Vista previa de Beto y Más"
-                class="h-full w-full object-cover object-top transition-transform duration-700 group-hover/preview:scale-[1.04]"
-                loading="lazy"
-                decoding="async"
-                @error="projectImageUnavailable = true"
-              />
-            </button>
-            <div v-else class="grid h-full place-items-center p-6 text-center">
-              <div>
-                <p class="text-2xl font-semibold text-foreground">Beto y Más</p>
-                <p class="mt-2 text-sm text-muted">Plataforma de fidelización y gamificación</p>
-              </div>
-            </div>
-            <div class="absolute inset-0 bg-linear-to-t from-space/80 via-space/10 to-transparent"></div>
-          </div>
-
-          <div class="relative px-5 pb-6 pt-0 sm:px-7 sm:pb-7">
-            <div class="-mt-5 flex justify-end">
-              <a
-                :href="projectUrl"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Abrir Beto y Más"
-                class="grid size-10 place-items-center rounded-xl border border-white/10 bg-[#0b1119]/90 text-muted transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-violet/35 hover:text-brand-magenta active:scale-[0.98]"
+        <div class="grid gap-5 lg:grid-cols-2 lg:gap-6">
+          <MotionReveal
+            v-for="(project, index) in projectCards"
+            :key="project.id"
+            as="article"
+            class="mx-auto flex h-full w-full max-w-xl flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#0f1720]/78 shadow-xl shadow-black/20 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-brand-violet/30 hover:shadow-brand-violet/10 lg:max-w-none"
+            :delay="0.1 + index * 0.08"
+            :y="26"
+          >
+            <div class="relative h-40 overflow-hidden bg-space/70 sm:h-48">
+              <button
+                v-if="project.available && !projectImageUnavailable"
+                type="button"
+                class="group/preview h-full w-full cursor-zoom-in overflow-hidden text-left focus-visible:outline-2 focus-visible:outline-inset focus-visible:outline-brand-violet"
+                :aria-label="`Abrir vista previa de ${project.title}`"
+                @click="openProjectPreview"
               >
-                <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
-                </svg>
-              </a>
+                <img
+                  :src="project.imageSrc"
+                  :alt="`Vista previa de ${project.title}`"
+                  class="h-full w-full object-cover object-top transition-transform duration-700 group-hover/preview:scale-[1.04]"
+                  loading="lazy"
+                  decoding="async"
+                  @error="projectImageUnavailable = true"
+                />
+              </button>
+              <div v-else class="grid h-full place-items-center p-6 text-center">
+                <div>
+                  <p class="text-2xl font-semibold text-foreground">{{ project.title }}</p>
+                  <p class="mt-2 text-sm text-muted">{{ project.subtitle }}</p>
+                </div>
+              </div>
+              <div class="absolute inset-0 bg-linear-to-t from-space/80 via-space/10 to-transparent"></div>
             </div>
 
-            <div class="mt-4">
-              <h3 class="text-2xl font-semibold text-foreground">Beto y Más</h3>
-              <p class="mt-1 text-sm font-semibold text-brand-magenta">
-                Plataforma de fidelización y gamificación
-              </p>
-              <p class="mt-2 text-xs font-medium uppercase tracking-[0.22em] text-muted">Rol · Full Stack Developer</p>
-            </div>
-
-            <p class="mt-5 text-sm leading-relaxed text-muted sm:text-base">
-              Sistema web desarrollado para centralizar clientes, puntos, recompensas, promociones y dinámicas de
-              fidelización mediante una plataforma moderna y modular.
-            </p>
-
-            <div class="mt-5">
-              <p class="mb-3 text-center text-xs font-semibold uppercase tracking-[0.24em] text-muted">Stack</p>
-              <div class="flex flex-wrap justify-center gap-2">
-                <span
-                  v-for="item in projectStack"
-                  :key="item"
-                  class="rounded-lg border border-white/10 bg-white/3 px-3 py-1.5 text-xs font-semibold text-muted transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-violet/35 hover:text-brand-magenta"
+            <div class="relative flex flex-1 flex-col px-5 pb-6 pt-0 sm:px-6 sm:pb-7">
+              <div class="-mt-5 flex justify-end">
+                <a
+                  v-if="project.available"
+                  :href="project.url"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  :aria-label="`Abrir ${project.title}`"
+                  class="grid size-10 place-items-center rounded-xl border border-white/10 bg-[#0b1119]/90 text-muted transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-violet/35 hover:text-brand-magenta active:scale-[0.98]"
                 >
-                  {{ item }}
+                  <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
+                  </svg>
+                </a>
+                <span
+                  v-else
+                  class="grid size-10 place-items-center rounded-xl border border-white/10 bg-[#0b1119]/90 text-muted/70"
+                  aria-hidden="true"
+                >
+                  <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                  </svg>
+                </span>
+              </div>
+
+              <div class="mt-4">
+                <h3 class="text-2xl font-semibold text-foreground">{{ project.title }}</h3>
+                <p class="mt-1 text-sm font-semibold text-brand-magenta">
+                  {{ project.subtitle }}
+                </p>
+                <p class="mt-2 text-xs font-medium uppercase tracking-[0.22em] text-muted">Rol · {{ project.role }}</p>
+              </div>
+
+              <p class="mt-5 text-sm leading-relaxed text-muted sm:text-base">
+                {{ project.description }}
+              </p>
+
+              <div class="mt-5">
+                <p class="mb-3 text-center text-xs font-semibold uppercase tracking-[0.24em] text-muted">Stack</p>
+                <div class="flex flex-wrap justify-center gap-2">
+                  <span
+                    v-for="item in project.stack"
+                    :key="`${project.id}-${item}`"
+                    class="rounded-lg border border-white/10 bg-white/3 px-3 py-1.5 text-xs font-semibold text-muted transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-violet/35 hover:text-brand-magenta"
+                  >
+                    {{ item }}
+                  </span>
+                </div>
+              </div>
+
+              <div class="mt-auto border-t border-white/8 pt-5">
+                <a
+                  v-if="project.available"
+                  :href="project.url"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group inline-flex w-full items-center justify-center gap-2 rounded-xl border border-brand-violet/25 bg-brand-violet/10 px-5 py-3 text-sm font-semibold text-brand-magenta transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-violet/45 hover:bg-brand-violet/15 hover:shadow-lg hover:shadow-brand-violet/10 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta"
+                >
+                  Ver proyecto
+                  <svg viewBox="0 0 24 24" class="size-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
+                  </svg>
+                </a>
+                <span
+                  v-else
+                  class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-brand-violet/15 bg-brand-violet/8 px-5 py-3 text-sm font-semibold text-muted"
+                >
+                  En desarrollo
                 </span>
               </div>
             </div>
-
-            <div class="mt-6 border-t border-white/8 pt-5">
-              <a
-                :href="projectUrl"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="group inline-flex w-full items-center justify-center gap-2 rounded-xl border border-brand-violet/25 bg-brand-violet/10 px-5 py-3 text-sm font-semibold text-brand-magenta transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-violet/45 hover:bg-brand-violet/15 hover:shadow-lg hover:shadow-brand-violet/10 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-magenta"
-              >
-                Ver proyecto
-                <svg viewBox="0 0 24 24" class="size-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </MotionReveal>
+          </MotionReveal>
+        </div>
 
         <Teleport to="body">
           <Transition
