@@ -15,12 +15,16 @@ const props = defineProps({
 
 const currentIndex = ref(0)
 const visibleCount = ref(1)
+const carouselRef = ref(null)
 const isPaused = ref(false)
+const isInViewport = ref(true)
+const documentIsVisible = ref(true)
 const isLightboxOpen = ref(false)
 const lightboxIndex = ref(0)
 const unavailableImages = ref(new Set())
 const touchStartX = ref(0)
 let autoplayTimer
+let visibilityObserver
 
 const reduceMotion =
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -102,10 +106,32 @@ const startAutoplay = () => {
 
   window.clearInterval(autoplayTimer)
   autoplayTimer = window.setInterval(() => {
-    if (!isPaused.value) {
+    if (!isPaused.value && isInViewport.value && documentIsVisible.value) {
       goNext()
     }
   }, props.interval)
+}
+
+const setupVisibilityObserver = () => {
+  if (typeof IntersectionObserver === 'undefined' || !carouselRef.value) {
+    return
+  }
+
+  visibilityObserver = new IntersectionObserver(
+    ([entry]) => {
+      isInViewport.value = entry.isIntersecting
+    },
+    {
+      rootMargin: '120px 0px',
+      threshold: 0.08,
+    },
+  )
+
+  visibilityObserver.observe(carouselRef.value)
+}
+
+const handleVisibilityChange = () => {
+  documentIsVisible.value = !document.hidden
 }
 
 const markImageUnavailable = (src) => {
@@ -159,14 +185,18 @@ watch(isLightboxOpen, (isOpen) => {
 
 onMounted(() => {
   updateVisibleCount()
+  setupVisibilityObserver()
   startAutoplay()
   window.addEventListener('resize', updateVisibleCount)
+  document.addEventListener('visibilitychange', handleVisibilityChange)
   document.addEventListener('keydown', handleKeydown)
 })
 
 onBeforeUnmount(() => {
   window.clearInterval(autoplayTimer)
+  visibilityObserver?.disconnect()
   window.removeEventListener('resize', updateVisibleCount)
+  document.removeEventListener('visibilitychange', handleVisibilityChange)
   document.removeEventListener('keydown', handleKeydown)
   document.body.classList.remove('menu-open')
 })
@@ -174,6 +204,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div
+    ref="carouselRef"
     class="premium-card relative overflow-hidden rounded-2xl p-2.5 sm:p-3"
     @mouseenter="isPaused = true"
     @mouseleave="isPaused = false"
@@ -221,7 +252,7 @@ onBeforeUnmount(() => {
     >
       <MotionReveal
         v-for="(item, index) in visibleItems"
-        :key="`${currentIndex}-${item.src}`"
+        :key="item.src"
         as="figure"
         class="group/photo relative h-44 overflow-hidden rounded-xl border border-white/10 bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-brand-cyan/35 hover:shadow-lg hover:shadow-brand-cyan/10 sm:h-48 md:h-44 lg:h-44 xl:h-48"
         :delay="index * 0.06"
